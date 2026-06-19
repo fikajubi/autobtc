@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Secured Multi-Exchange Scalper Dashboard</title>
-    <!-- TradingView Lightweight Charts -->
     <script src="https://unpkg.com/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
     <style>
         :root {
@@ -14,63 +13,54 @@
         
         * { box-sizing: border-box; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; }
         
-        body { 
-            background-color: var(--bg); color: var(--text); 
-            margin: 0; padding: 15px; min-height: 100vh;
-        }
-
-        .wrapper { 
-            max-width: 1200px; margin: 0 auto; width: 100%; 
-            display: flex; flex-direction: column; gap: 15px;
-        }
+        body { background-color: var(--bg); color: var(--text); margin: 0; padding: 15px; min-height: 100vh; }
+        .wrapper { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 15px; }
 
         header { 
             display: flex; justify-content: space-between; align-items: center; 
             background: var(--card); padding: 15px; border-radius: 10px; border: 1px solid #2b2f4a;
         }
-
         h1 { margin: 0; font-size: 1.2rem; }
         h1 span { display: block; color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
 
-        .btn-status {
-            padding: 12px 24px; font-size: 0.9rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s;
-        }
+        .btn-status { padding: 12px 24px; font-size: 0.9rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; }
         .status-on { background-color: var(--green); color: #000; }
         .status-off { background-color: var(--red); color: #fff; }
 
-        /* SUSUNAN VERTIKAL SERAGAM (DESKTOP & MOBILE) */
-        .layout-vertical {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-        }
+        .layout-vertical { display: flex; flex-direction: column; gap: 15px; width: 100%; }
 
         /* Grafik Chart Paling Atas */
-        .chart-card { 
-            background: var(--card); border-radius: 10px; padding: 10px; border: 1px solid #2b2f4a; 
-            height: 400px; width: 100%; position: relative;
-        }
+        .chart-card { background: var(--card); border-radius: 10px; padding: 10px; border: 1px solid #2b2f4a; height: 400px; width: 100%; position: relative; }
         #chart-box { width: 100%; height: 100%; }
 
-        /* Jurnal Mutasi Berada di Bawah Chart */
+        /* Panel Desain Kotak */
         .panel-box { background: var(--card); border-radius: 10px; padding: 15px; border: 1px solid #2b2f4a; width: 100%; }
         .panel-box h2 { margin-top: 0; font-size: 0.95rem; color: var(--muted); border-bottom: 1px solid #2b2f4a; padding-bottom: 8px;}
 
-        /* Area Tabel Gulung Jurnal */
-        .table-wrapper { max-height: 300px; overflow-y: auto; width: 100%; }
+        /* Live Wallet Balance Area */
+        .balance-box {
+            background: rgba(243, 186, 47, 0.08); border: 1px dashed var(--gold);
+            padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px;
+        }
+        .balance-amount { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin-top: 5px; }
+
+        /* Jurnal Mutasi Bawah */
+        .table-wrapper { max-height: 250px; overflow-y: auto; width: 100%; }
         table { width: 100%; border-collapse: collapse; font-size: 0.75rem; text-align: left; }
         th { background: var(--card); color: var(--muted); padding: 10px 8px; border-bottom: 2px solid #2b2f4a; position: sticky; top: 0; z-index: 10;}
         td { padding: 12px 8px; border-bottom: 1px solid #2b2f4a; white-space: nowrap; }
 
-        @media (max-width: 600px) {
-            header { flex-direction: column; text-align: center; gap: 12px; }
-            .chart-card { height: 300px; }
+        /* Remote API Forms */
+        .api-form { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .api-form label { font-size: 0.8rem; color: var(--muted); font-weight: bold; }
+        .api-form select, .api-form input {
+            width: 100%; background: var(--input); border: 1px solid #2b2f4a; 
+            padding: 10px; color: #fff; border-radius: 6px; font-size: 0.85rem;
         }
-
-        /* ====================================================================
-           SISTEM DIALOG POP-UP PIN MODAL (HONEYPOT PENYAMARAN)
-           ==================================================================== */
+        .btn-save-api { background: var(--gold); color: #000; font-weight: bold; padding: 12px; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; margin-top: 5px;}
+        
+        /* Penyamaran Jendela Dialog PIN */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center;
@@ -78,32 +68,19 @@
             transition: opacity 0.3s ease;
         }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
-
-        .modal-card {
-            background: #181a26; border: 1px solid #3b4166; padding: 25px;
-            border-radius: 12px; width: 90%; max-width: 360px; text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5); transform: scale(0.8);
-            transition: transform 0.3s ease;
-        }
-        .modal-overlay.active .modal-card { transform: scale(1); }
-        .modal-card h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: var(--text); }
+        .modal-card { background: #181a26; border: 1px solid #3b4166; padding: 25px; border-radius: 12px; width: 90%; max-width: 360px; text-align: center; }
+        .pin-input { background: var(--input); border: 1px solid #3b4166; padding: 12px; border-radius: 6px; color: var(--gold); text-align: center; font-size: 1.5rem; letter-spacing: 8px; width: 100%; font-weight: bold; }
         
-        .pin-container { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; }
-        .pin-input {
-            background: var(--input); border: 1px solid #3b4166; padding: 12px; border-radius: 6px;
-            color: var(--gold); text-align: center; font-size: 1.5rem; letter-spacing: 8px; width: 100%; font-weight: bold;
+        @media (max-width: 600px) {
+            header { flex-direction: column; text-align: center; gap: 12px; }
+            .form-row { grid-template-columns: 1fr; }
+            .chart-card { height: 300px; }
         }
-
-        .modal-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
-        .btn-modal { padding: 10px 20px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; font-size: 0.85rem; }
-        .btn-confirm { background: var(--green); color: #000; }
-        .btn-cancel { background: #2b2f4a; color: var(--muted); }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
-    <!-- Header Utama -->
     <header>
         <div>
             <h1>BTC/USDT Secured Scalper <span>Cloud Engine System Active 24 Hours</span></h1>
@@ -111,15 +88,9 @@
         <button id="stateBtn" class="btn-status status-off">CONNECTING...</button>
     </header>
 
-    <!-- Tata Letak Vertikal Sejajar -->
     <div class="layout-vertical">
-        
-        <!-- Chart Terletak Paling Atas -->
-        <div class="chart-card">
-            <div id="chart-box"></div>
-        </div>
+        <div class="chart-card"><div id="chart-box"></div></div>
 
-        <!-- Jurnal Mutasi Berada Tepat di Bawah Chart -->
         <div class="panel-box">
             <h2>Jurnal Mutasi Sinyal Ter-OP (Live Cloud Data)</h2>
             <div class="table-wrapper">
@@ -140,31 +111,68 @@
             </div>
         </div>
 
+        <div class="panel-box">
+            <h2>Uji Coba API & Wallet Configuration (Cloud Secured)</h2>
+            <div class="balance-box">
+                <div style="font-size:0.85rem; color:var(--muted); font-weight:bold; letter-spacing:1px;">EXCHANGE LIVE BALANCE (USDT)</div>
+                <div id="balanceDisplay" class="balance-amount">Loading balance...</div>
+            </div>
+
+            <div class="api-form">
+                <div class="form-row">
+                    <div>
+                        <label>Trading Mode</label>
+                        <select id="apiMode">
+                            <option value="DEMO">DEMO ACCORD (24H Simulation)</option>
+                            <option value="REAL">REAL ACCORD (Live Executing)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Target Bursa (Exchange)</label>
+                        <select id="apiExchange">
+                            <option value="BINANCE">BINANCE</option>
+                            <option value="TOKOCRYPTO">TOKOCRYPTO</option>
+                            <option value="KUCOIN">KUCOIN</option>
+                            <option value="INDODAX">INDODAX</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label>API Key Pihak Ketiga</label>
+                    <input type="text" id="apiKeyField" placeholder="Masukkan sandi API Key bursa...">
+                </div>
+                <div>
+                    <label>API Secret Key Pasangan</label>
+                    <input type="password" id="apiSecretField" placeholder="•••••••••••••••••••••••••••••••••">
+                </div>
+                <button id="saveApiBtn" class="btn-save-api">SIMPAN API & PERBARUI SALDO</button>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- POP-UP DIALOG UNTUK INPUT PIN (Hanya Muncul Saat Klik Tombol ON/OFF) -->
 <div id="pinModal" class="modal-overlay">
     <div class="modal-card">
-        <h3>Otorisasi Gerbang Cloud</h3>
-        <div class="pin-container">
+        <h3 id="modalTitle">Otorisasi Gerbang Cloud</h3>
+        <div style="display:flex; flex-direction:column; gap:12px; margin:15px 0;">
             <input type="password" id="pinField" class="pin-input" maxlength="6" placeholder="******" pattern="\d*">
             <small style="color: var(--muted); line-height: 1.4; font-weight: bold;">⚠️ Peringatan: Wajib masukkan 6-digit kode PIN otoritas institusi.</small>
         </div>
-        <div class="modal-actions">
-            <button id="cancelModalBtn" class="btn-modal btn-cancel">Batal</button>
-            <button id="confirmModalBtn" class="btn-modal btn-confirm">Konfirmasi</button>
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+            <button id="cancelModalBtn" style="background:#2b2f4a; color:var(--muted); padding:10px 20px; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">Batal</button>
+            <button id="confirmModalBtn" style="background:var(--green); color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">Konfirmasi</button>
         </div>
     </div>
 </div>
 
 <script>
-    // URL Web App Google Apps Script milik Anda sudah langsung terpasang di bawah ini:
+    // URL Web App Aplikasi Terdeploy Anda Sudah Langsung Terkunci Sempurna Di Sini
     const SECURE_CLOUD_URL = "https://script.google.com/macros/s/AKfycbwnnq0vvz_mHs3frGoLJVNPbP8CJ_u5XOXBefZQ3D9XhpygncZz7h2ZyZZ30uYFbVQ8jg/exec";
     
     let currentBotState = "OFF";
+    let pendingModalAction = "toggle";
 
-    // Inisialisasi Tampilan Grafik
+    // Gambar Grafis TradingView
     const chartBox = document.getElementById('chart-box');
     const chart = LightweightCharts.createChart(chartBox, {
         width: chartBox.clientWidth, height: chartBox.clientHeight,
@@ -182,10 +190,9 @@
                 time: c[0] / 1000, open: parseFloat(c[1]), high: parseFloat(c[2]), low: parseFloat(c[3]), close: parseFloat(c[4])
             }));
             candleSeries.setData(data);
-        } catch(e) { console.log("Chart API Error"); }
+        } catch(e) {}
     }
 
-    // Ambil Data Terkini dari Basis Data Cloud
     async function syncWithCloud() {
         if(SECURE_CLOUD_URL === "") return;
         try {
@@ -194,13 +201,12 @@
             
             currentBotState = data.status;
             const btn = document.getElementById('stateBtn');
-            if (currentBotState === "ON") {
-                btn.className = "btn-status status-on";
-                btn.innerText = "BOT STATUS: ON";
-            } else {
-                btn.className = "btn-status status-off";
-                btn.innerText = "BOT STATUS: OFF";
-            }
+            btn.className = currentBotState === "ON" ? "btn-status status-on" : "btn-status status-off";
+            btn.innerText = currentBotState === "ON" ? "BOT STATUS: ON" : "BOT STATUS: OFF";
+
+            document.getElementById('apiMode').value = data.mode || "DEMO";
+            document.getElementById('apiExchange').value = data.exchange || "BINANCE";
+            document.getElementById('balanceDisplay').innerText = data.balance;
 
             const tableBody = document.getElementById('recapBody');
             tableBody.innerHTML = "";
@@ -210,71 +216,74 @@
             } else {
                 data.recap.forEach(row => {
                     const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>${row[0]}</td>
-                        <td><span style="color:var(--gold)">${row[1]}</span></td>
-                        <td style="color:${row[2]==='BUY'?'var(--green)':'var(--red)'}"><b>${row[2]}</b></td>
-                        <td>${row[3]}</td>
-                        <td><b>${row[4]}</b></td>
-                    `;
+                    tr.innerHTML = `<td>${row[0]}</td><td><span style="color:var(--gold)">${row[1]}</span></td><td style="color:${row[2]==='BUY'?'var(--green)':'var(--red)'}"><b>${row[2]}</b></td><td>${row[3]}</td><td><b>${row[4]}</b></td>`;
                     tableBody.appendChild(tr);
                 });
             }
-        } catch(e) { console.log("Cloud Database Sync Offline"); }
+        } catch(e) {}
     }
 
-    // Pengaturan Interaksi Tombol Otoritas Pop-Up
     const stateBtn = document.getElementById('stateBtn');
+    const saveApiBtn = document.getElementById('saveApiBtn');
     const pinModal = document.getElementById('pinModal');
     const pinField = document.getElementById('pinField');
-    const cancelModalBtn = document.getElementById('cancelModalBtn');
-    const confirmModalBtn = document.getElementById('confirmModalBtn');
+    const modalTitle = document.getElementById('modalTitle');
 
     stateBtn.addEventListener('click', () => {
         if(stateBtn.innerText === "CONNECTING...") return;
-        pinField.value = ""; 
-        pinModal.classList.add('active'); 
-        pinField.focus(); 
+        pendingModalAction = "toggle";
+        modalTitle.innerText = "Otorisasi Perubahan Status Bot";
+        pinField.value = ""; pinModal.classList.add('active'); pinField.focus();
     });
 
-    cancelModalBtn.addEventListener('click', () => {
-        pinModal.classList.remove('active'); 
+    saveApiBtn.addEventListener('click', () => {
+        pendingModalAction = "api";
+        modalTitle.innerText = "Otorisasi Penyimpanan API Rahasia";
+        pinField.value = ""; pinModal.classList.add('active'); pinField.focus();
     });
 
-    confirmModalBtn.addEventListener('click', async () => {
-        if (pinField.value.length === 0) {
-            alert("⚠️ Akses Ditolak: Kolom PIN Otoritas tidak boleh kosong!");
-            return;
-        }
+    document.getElementById('cancelModalBtn').addEventListener('click', () => { pinModal.classList.remove('active'); });
 
-        const targetState = currentBotState === "ON" ? "OFF" : "ON";
-        
+    document.getElementById('confirmModalBtn').addEventListener('click', async () => {
+        if (pinField.value.length === 0) { alert("⚠️ PIN tidak boleh kosong!"); return; }
         pinModal.classList.remove('active');
-        stateBtn.innerText = "PROSES CLOUD...";
 
-        try {
-            // Cukup ketik 3 digit PIN Anda (999), data akan divalidasi aman di cloud
-            const res = await fetch(`${SECURE_CLOUD_URL}?action=toggleBot&pin=${pinField.value}&target=${targetState}`);
-            const result = await res.json();
+        if (pendingModalAction === "toggle") {
+            const targetState = currentBotState === "ON" ? "OFF" : "ON";
+            stateBtn.innerText = "PROSES CLOUD...";
+            try {
+                const res = await fetch(`${SECURE_CLOUD_URL}?action=toggleBot&pin=${pinField.value}&target=${targetState}`);
+                const result = await res.json();
+                alert(result.message);
+                syncWithCloud();
+            } catch(e) { alert("Koneksi gagal!"); syncWithCloud(); }
+        } 
+        
+        else if (pendingModalAction === "api") {
+            const mode = document.getElementById('apiMode').value;
+            const exchange = document.getElementById('apiExchange').value;
+            const key = encodeURIComponent(document.getElementById('apiKeyField').value);
+            const secret = encodeURIComponent(document.getElementById('apiSecretField').value);
             
-            alert(result.message);
-            syncWithCloud();
-        } catch(e) {
-            alert("Koneksi cloud terputus!");
-            syncWithCloud();
+            document.getElementById('balanceDisplay').innerText = "Updating Balance...";
+            try {
+                const res = await fetch(`${SECURE_CLOUD_URL}?action=saveAPI&pin=${pinField.value}&mode=${mode}&exchange=${exchange}&key=${key}&secret=${secret}`);
+                const result = await res.json();
+                alert(result.message);
+                if(result.success) {
+                    document.getElementById('apiKeyField').value = "";
+                    document.getElementById('apiSecretField').value = "";
+                }
+                syncWithCloud();
+            } catch(e) { alert("Gagal menyimpan ke cloud server!"); syncWithCloud(); }
         }
     });
 
-    // Jalankan Sinkronisasi Otomatis Layar
     loadMarketChart();
     syncWithCloud();
-    setInterval(syncWithCloud, 25000); // Layar melakukan refresh mutasi berkala setiap 25 detik
-
-    function resizeChart() {
-        chart.resize(chartBox.clientWidth, chartBox.clientHeight);
-    }
-    window.addEventListener('resize', resizeChart);
-    setInterval(resizeChart, 1000); // Sistem re-render otomatis penjaga responsivitas layout mobile
+    setInterval(syncWithCloud, 25000);
+    window.addEventListener('resize', () => chart.resize(chartBox.clientWidth, chartBox.clientHeight));
+    setInterval(() => chart.resize(chartBox.clientWidth, chartBox.clientHeight), 1000);
 </script>
 </body>
 </html>
