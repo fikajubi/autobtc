@@ -28,10 +28,10 @@
 
         .layout-vertical { display: flex; flex-direction: column; gap: 15px; width: 100%; }
 
-        /* Chart Card Layout */
-        .chart-card { background: var(--card); border-radius: 10px; padding: 10px; border: 1px solid #2b2f4a; height: 400px; width: 100%; position: relative; }
+        /* Komponen Chart Melebar Penuh */
+        .chart-card { background: var(--card); border-radius: 10px; border: 1px solid #2b2f4a; height: 400px; width: 100%; overflow: hidden; }
 
-        /* Panel Box */
+        /* Panel Desain Kotak */
         .panel-box { background: var(--card); border-radius: 10px; padding: 15px; border: 1px solid #2b2f4a; width: 100%; }
         .panel-box h2 { margin-top: 0; font-size: 0.95rem; color: var(--muted); border-bottom: 1px solid #2b2f4a; padding-bottom: 8px;}
 
@@ -58,7 +58,7 @@
         }
         .btn-save-api { background: var(--gold); color: #000; font-weight: bold; padding: 12px; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; margin-top: 5px;}
         
-        /* Penyamaran Jendela Dialog PIN Modals */
+        /* Penyamaran Jendela Dialog PIN */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center;
@@ -88,8 +88,8 @@
 
     <div class="layout-vertical">
         <div class="chart-card">
-            <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=Asia%2FJakarta&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=id&utm_source=localhost&utm_medium=widget&utm_campaign=chart&utm_term=BINANCE%3ABTCUSDT" 
-                    style="width: 100%; height: 100%; border: none; border-radius: 8px;">
+            <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=Asia%2FJakarta&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=id" 
+                    style="width: 100%; height: 100%; border: none;">
             </iframe>
         </div>
 
@@ -116,7 +116,7 @@
         <div class="panel-box">
             <h2>Uji Coba API & Wallet Configuration (Cloud Secured)</h2>
             <div class="balance-box">
-                <div style="font-size:0.85rem; color:var(--muted); font-weight:bold; letter-spacing:1px;">EXCHANGE LIVE BALANCE (USDT)</div>
+                <div style="font-size:0.85rem; color:var(--muted); font-weight:bold; letter-spacing:1px;">EXCHANGE LIVE BALANCE (USDT GABUNGAN)</div>
                 <div id="balanceDisplay" class="balance-amount">Loading balance...</div>
             </div>
 
@@ -259,7 +259,6 @@
         }
     });
 
-    // Rutinitas Loop Sinkronisasi Sinkron
     syncWithCloud();
     setInterval(syncWithCloud, 25000);
 </script>
