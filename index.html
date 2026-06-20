@@ -22,7 +22,6 @@
         .status-on { background-color: var(--green); color: #000; }
         .status-off { background-color: var(--red); color: #fff; }
         
-        /* Tombol Tes Baru */
         .btn-test-trigger { padding: 12px 20px; font-size: 0.9rem; font-weight: bold; background-color: var(--blue); color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; }
         .btn-test-trigger:hover { background-color: #267eff; }
 
@@ -36,6 +35,7 @@
         table { width: 100%; border-collapse: collapse; font-size: 0.75rem; text-align: left; }
         th { background: var(--card); color: var(--muted); padding: 10px 8px; border-bottom: 2px solid #2b2f4a; position: sticky; top: 0; z-index: 10;}
         td { padding: 12px 8px; border-bottom: 1px solid #2b2f4a; white-space: nowrap; }
+        
         .api-form { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .api-form label { font-size: 0.8rem; color: var(--muted); font-weight: bold; }
@@ -151,7 +151,7 @@
 <script>
     const SECURE_CLOUD_URL = "https://script.google.com/macros/s/AKfycbwnnq0vvz_mHs3frGoLJVNPbP8CJ_u5XOXBefZQ3D9XhpygncZz7h2ZyZZ30uYFbVQ8jg/exec";
     let currentBotState = "OFF";
-    let pendingModalAction = "toggle"; // "toggle", "api", atau "test"
+    let pendingModalAction = "toggle";
 
     async function syncWithCloud() {
         if(SECURE_CLOUD_URL === "") return;
@@ -203,7 +203,6 @@
         pinField.value = ""; pinModal.classList.add('active'); pinField.focus();
     });
 
-    // Interaksi klik tombol tes baru
     testTriggerBtn.addEventListener('click', () => {
         pendingModalAction = "test";
         modalTitle.innerText = "Otorisasi Jalankan Manual Test Entry";
