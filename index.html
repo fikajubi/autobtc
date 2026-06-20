@@ -9,66 +9,34 @@
             --bg: #0c0d14; --card: #141522; --input: #1e2035; --text: #eaeaea; 
             --muted: #848e9c; --green: #0ecb81; --red: #f6465d; --gold: #f3ba2f;
         }
-        
         * { box-sizing: border-box; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; }
-        
         body { background-color: var(--bg); color: var(--text); margin: 0; padding: 15px; min-height: 100vh; }
         .wrapper { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 15px; }
-
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            background: var(--card); padding: 15px; border-radius: 10px; border: 1px solid #2b2f4a;
-        }
+        header { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 15px; border-radius: 10px; border: 1px solid #2b2f4a; }
         h1 { margin: 0; font-size: 1.2rem; }
         h1 span { display: block; color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
-
         .btn-status { padding: 12px 24px; font-size: 0.9rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; }
         .status-on { background-color: var(--green); color: #000; }
         .status-off { background-color: var(--red); color: #fff; }
-
         .layout-vertical { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-
-        /* Komponen Chart Melebar Penuh */
         .chart-card { background: var(--card); border-radius: 10px; border: 1px solid #2b2f4a; height: 400px; width: 100%; overflow: hidden; }
-
-        /* Panel Desain Kotak */
         .panel-box { background: var(--card); border-radius: 10px; padding: 15px; border: 1px solid #2b2f4a; width: 100%; }
         .panel-box h2 { margin-top: 0; font-size: 0.95rem; color: var(--muted); border-bottom: 1px solid #2b2f4a; padding-bottom: 8px;}
-
-        /* Live Wallet Balance Area */
-        .balance-box {
-            background: rgba(243, 186, 47, 0.08); border: 1px dashed var(--gold);
-            padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px;
-        }
+        .balance-box { background: rgba(243, 186, 47, 0.08); border: 1px dashed var(--gold); padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px; }
         .balance-amount { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin-top: 5px; }
-
-        /* Jurnal Mutasi Bawah */
         .table-wrapper { max-height: 250px; overflow-y: auto; width: 100%; }
         table { width: 100%; border-collapse: collapse; font-size: 0.75rem; text-align: left; }
         th { background: var(--card); color: var(--muted); padding: 10px 8px; border-bottom: 2px solid #2b2f4a; position: sticky; top: 0; z-index: 10;}
         td { padding: 12px 8px; border-bottom: 1px solid #2b2f4a; white-space: nowrap; }
-
-        /* Remote API Forms */
         .api-form { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .api-form label { font-size: 0.8rem; color: var(--muted); font-weight: bold; }
-        .api-form select, .api-form input {
-            width: 100%; background: var(--input); border: 1px solid #2b2f4a; 
-            padding: 10px; color: #fff; border-radius: 6px; font-size: 0.85rem;
-        }
+        .api-form select, .api-form input { width: 100%; background: var(--input); border: 1px solid #2b2f4a; padding: 10px; color: #fff; border-radius: 6px; font-size: 0.85rem; }
         .btn-save-api { background: var(--gold); color: #000; font-weight: bold; padding: 12px; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; margin-top: 5px;}
-        
-        /* Penyamaran Jendela Dialog PIN */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center;
-            align-items: center; z-index: 9999; opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-card { background: #181a26; border: 1px solid #3b4166; padding: 25px; border-radius: 12px; width: 90%; max-width: 360px; text-align: center; }
         .pin-input { background: var(--input); border: 1px solid #3b4166; padding: 12px; border-radius: 6px; color: var(--gold); text-align: center; font-size: 1.5rem; letter-spacing: 8px; width: 100%; font-weight: bold; }
-        
         @media (max-width: 600px) {
             header { flex-direction: column; text-align: center; gap: 12px; }
             .form-row { grid-template-columns: 1fr; }
@@ -88,9 +56,7 @@
 
     <div class="layout-vertical">
         <div class="chart-card">
-            <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=Asia%2FJakarta&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=id" 
-                    style="width: 100%; height: 100%; border: none;">
-            </iframe>
+            <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=Asia%2FJakarta&locale=id" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
 
         <div class="panel-box">
@@ -116,7 +82,7 @@
         <div class="panel-box">
             <h2>Uji Coba API & Wallet Configuration (Cloud Secured)</h2>
             <div class="balance-box">
-                <div style="font-size:0.85rem; color:var(--muted); font-weight:bold; letter-spacing:1px;">EXCHANGE LIVE BALANCE (USDT GABUNGAN)</div>
+                <div style="font-size:0.85rem; color:var(--muted); font-weight:bold; letter-spacing:1px;">EXCHANGE LIVE BALANCE</div>
                 <div id="balanceDisplay" class="balance-amount">Loading balance...</div>
             </div>
 
@@ -155,7 +121,7 @@
 
 <div id="pinModal" class="modal-overlay">
     <div class="modal-card">
-        <h3 id="modalTitle">Otorisasi Gerbang Cloud</h3>
+        <h3>Otorisasi Gerbang Cloud</h3>
         <div style="display:flex; flex-direction:column; gap:12px; margin:15px 0;">
             <input type="password" id="pinField" class="pin-input" maxlength="6" placeholder="******" pattern="\d*">
             <small style="color: var(--muted); line-height: 1.4; font-weight: bold;">⚠️ Peringatan: Wajib masukkan 6-digit kode PIN otoritas institusi.</small>
@@ -169,7 +135,6 @@
 
 <script>
     const SECURE_CLOUD_URL = "https://script.google.com/macros/s/AKfycbwnnq0vvz_mHs3frGoLJVNPbP8CJ_u5XOXBefZQ3D9XhpygncZz7h2ZyZZ30uYFbVQ8jg/exec";
-    
     let currentBotState = "OFF";
     let pendingModalAction = "toggle";
 
@@ -196,7 +161,7 @@
             } else {
                 data.recap.forEach(row => {
                     const tr = document.createElement('tr');
-                    tr.innerHTML = `<td>${row[0]}</td><td><span style="color:var(--gold)">${row[1]}</span></td><td style="color:${row[2]==='BUY'?'var(--green)':'var(--red)'}"><b>${row[2]}</b></td><td>${row[3]}</td><td><b>${row[4]}</b></td>`;
+                    tr.innerHTML = `<td>${row[0]}</td><td><span style="color:var(--gold)">${row[1]}</span></td><td style="color:${row[2].includes('BUY')?'var(--green)':'var(--red)'}"><b>${row[2]}</b></td><td>${row[3]}</td><td><b>${row[4]}</b></td>`;
                     tableBody.appendChild(tr);
                 });
             }
@@ -207,18 +172,15 @@
     const saveApiBtn = document.getElementById('saveApiBtn');
     const pinModal = document.getElementById('pinModal');
     const pinField = document.getElementById('pinField');
-    const modalTitle = document.getElementById('modalTitle');
 
     stateBtn.addEventListener('click', () => {
         if(stateBtn.innerText === "CONNECTING...") return;
         pendingModalAction = "toggle";
-        modalTitle.innerText = "Otorisasi Perubahan Status Bot";
         pinField.value = ""; pinModal.classList.add('active'); pinField.focus();
     });
 
     saveApiBtn.addEventListener('click', () => {
         pendingModalAction = "api";
-        modalTitle.innerText = "Otorisasi Penyimpanan API Rahasia";
         pinField.value = ""; pinModal.classList.add('active'); pinField.focus();
     });
 
@@ -238,7 +200,6 @@
                 syncWithCloud();
             } catch(e) { alert("Koneksi gagal!"); syncWithCloud(); }
         } 
-        
         else if (pendingModalAction === "api") {
             const mode = document.getElementById('apiMode').value;
             const exchange = document.getElementById('apiExchange').value;
