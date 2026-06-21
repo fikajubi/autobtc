@@ -1,242 +1,120 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mushola Wakaf An-Nur - Laporan Infaq</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-* { font-weight:900!important; font-family:'Plus Jakarta Sans',sans-serif; }
-body { background:#f4f7f5; color:#1e293b; margin:0; padding:0; }
-.struktur-wrapper { width:100%; display:flex; justify-content:center; margin-bottom:4px; }
-.struktur-container { width:100%; background:#2563eb; border:48px solid #2563eb; border-radius:0; padding:0; box-sizing:border-box; }
-.struktur-inner { width:100%; background:#fff; border-radius:40px; padding:32px 16px; display:flex; flex-direction:column; gap:20px; align-items:center; box-sizing:border-box; }
-.judul-struktur-utama { font-size:clamp(24px,4.5vw,44px); color:#1d3557; text-transform:uppercase; margin:0; text-align:center; line-height:1.2; }
-.sub-judul-struktur { font-size:clamp(16px,3vw,24px); color:#1d3557; text-transform:uppercase; margin:4px 0 16px; text-align:center; line-height:1.3; }
-.struktur-row { display:flex; flex-direction:column; gap:16px; justify-content:center; align-items:center; width:100%; }
-.struktur-container .box { background:rgba(16,185,129,0.1); border:4px solid #10b981; border-radius:14px; padding:14px 16px; font-size:clamp(15px,3.5vw,18px); color:#0b6640; box-shadow:0 0 20px rgba(0,255,102,.8),0 0 8px rgba(0,255,102,.4); display:flex; flex-direction:column; align-items:center; text-align:center; min-height:90px; width:100%; max-width:100%; box-sizing:border-box; }
-.struktur-container .box strong { color:#0b6640; font-size:clamp(18px,4vw,22px); margin-bottom:4px; text-transform:uppercase; white-space:nowrap; }
-@media(min-width:768px){.struktur-inner{padding:40px 24px;gap:24px;}.struktur-row{flex-direction:row;flex-wrap:wrap;max-width:950px;gap:20px;align-items:stretch;}.row-1 .box,.row-2 .box,.row-3 .box{flex:1;min-width:190px;max-width:280px;}.row-4 .box-keamanan,.row-4 .box-perawatan,.row-4 .box-kegiatan{flex:1.5;min-width:220px;max-width:280px;}.row-4 .box-kebersihan{flex:1.2;min-width:220px;max-width:260px;}.row-5 .box{width:100%;max-width:360px;}}}
-.radar-pulse{position:relative;width:8px;height:8px;background:#00FF66;border-radius:50%;box-shadow:0 0 8px #00FF66;}
-.salju{color:rgba(255,255,255,.5);font-size:1.3em;position:fixed;top:-10%;z-index:9999;user-select:none;pointer-events:none;animation:turun 26s linear infinite,goncang 5s ease-in-out infinite;}
-@keyframes turun{0%{top:-10%;}100%{top:105%;}}
-@keyframes goncang{0%,100%{transform:translateX(0) rotate(0);}50%{transform:translateX(60px) rotate(180deg);}}
-@keyframes naikTurun{0%{transform:translateY(0);}50%{transform:translateY(-6px);}100%{transform:translateY(0);}}
-.logo-terbang{animation:naikTurun 4s ease-in-out infinite;}
-.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.4);backdrop-filter:blur(3px);}
-.modal-content{background:#fefefe;margin:10% auto;padding:24px;border-radius:16px;max-width:400px;box-shadow:0 10px 30px rgba(0,0,0,.2);}
-input,button{width:100%;padding:10px 12px;margin:8px 0;border-radius:8px;border:1px solid #ddd;box-sizing:border-box;font-size:16px;}
-button{background:#2563eb;color:white;border:none;cursor:pointer;transition:background 0.2s;}
-button:hover{background:#1d4ed8;}
-.hijau{background:#10b981;}
-.hijau:hover{background:#059669;}
-table{width:100%;border-collapse:collapse;margin-top:16px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.05);}
-th,td{padding:12px;text-align:left;border-bottom:1px solid #eee;}
-th{background:#f8fafc;text-transform:uppercase;font-size:13px;color:#64748b;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot Binance Demo + Chart Live</title>
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:Segoe UI, Roboto; }
+    body { background:#0f172a; color:#f1f5f9; padding:16px; max-width:1100px; margin:0 auto; }
+    .grid { display:grid; grid-template-columns: 3fr 2fr; gap:20px; }
+    @media(max-width:900px) { .grid { grid-template-columns:1fr; } }
+    .card { background:#1e293b; border-radius:14px; padding:20px; border:1px solid #334155; margin-bottom:16px; }
+    h1 { text-align:center; color:#38bdf8; margin-bottom:20px; font-size:22px; }
+    .big-balance { font-size:38px; font-weight:700; color:#10b981; margin:10px 0; }
+    .price-box { background:#0f172a; padding:12px; border-radius:8px; margin:10px 0; text-align:center; font-size:20px; color:#fbbf24; font-weight:bold; }
+    #chart { height:420px; border-radius:10px; background:#0f172a; }
+    .controls { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
+    button { padding:15px; border-radius:10px; border:none; font-weight:bold; font-size:17px; cursor:pointer; }
+    .buy { background:#16a34a; color:white; }
+    .sell { background:#dc2626; color:white; }
+    .info { background:#334155; padding:12px; border-radius:8px; font-size:14px; margin:8px 0; }
+    .log { background:#0f172a; padding:12px; border-radius:8px; height:180px; overflow:auto; font-size:13px; }
+    .pulse { animation:pulse 2s infinite; } @keyframes pulse{0%{opacity:1;}}
+  </style>
 </head>
-<body class="min-h-screen py-4 px-3 md:py-6 md:px-8 flex justify-center items-start">
+<body>
+  <h1>🤖 BOT TRADING DEMO • LIVE CHART BTC/USDT</h1>
+  <div class="grid">
+    <!-- Kolom Kiri: Chart -->
+    <div class="card">
+      <h3>📈 CHART LIVE BTC/USDT (BINANCE TESTNET)</h3>
+      <div id="chart"></div>
+      <div class="info">Sumber: demo.binance.com | Data: WebSocket langsung</div>
+    </div>
 
-<!-- Efek Salju -->
-<div id="salju-container"></div>
+    <!-- Kolom Kanan: Kontrol Bot -->
+    <div class="card">
+      <h3>📊 SALDO & POSISI</h3>
+      <div class="big-balance pulse" id="usdt">0.00 USDT</div>
+      <div>Harga <span id="symbol">BTCUSDT</span>:</div>
+      <div class="price-box" id="currentPrice">0.00</div>
+      <div>Posisi: <span id="coin">0.000000 BTC</span></div>
 
-<div class="w-full max-w-6xl flex flex-col gap-4 relative z-10">
-
-  <!-- Struktur Pengurus -->
-  <div class="struktur-wrapper">
-    <div class="struktur-container">
-      <div class="struktur-inner">
-        <h1 class="judul-struktur-utama">STRUKTUR PENGURUS TAKMIR</h1>
-        <h2 class="sub-judul-struktur">MUSHOLA WAKAF AN-NUR</h2>
-        <div class="struktur-row row-1">
-          <div class="box"><strong>Ketua</strong>Bp. Purnomo</div>
-          <div class="box"><strong>Wakil Ketua</strong>Bp. Anton</div>
-          <div class="box"><strong>Penasehat</strong>Bp. Mualif<br>Bp. Rokim, Bp. Mukarom<br>Bp. Fafa (Mas Wo)</div>
-        </div>
-        <div class="struktur-row row-2">
-          <div class="box"><strong>Sekretaris</strong>Bp. Sujatmoko</div>
-          <div class="box"><strong>Wakil Sekretaris</strong>Sdri. Nadia</div>
-        </div>
-        <div class="struktur-row row-3">
-          <div class="box"><strong>Bendahara I</strong>Bp. Budi</div>
-          <div class="box"><strong>Bendahara II</strong>Ibu Ratna</div>
-        </div>
-        <div class="struktur-row row-4">
-          <div class="box box-keamanan"><strong>Seksi keamanan</strong>Bp. Heru Prasetyo<br>Bp. Puguh</div>
-          <div class="box box-perawatan"><strong>Seksi Perawatan</strong>Bp. Ipin<br>Bp. Widodo<br>Bp. Suparno<br>Bp. Doni</div>
-          <div class="box box-kegiatan"><strong>Seksi Kegiatan</strong>Bp. Yatiran<br>Bp. Kardiyo<br>Ibu Nurul<br>Ibu Sumiaton<br>Sdri. Maya</div>
-          <div class="box box-kebersihan"><strong>Seksi Kebersihan</strong>Bp. Dwiyani<br>Bp. Sutikno</div>
-        </div>
-        <div class="struktur-row row-5">
-          <div class="box"><strong>Seksi Remaja Mushola</strong>Sdr. Vicky | Sdr. Azam<br>Sdr. Ibra | Sdr. Cilo<br>Sdr. Rizky | Sdr. Faris.<br>Sdri. Wulan, Sdri. Yopi, Dkk</div>
-        </div>
+      <div class="info">⚙️ Pengaturan: <b>5% Saldo | SL 3% | TP 6%</b></div>
+      <div class="controls">
+        <button class="buy" onclick="doAction('buy')">BUY + SL/TP</button>
+        <button class="sell" onclick="doAction('sell')">SELL SEMUA</button>
       </div>
+
+      <div class="info">📝 LOG TRANSAKSI:</div>
+      <div class="log" id="log">Menunggu data...</div>
     </div>
   </div>
 
-  <!-- Header -->
-  <div class="bg-[#115e3b] text-center py-5 md:py-6 rounded-3xl shadow-sm px-4">
-    <h1 class="text-white text-[4.8vw] md:text-2xl tracking-wider uppercase">MUSHOLA WAKAF AN-NUR</h1>
-    <p class="text-[#00FF66] text-[2.5vw] md:text-[11px] tracking-widest uppercase mt-1">LAPORAN INFAQ DIGITAL SYSTEM</p>
-    <div class="text-white text-[2.3vw] md:text-[11px] tracking-wide mt-2 opacity-90">
-      Transparansi Keuangan Infaq Mushola Wakaf An-Nur.<br>
-      Akses: <span class="text-[#00FF66] underline">musholaannur.vercel.app</span>
-    </div>
-  </div>
+  <script>
+    const GAS_URL = "https://script.google.com/macros/s/AKfycby8-0cGqPGq8dbcAW5jlL-Mqopxm7EOkCI3Te4qqLp98pAHyMfpWmTgGSVlha-Q01kGIw/exec";
+    const WS_URL = "wss://testnet.binance.vision/ws/btcusdt@kline_1m";
+    let chart, candleSeries, socket;
 
-  <!-- Saldo Utama -->
-  <div class="bg-[#2563eb] text-white text-center py-7 md:py-10 rounded-3xl shadow-md flex items-center justify-between px-4 md:px-10">
-    <div class="w-12 h-12 md:w-24 md:h-24 flex items-center justify-center">
-      <img src="https://lh3.googleusercontent.com/d/19d7WpltUXzREJVO5AekEsqwjonJk_v1y" class="w-full h-full logo-terbang" style="filter:drop-shadow(0 12px 6px rgba(0,0,0,.45));">
-    </div>
-    <div class="flex-1 flex flex-col items-center px-2">
-      <div class="flex items-center gap-2 mb-2">
-        <div class="radar-pulse"></div>
-        <p class="text-[9px] md:text-[10px] text-[#00FF66] uppercase" style="text-shadow:0 0 6px #00FF66,0 0 12px #00FF6666;">SYSTEM ONLINE</p>
-      </div>
-      <p class="text-[10px] md:text-xs text-blue-100 uppercase mb-1">SALDO INFAQ SAAT INI</p>
-      <p id="saldo" class="text-4xl md:text-7xl" style="text-shadow:3px 3px 8px rgba(0,0,0,.45);">Rp 0</p>
-    </div>
-    <div class="w-12 h-12 md:w-24 md:h-24 flex items-center justify-center">
-      <img src="https://lh3.googleusercontent.com/d/12Fq-1Non8wuie0N7Qvvi6UoToZeTgsX7" class="w-full h-full logo-terbang" style="filter:drop-shadow(0 12px 6px rgba(0,0,0,.45));">
-    </div>
-  </div>
+    // Inisialisasi Chart
+    function initChart() {
+      chart = LightweightCharts.createChart(document.getElementById('chart'), { width: document.getElementById('chart').clientWidth, height:420, layout:{background:{color:'#0f172a'}, textColor:'#d1d5db'}, grid:{vertLines:{color:'#1f2937'}, horzLines:{color:'#1f2937'}}, timeScale:{timeVisible:true, borderColor:'#4b5563'}, rightPriceScale:{borderColor:'#4b5563'} });
+      candleSeries = chart.addCandlestickSeries({ upColor:'#10b981', downColor:'#ef4444', borderUpColor:'#10b981', borderDownColor:'#ef4444', wickUpColor:'#10b981', wickDownColor:'#ef4444' });
+      loadHistory();
+      connectWS();
+    }
 
-  <!-- Ringkasan -->
-  <div class="grid grid-cols-2 gap-3">
-    <div class="bg-white border border-slate-200/80 p-3 md:p-4 rounded-2xl shadow-sm relative overflow-hidden">
-      <div class="absolute top-0 left-0 bottom-0 w-[4px] bg-[#10b981]"></div>
-      <p class="text-[9px] md:text-xs text-slate-500 uppercase mb-1">Total Pemasukan</p>
-      <p id="masuk" class="text-base md:text-2xl text-[#10b981]">Rp 0</p>
-    </div>
-    <div class="bg-white border border-slate-200/80 p-3 md:p-4 rounded-2xl shadow-sm relative overflow-hidden">
-      <div class="absolute top-0 left-0 bottom-0 w-[4px] bg-[#ef4444]"></div>
-      <p class="text-[9px] md:text-xs text-slate-500 uppercase mb-1">Total Pengeluaran</p>
-      <p id="keluar" class="text-base md:text-2xl text-[#ef4444]">Rp 0</p>
-    </div>
-  </div>
+    // Muat data awal
+    async function loadHistory() {
+      try {
+        const res = await fetch("https://testnet.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=60");
+        const data = await res.json();
+        const bars = data.map(d => ({ time: d[0]/1000, open: +d[1], high: +d[2], low: +d[3], close: +d[4] }));
+        candleSeries.setData(bars);
+      } catch (e) { console.log("Gagal muat riwayat"); }
+    }
 
-  <!-- Tombol -->
-  <button class="hijau mt-4" onclick="bukaModalPIN()">INPUT DATA BARU</button>
-  <button class="mt-2" onclick="muatUlangData()">MUAT ULANG DATA</button>
+    // Koneksi WebSocket LIVE
+    function connectWS() {
+      socket = new WebSocket(WS_URL);
+      socket.onmessage = e => {
+        const d = JSON.parse(e.data).k;
+        const bar = { time: d.t/1000, open: +d.o, high: +d.h, low: +d.l, close: +d.c };
+        candleSeries.update(bar);
+        document.getElementById("currentPrice").textContent = `$${parseFloat(d.c).toFixed(2)}`;
+      };
+      socket.onclose = () => setTimeout(connectWS, 3000);
+    }
 
-  <!-- Tabel Data -->
-  <div id="tabel-data"></div>
-</div>
+    // Refresh data bot
+    async function refreshBot() {
+      try {
+        const r = await fetch(GAS_URL + "?nocache=" + Date.now());
+        const d = await r.json();
+        document.getElementById("usdt").textContent = `${d.usdt} USDT`;
+        document.getElementById("coin").textContent = `${d.coin} BTC`;
+      } catch (e) { log("❌ Gagal sinkron data"); }
+    }
 
-<!-- MODAL PIN -->
-<div id="modalPIN" class="modal">
-  <div class="modal-content">
-    <h3 class="text-center mb-3">Masukkan PIN Akses</h3>
-    <input type="password" id="inputPIN" maxlength="3" placeholder="3 Digit PIN">
-    <button onclick="cekPINKeServer()">KIRIM</button>
-  </div>
-</div>
+    // Jalankan Aksi
+    async function doAction(type) {
+      log(`🔄 Memproses ${type.toUpperCase()}...`);
+      try {
+        const res = await fetch(GAS_URL + "?action=" + type + "&nocache=" + Date.now());
+        const d = await res.json();
+        if(d.success) log(`✅ ${d.action} sukses! ${d.sl ? `SL:${d.sl} | TP:${d.tp}` : ''}`);
+        else log(`❌ ${d.error || 'Gagal'}`);
+        refreshBot();
+      } catch (e) { log("❌ Kesalahan koneksi"); }
+    }
 
-<!-- MODAL FORM INPUT -->
-<div id="modalForm" class="modal">
-  <div class="modal-content">
-    <h3 class="text-center mb-3">Tambah Data Baru</h3>
-    <input type="date" id="tgl">
-    <input type="text" id="ket" placeholder="Keterangan">
-    <input type="number" id="jmlMasuk" placeholder="Pemasukan (Rp)">
-    <input type="number" id="jmlKeluar" placeholder="Pengeluaran (Rp)">
-    <input type="text" id="nota" placeholder="Nomor Nota/Bukti">
-    <button class="hijau" onclick="simpanDataBaru()">SIMPAN</button>
-  </div>
-</div>
+    function log(text) { document.getElementById("log").innerHTML = `${new Date().toLocaleTimeString()} ➜ ${text}<br>` + document.getElementById("log").innerHTML; }
 
-<script>
-// 🔗 LINK API SUDAH DIISI SESUAI YANG KIRIM
-const LINK_API = "https://script.google.com/macros/s/AKfycbw9YQ5Z6uEgZnFVh1knf_7xFMMSKPvJmXLTnRD23B1_TKPe8xSVFeRztbrshRN82ybHTw/exec";
-
-// --- Fungsi Tampilan Dasar ---
-function bukaModalPIN() { document.getElementById('modalPIN').style.display='block'; }
-function tutuSemuaModal() { 
-  document.getElementById('modalPIN').style.display='none';
-  document.getElementById('modalForm').style.display='none';
-}
-window.onclick = e => { if(e.target.classList.contains('modal')) tutuSemuaModal(); };
-
-// --- Verifikasi Aman: Cek PIN KE SERVER SAJA ---
-async function cekPINKeServer() {
-  const pin = document.getElementById('inputPIN').value.trim();
-  if(!pin) return alert("Isi PIN dulu!");
-  try {
-    const res = await fetch(`${LINK_API}?aksi=cek_pin&pin=${encodeURIComponent(pin)}`);
-    const hasil = await res.json();
-    if(hasil.sah) { tutuSemuaModal(); document.getElementById('modalForm').style.display='block'; }
-    else alert("PIN SALAH!");
-  } catch { alert("Gagal terhubung ke server!"); }
-}
-
-// --- Format Rupiah ---
-function formatRupiah(angka) {
-  return new Intl.NumberFormat('id-ID', {style:'currency',currency:'IDR',minimumFractionDigits:0}).format(angka);
-}
-
-// --- Muat & Tampilkan Data ---
-async function muatUlangData() {
-  try {
-    const res = await fetch(`${LINK_API}?aksi=ambil_data`);
-    const data = await res.json();
-    let totalMasuk=0, totalKeluar=0;
-    let html = `<table><tr><th>Tanggal</th><th>Keterangan</th><th>Masuk</th><th>Keluar</th><th>Aksi</th></tr>`;
-    data.forEach(d => {
-      const masuk = Number(d.masuk)||0;
-      const keluar = Number(d.keluar)||0;
-      totalMasuk += masuk;
-      totalKeluar += keluar;
-      html += `
-      <tr>
-        <td>${d.tanggal||'-'}</td>
-        <td>${d.keterangan||'-'}</td>
-        <td>${formatRupiah(masuk)}</td>
-        <td>${formatRupiah(keluar)}</td>
-        <td><button style="background:#ef4444;padding:4px 8px;font-size:12px;" onclick="hapusBaru('${d.tanggal}','${d.keterangan.replace(/'/g,"\\'")}',${masuk},${keluar})">Hapus</button></td>
-      </tr>`;
-    });
-    html += `</table>`;
-    document.getElementById('tabel-data').innerHTML = html;
-    document.getElementById('masuk').innerText = formatRupiah(totalMasuk);
-    document.getElementById('keluar').innerText = formatRupiah(totalKeluar);
-    document.getElementById('saldo').innerText = formatRupiah(totalMasuk - totalKeluar);
-  } catch { alert("Gagal memuat data!"); }
-}
-
-// --- Simpan & Hapus ---
-async function simpanDataBaru() {
-  const data = {
-    aksi:"tambah",
-    tanggal:document.getElementById('tgl').value,
-    keterangan:document.getElementById('ket').value,
-    masuk:document.getElementById('jmlMasuk').value||0,
-    keluar:document.getElementById('jmlKeluar').value||0,
-    nota:document.getElementById('nota').value
-  };
-  if(!data.tanggal || !data.keterangan) return alert("Tanggal & Keterangan wajib diisi!");
-  try {
-    const res = await fetch(LINK_API, {method:'POST',body:JSON.stringify(data)});
-    const hasil = await res.json();
-    alert(hasil.pesan); tutuSemuaModal(); muatUlangData();
-  } catch { alert("Gagal menyimpan!"); }
-}
-
-async function hapusBaru(tgl,ket,masuk,keluar) {
-  if(!confirm("Yakin hapus?")) return;
-  try {
-    const res = await fetch(LINK_API, {method:'POST',body:JSON.stringify({aksi:"hapus",tanggal:tgl,keterangan:ket,masuk:masuk,keluar:keluar})});
-    const hasil = await res.json();
-    alert(hasil.pesan); muatUlangData();
-  } catch { alert("Gagal menghapus!"); }
-}
-
-// --- Efek Salju ---
-for(let i=0;i<60;i++){const el=document.createElement('div');el.className='salju';el.style.left=`${Math.random()*100}%`;el.style.animationDelay=`${Math.random()*25}s`;el.style.fontSize=`${8+Math.random()*14}px`;el.textContent='❄';document.getElementById('salju-container').appendChild(el);}
-
-// Muat pertama kali
-muatUlangData();
-</script>
+    initChart(); refreshBot();
+    setInterval(refreshBot, 8000);
+    window.addEventListener('resize', () => chart.applyOptions({ width: document.getElementById('chart').clientWidth }));
+  </script>
 </body>
 </html>
