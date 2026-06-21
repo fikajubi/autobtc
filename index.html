@@ -1,259 +1,242 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Secured Multi-Exchange Scalper Dashboard</title>
-    <style>
-        :root {
-            --bg: #0c0d14; --card: #141522; --input: #1e2035; --text: #eaeaea; 
-            --muted: #848e9c; --green: #0ecb81; --red: #f6465d; --gold: #f3ba2f; --blue: #0267ff;
-        }
-        * { box-sizing: border-box; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg); color: var(--text); margin: 0; padding: 15px; min-height: 100vh; }
-        .wrapper { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 15px; }
-        
-        header { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 15px; border-radius: 10px; border: 1px solid #2b2f4a; }
-        h1 { margin: 0; font-size: 1.2rem; }
-        h1 span { display: block; color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
-        
-        .header-actions { display: flex; gap: 10px; align-items: center; }
-        .btn-status { padding: 12px 24px; font-size: 0.9rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; }
-        .status-on { background-color: var(--green); color: #000; }
-        .status-off { background-color: var(--red); color: #fff; }
-        
-        .btn-test-trigger { padding: 12px 20px; font-size: 0.9rem; font-weight: bold; background-color: var(--blue); color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; }
-        .btn-test-trigger:hover { background-color: #267eff; }
-
-        .layout-vertical { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-        .chart-card { background: var(--card); border-radius: 10px; border: 1px solid #2b2f4a; height: 400px; width: 100%; overflow: hidden; }
-        .panel-box { background: var(--card); border-radius: 10px; padding: 15px; border: 1px solid #2b2f4a; width: 100%; }
-        .panel-box h2 { margin-top: 0; font-size: 0.95rem; color: var(--muted); border-bottom: 1px solid #2b2f4a; padding-bottom: 8px;}
-        .balance-box { background: rgba(243, 186, 47, 0.08); border: 1px dashed var(--gold); padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px; }
-        .balance-amount { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin-top: 5px; }
-        .table-wrapper { max-height: 250px; overflow-y: auto; width: 100%; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.75rem; text-align: left; }
-        th { background: var(--card); color: var(--muted); padding: 10px 8px; border-bottom: 2px solid #2b2f4a; position: sticky; top: 0; z-index: 10;}
-        td { padding: 12px 8px; border-bottom: 1px solid #2b2f4a; white-space: nowrap; }
-        
-        .api-form { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .api-form label { font-size: 0.8rem; color: var(--muted); font-weight: bold; }
-        .api-form select, .api-form input { width: 100%; background: var(--input); border: 1px solid #2b2f4a; padding: 10px; color: #fff; border-radius: 6px; font-size: 0.85rem; }
-        .btn-save-api { background: var(--gold); color: #000; font-weight: bold; padding: 12px; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; margin-top: 5px;}
-        
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        .modal-card { background: #181a26; border: 1px solid #3b4166; padding: 25px; border-radius: 12px; width: 90%; max-width: 360px; text-align: center; }
-        .pin-input { background: var(--input); border: 1px solid #3b4166; padding: 12px; border-radius: 6px; color: var(--gold); text-align: center; font-size: 1.5rem; letter-spacing: 8px; width: 100%; font-weight: bold; }
-        
-        @media (max-width: 700px) {
-            header { flex-direction: column; text-align: center; gap: 12px; }
-            .header-actions { flex-direction: column; width: 100%; }
-            .btn-status, .btn-test-trigger { width: 100%; }
-            .form-row { grid-template-columns: 1fr; }
-            .chart-card { height: 300px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mushola Wakaf An-Nur - Laporan Infaq</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { font-weight:900!important; font-family:'Plus Jakarta Sans',sans-serif; }
+body { background:#f4f7f5; color:#1e293b; margin:0; padding:0; }
+.struktur-wrapper { width:100%; display:flex; justify-content:center; margin-bottom:4px; }
+.struktur-container { width:100%; background:#2563eb; border:48px solid #2563eb; border-radius:0; padding:0; box-sizing:border-box; }
+.struktur-inner { width:100%; background:#fff; border-radius:40px; padding:32px 16px; display:flex; flex-direction:column; gap:20px; align-items:center; box-sizing:border-box; }
+.judul-struktur-utama { font-size:clamp(24px,4.5vw,44px); color:#1d3557; text-transform:uppercase; margin:0; text-align:center; line-height:1.2; }
+.sub-judul-struktur { font-size:clamp(16px,3vw,24px); color:#1d3557; text-transform:uppercase; margin:4px 0 16px; text-align:center; line-height:1.3; }
+.struktur-row { display:flex; flex-direction:column; gap:16px; justify-content:center; align-items:center; width:100%; }
+.struktur-container .box { background:rgba(16,185,129,0.1); border:4px solid #10b981; border-radius:14px; padding:14px 16px; font-size:clamp(15px,3.5vw,18px); color:#0b6640; box-shadow:0 0 20px rgba(0,255,102,.8),0 0 8px rgba(0,255,102,.4); display:flex; flex-direction:column; align-items:center; text-align:center; min-height:90px; width:100%; max-width:100%; box-sizing:border-box; }
+.struktur-container .box strong { color:#0b6640; font-size:clamp(18px,4vw,22px); margin-bottom:4px; text-transform:uppercase; white-space:nowrap; }
+@media(min-width:768px){.struktur-inner{padding:40px 24px;gap:24px;}.struktur-row{flex-direction:row;flex-wrap:wrap;max-width:950px;gap:20px;align-items:stretch;}.row-1 .box,.row-2 .box,.row-3 .box{flex:1;min-width:190px;max-width:280px;}.row-4 .box-keamanan,.row-4 .box-perawatan,.row-4 .box-kegiatan{flex:1.5;min-width:220px;max-width:280px;}.row-4 .box-kebersihan{flex:1.2;min-width:220px;max-width:260px;}.row-5 .box{width:100%;max-width:360px;}}}
+.radar-pulse{position:relative;width:8px;height:8px;background:#00FF66;border-radius:50%;box-shadow:0 0 8px #00FF66;}
+.salju{color:rgba(255,255,255,.5);font-size:1.3em;position:fixed;top:-10%;z-index:9999;user-select:none;pointer-events:none;animation:turun 26s linear infinite,goncang 5s ease-in-out infinite;}
+@keyframes turun{0%{top:-10%;}100%{top:105%;}}
+@keyframes goncang{0%,100%{transform:translateX(0) rotate(0);}50%{transform:translateX(60px) rotate(180deg);}}
+@keyframes naikTurun{0%{transform:translateY(0);}50%{transform:translateY(-6px);}100%{transform:translateY(0);}}
+.logo-terbang{animation:naikTurun 4s ease-in-out infinite;}
+.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.4);backdrop-filter:blur(3px);}
+.modal-content{background:#fefefe;margin:10% auto;padding:24px;border-radius:16px;max-width:400px;box-shadow:0 10px 30px rgba(0,0,0,.2);}
+input,button{width:100%;padding:10px 12px;margin:8px 0;border-radius:8px;border:1px solid #ddd;box-sizing:border-box;font-size:16px;}
+button{background:#2563eb;color:white;border:none;cursor:pointer;transition:background 0.2s;}
+button:hover{background:#1d4ed8;}
+.hijau{background:#10b981;}
+.hijau:hover{background:#059669;}
+table{width:100%;border-collapse:collapse;margin-top:16px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.05);}
+th,td{padding:12px;text-align:left;border-bottom:1px solid #eee;}
+th{background:#f8fafc;text-transform:uppercase;font-size:13px;color:#64748b;}
+</style>
 </head>
-<body>
+<body class="min-h-screen py-4 px-3 md:py-6 md:px-8 flex justify-center items-start">
 
-<div class="wrapper">
-    <header>
-        <div>
-            <h1>BTC/USDT Secured Scalper <span>Cloud Engine System Active 24 Hours</span></h1>
-        </div>
-        <div class="header-actions">
-            <button id="testTriggerBtn" class="btn-test-trigger">TEST PEMICU ENTRY</button>
-            <button id="stateBtn" class="btn-status status-off">CONNECTING...</button>
-        </div>
-    </header>
+<!-- Efek Salju -->
+<div id="salju-container"></div>
 
-    <div class="layout-vertical">
-        <div class="chart-card">
-            <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&theme=dark&style=1&timezone=Asia%2FJakarta&locale=id" style="width: 100%; height: 100%; border: none;"></iframe>
-        </div>
+<div class="w-full max-w-6xl flex flex-col gap-4 relative z-10">
 
-        <div class="panel-box">
-            <h2>Jurnal Mutasi Sinyal Ter-OP (Live Cloud Data)</h2>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Waktu</th>
-                            <th>Akun</th>
-                            <th>Aksi</th>
-                            <th>Detail Target</th>
-                            <th>Hasil / Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="recapBody">
-                        <tr><td colspan="5" style="text-align:center; color:var(--muted)">Menghubungkan ke server awan...</td></tr>
-                    </tbody>
-                </table>
-            </div>
+  <!-- Struktur Pengurus -->
+  <div class="struktur-wrapper">
+    <div class="struktur-container">
+      <div class="struktur-inner">
+        <h1 class="judul-struktur-utama">STRUKTUR PENGURUS TAKMIR</h1>
+        <h2 class="sub-judul-struktur">MUSHOLA WAKAF AN-NUR</h2>
+        <div class="struktur-row row-1">
+          <div class="box"><strong>Ketua</strong>Bp. Purnomo</div>
+          <div class="box"><strong>Wakil Ketua</strong>Bp. Anton</div>
+          <div class="box"><strong>Penasehat</strong>Bp. Mualif<br>Bp. Rokim, Bp. Mukarom<br>Bp. Fafa (Mas Wo)</div>
         </div>
-
-        <div class="panel-box">
-            <h2>Uji Coba API & Wallet Configuration (Cloud Secured)</h2>
-            <div class="balance-box">
-                <div style="font-size:0.85rem; color:var(--muted); font-weight:bold; letter-spacing:1px;">EXCHANGE LIVE BALANCE</div>
-                <div id="balanceDisplay" class="balance-amount">Loading balance...</div>
-            </div>
-
-            <div class="api-form">
-                <div class="form-row">
-                    <div>
-                        <label>Trading Mode</label>
-                        <select id="apiMode">
-                            <option value="DEMO">DEMO ACCORD (24H Simulation)</option>
-                            <option value="REAL">REAL ACCORD (Live Executing)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Target Bursa (Exchange)</label>
-                        <select id="apiExchange">
-                            <option value="BINANCE">BINANCE</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label>API Key Pihak Ketiga</label>
-                    <input type="text" id="apiKeyField" placeholder="Masukkan sandi API Key bursa...">
-                </div>
-                <div>
-                    <label>API Secret Key Pasangan</label>
-                    <input type="password" id="apiSecretField" placeholder="•••••••••••••••••••••••••••••••••">
-                </div>
-                <button id="saveApiBtn" class="btn-save-api">SIMPAN API & PERBARUI SALDO</button>
-            </div>
+        <div class="struktur-row row-2">
+          <div class="box"><strong>Sekretaris</strong>Bp. Sujatmoko</div>
+          <div class="box"><strong>Wakil Sekretaris</strong>Sdri. Nadia</div>
         </div>
+        <div class="struktur-row row-3">
+          <div class="box"><strong>Bendahara I</strong>Bp. Budi</div>
+          <div class="box"><strong>Bendahara II</strong>Ibu Ratna</div>
+        </div>
+        <div class="struktur-row row-4">
+          <div class="box box-keamanan"><strong>Seksi keamanan</strong>Bp. Heru Prasetyo<br>Bp. Puguh</div>
+          <div class="box box-perawatan"><strong>Seksi Perawatan</strong>Bp. Ipin<br>Bp. Widodo<br>Bp. Suparno<br>Bp. Doni</div>
+          <div class="box box-kegiatan"><strong>Seksi Kegiatan</strong>Bp. Yatiran<br>Bp. Kardiyo<br>Ibu Nurul<br>Ibu Sumiaton<br>Sdri. Maya</div>
+          <div class="box box-kebersihan"><strong>Seksi Kebersihan</strong>Bp. Dwiyani<br>Bp. Sutikno</div>
+        </div>
+        <div class="struktur-row row-5">
+          <div class="box"><strong>Seksi Remaja Mushola</strong>Sdr. Vicky | Sdr. Azam<br>Sdr. Ibra | Sdr. Cilo<br>Sdr. Rizky | Sdr. Faris.<br>Sdri. Wulan, Sdri. Yopi, Dkk</div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Header -->
+  <div class="bg-[#115e3b] text-center py-5 md:py-6 rounded-3xl shadow-sm px-4">
+    <h1 class="text-white text-[4.8vw] md:text-2xl tracking-wider uppercase">MUSHOLA WAKAF AN-NUR</h1>
+    <p class="text-[#00FF66] text-[2.5vw] md:text-[11px] tracking-widest uppercase mt-1">LAPORAN INFAQ DIGITAL SYSTEM</p>
+    <div class="text-white text-[2.3vw] md:text-[11px] tracking-wide mt-2 opacity-90">
+      Transparansi Keuangan Infaq Mushola Wakaf An-Nur.<br>
+      Akses: <span class="text-[#00FF66] underline">musholaannur.vercel.app</span>
+    </div>
+  </div>
+
+  <!-- Saldo Utama -->
+  <div class="bg-[#2563eb] text-white text-center py-7 md:py-10 rounded-3xl shadow-md flex items-center justify-between px-4 md:px-10">
+    <div class="w-12 h-12 md:w-24 md:h-24 flex items-center justify-center">
+      <img src="https://lh3.googleusercontent.com/d/19d7WpltUXzREJVO5AekEsqwjonJk_v1y" class="w-full h-full logo-terbang" style="filter:drop-shadow(0 12px 6px rgba(0,0,0,.45));">
+    </div>
+    <div class="flex-1 flex flex-col items-center px-2">
+      <div class="flex items-center gap-2 mb-2">
+        <div class="radar-pulse"></div>
+        <p class="text-[9px] md:text-[10px] text-[#00FF66] uppercase" style="text-shadow:0 0 6px #00FF66,0 0 12px #00FF6666;">SYSTEM ONLINE</p>
+      </div>
+      <p class="text-[10px] md:text-xs text-blue-100 uppercase mb-1">SALDO INFAQ SAAT INI</p>
+      <p id="saldo" class="text-4xl md:text-7xl" style="text-shadow:3px 3px 8px rgba(0,0,0,.45);">Rp 0</p>
+    </div>
+    <div class="w-12 h-12 md:w-24 md:h-24 flex items-center justify-center">
+      <img src="https://lh3.googleusercontent.com/d/12Fq-1Non8wuie0N7Qvvi6UoToZeTgsX7" class="w-full h-full logo-terbang" style="filter:drop-shadow(0 12px 6px rgba(0,0,0,.45));">
+    </div>
+  </div>
+
+  <!-- Ringkasan -->
+  <div class="grid grid-cols-2 gap-3">
+    <div class="bg-white border border-slate-200/80 p-3 md:p-4 rounded-2xl shadow-sm relative overflow-hidden">
+      <div class="absolute top-0 left-0 bottom-0 w-[4px] bg-[#10b981]"></div>
+      <p class="text-[9px] md:text-xs text-slate-500 uppercase mb-1">Total Pemasukan</p>
+      <p id="masuk" class="text-base md:text-2xl text-[#10b981]">Rp 0</p>
+    </div>
+    <div class="bg-white border border-slate-200/80 p-3 md:p-4 rounded-2xl shadow-sm relative overflow-hidden">
+      <div class="absolute top-0 left-0 bottom-0 w-[4px] bg-[#ef4444]"></div>
+      <p class="text-[9px] md:text-xs text-slate-500 uppercase mb-1">Total Pengeluaran</p>
+      <p id="keluar" class="text-base md:text-2xl text-[#ef4444]">Rp 0</p>
+    </div>
+  </div>
+
+  <!-- Tombol -->
+  <button class="hijau mt-4" onclick="bukaModalPIN()">INPUT DATA BARU</button>
+  <button class="mt-2" onclick="muatUlangData()">MUAT ULANG DATA</button>
+
+  <!-- Tabel Data -->
+  <div id="tabel-data"></div>
 </div>
 
-<div id="pinModal" class="modal-overlay">
-    <div class="modal-card">
-        <h3 id="modalTitle">Otorisasi Gerbang Cloud</h3>
-        <div style="display:flex; flex-direction:column; gap:12px; margin:15px 0;">
-            <input type="password" id="pinField" class="pin-input" maxlength="6" placeholder="******" pattern="\d*">
-            <small style="color: var(--muted); line-height: 1.4; font-weight: bold;">⚠️ Peringatan: Wajib masukkan 6-digit kode PIN otoritas institusi.</small>
-        </div>
-        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-            <button id="cancelModalBtn" style="background:#2b2f4a; color:var(--muted); padding:10px 20px; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">Batal</button>
-            <button id="confirmModalBtn" style="background:var(--green); color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">Konfirmasi</button>
-        </div>
-    </div>
+<!-- MODAL PIN -->
+<div id="modalPIN" class="modal">
+  <div class="modal-content">
+    <h3 class="text-center mb-3">Masukkan PIN Akses</h3>
+    <input type="password" id="inputPIN" maxlength="3" placeholder="3 Digit PIN">
+    <button onclick="cekPINKeServer()">KIRIM</button>
+  </div>
+</div>
+
+<!-- MODAL FORM INPUT -->
+<div id="modalForm" class="modal">
+  <div class="modal-content">
+    <h3 class="text-center mb-3">Tambah Data Baru</h3>
+    <input type="date" id="tgl">
+    <input type="text" id="ket" placeholder="Keterangan">
+    <input type="number" id="jmlMasuk" placeholder="Pemasukan (Rp)">
+    <input type="number" id="jmlKeluar" placeholder="Pengeluaran (Rp)">
+    <input type="text" id="nota" placeholder="Nomor Nota/Bukti">
+    <button class="hijau" onclick="simpanDataBaru()">SIMPAN</button>
+  </div>
 </div>
 
 <script>
-    // URL Web App Google Apps Script Anda yang baru sudah terpasang sempurna di sini:
-    const SECURE_CLOUD_URL = "https://script.google.com/macros/s/AKfycby8-0cGqPGq8dbcAW5jlL-Mqopxm7EOkCI3Te4qqLp98pAHyMfpWmTgGSVlha-Q01kGIw/exec";
-    let currentBotState = "OFF";
-    let pendingModalAction = "toggle";
+// 🔗 LINK API SUDAH DIISI SESUAI YANG KIRIM
+const LINK_API = "https://script.google.com/macros/s/AKfycbw9YQ5Z6uEgZnFVh1knf_7xFMMSKPvJmXLTnRD23B1_TKPe8xSVFeRztbrshRN82ybHTw/exec";
 
-    async function syncWithCloud() {
-        if(SECURE_CLOUD_URL === "") return;
-        try {
-            const res = await fetch(SECURE_CLOUD_URL + "?action=getData");
-            const data = await res.json();
-            
-            currentBotState = data.status;
-            const btn = document.getElementById('stateBtn');
-            btn.className = currentBotState === "ON" ? "btn-status status-on" : "btn-status status-off";
-            btn.innerText = currentBotState === "ON" ? "BOT STATUS: ON" : "BOT STATUS: OFF";
+// --- Fungsi Tampilan Dasar ---
+function bukaModalPIN() { document.getElementById('modalPIN').style.display='block'; }
+function tutuSemuaModal() { 
+  document.getElementById('modalPIN').style.display='none';
+  document.getElementById('modalForm').style.display='none';
+}
+window.onclick = e => { if(e.target.classList.contains('modal')) tutuSemuaModal(); };
 
-            document.getElementById('apiMode').value = data.mode || "DEMO";
-            document.getElementById('apiExchange').value = data.exchange || "BINANCE";
-            document.getElementById('balanceDisplay').innerText = data.balance;
+// --- Verifikasi Aman: Cek PIN KE SERVER SAJA ---
+async function cekPINKeServer() {
+  const pin = document.getElementById('inputPIN').value.trim();
+  if(!pin) return alert("Isi PIN dulu!");
+  try {
+    const res = await fetch(`${LINK_API}?aksi=cek_pin&pin=${encodeURIComponent(pin)}`);
+    const hasil = await res.json();
+    if(hasil.sah) { tutuSemuaModal(); document.getElementById('modalForm').style.display='block'; }
+    else alert("PIN SALAH!");
+  } catch { alert("Gagal terhubung ke server!"); }
+}
 
-            const tableBody = document.getElementById('recapBody');
-            tableBody.innerHTML = "";
-            
-            if (data.recap.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--muted)">Belum ada transaksi ter-OP. Menunggu setup akurat...</td></tr>`;
-            } else {
-                data.recap.forEach(row => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `<td>${row[0]}</td><td><span style="color:var(--gold)">${row[1]}</span></td><td style="color:${row[2].includes('BUY')?'var(--green)':'var(--red)'}"><b>${row[2]}</b></td><td>${row[3]}</td><td><b>${row[4]}</b></td>`;
-                    tableBody.appendChild(tr);
-                });
-            }
-        } catch(e) {}
-    }
+// --- Format Rupiah ---
+function formatRupiah(angka) {
+  return new Intl.NumberFormat('id-ID', {style:'currency',currency:'IDR',minimumFractionDigits:0}).format(angka);
+}
 
-    const stateBtn = document.getElementById('stateBtn');
-    const saveApiBtn = document.getElementById('saveApiBtn');
-    const testTriggerBtn = document.getElementById('testTriggerBtn');
-    const pinModal = document.getElementById('pinModal');
-    const pinField = document.getElementById('pinField');
-    const modalTitle = document.getElementById('modalTitle');
-
-    stateBtn.addEventListener('click', () => {
-        if(stateBtn.innerText === "CONNECTING...") return;
-        pendingModalAction = "toggle";
-        modalTitle.innerText = "Otorisasi Status Bot";
-        pinField.value = ""; pinModal.classList.add('active'); pinField.focus();
+// --- Muat & Tampilkan Data ---
+async function muatUlangData() {
+  try {
+    const res = await fetch(`${LINK_API}?aksi=ambil_data`);
+    const data = await res.json();
+    let totalMasuk=0, totalKeluar=0;
+    let html = `<table><tr><th>Tanggal</th><th>Keterangan</th><th>Masuk</th><th>Keluar</th><th>Aksi</th></tr>`;
+    data.forEach(d => {
+      const masuk = Number(d.masuk)||0;
+      const keluar = Number(d.keluar)||0;
+      totalMasuk += masuk;
+      totalKeluar += keluar;
+      html += `
+      <tr>
+        <td>${d.tanggal||'-'}</td>
+        <td>${d.keterangan||'-'}</td>
+        <td>${formatRupiah(masuk)}</td>
+        <td>${formatRupiah(keluar)}</td>
+        <td><button style="background:#ef4444;padding:4px 8px;font-size:12px;" onclick="hapusBaru('${d.tanggal}','${d.keterangan.replace(/'/g,"\\'")}',${masuk},${keluar})">Hapus</button></td>
+      </tr>`;
     });
+    html += `</table>`;
+    document.getElementById('tabel-data').innerHTML = html;
+    document.getElementById('masuk').innerText = formatRupiah(totalMasuk);
+    document.getElementById('keluar').innerText = formatRupiah(totalKeluar);
+    document.getElementById('saldo').innerText = formatRupiah(totalMasuk - totalKeluar);
+  } catch { alert("Gagal memuat data!"); }
+}
 
-    saveApiBtn.addEventListener('click', () => {
-        pendingModalAction = "api";
-        modalTitle.innerText = "Otorisasi Penyimpanan API";
-        pinField.value = ""; pinModal.classList.add('active'); pinField.focus();
-    });
+// --- Simpan & Hapus ---
+async function simpanDataBaru() {
+  const data = {
+    aksi:"tambah",
+    tanggal:document.getElementById('tgl').value,
+    keterangan:document.getElementById('ket').value,
+    masuk:document.getElementById('jmlMasuk').value||0,
+    keluar:document.getElementById('jmlKeluar').value||0,
+    nota:document.getElementById('nota').value
+  };
+  if(!data.tanggal || !data.keterangan) return alert("Tanggal & Keterangan wajib diisi!");
+  try {
+    const res = await fetch(LINK_API, {method:'POST',body:JSON.stringify(data)});
+    const hasil = await res.json();
+    alert(hasil.pesan); tutuSemuaModal(); muatUlangData();
+  } catch { alert("Gagal menyimpan!"); }
+}
 
-    testTriggerBtn.addEventListener('click', () => {
-        pendingModalAction = "test";
-        modalTitle.innerText = "Otorisasi Jalankan Manual Test Entry";
-        pinField.value = ""; pinModal.classList.add('active'); pinField.focus();
-    });
+async function hapusBaru(tgl,ket,masuk,keluar) {
+  if(!confirm("Yakin hapus?")) return;
+  try {
+    const res = await fetch(LINK_API, {method:'POST',body:JSON.stringify({aksi:"hapus",tanggal:tgl,keterangan:ket,masuk:masuk,keluar:keluar})});
+    const hasil = await res.json();
+    alert(hasil.pesan); muatUlangData();
+  } catch { alert("Gagal menghapus!"); }
+}
 
-    document.getElementById('cancelModalBtn').addEventListener('click', () => { pinModal.classList.remove('active'); });
+// --- Efek Salju ---
+for(let i=0;i<60;i++){const el=document.createElement('div');el.className='salju';el.style.left=`${Math.random()*100}%`;el.style.animationDelay=`${Math.random()*25}s`;el.style.fontSize=`${8+Math.random()*14}px`;el.textContent='❄';document.getElementById('salju-container').appendChild(el);}
 
-    document.getElementById('confirmModalBtn').addEventListener('click', async () => {
-        if (pinField.value.length === 0) { alert("⚠️ PIN tidak boleh kosong!"); return; }
-        pinModal.classList.remove('active');
-
-        if (pendingModalAction === "toggle") {
-            const targetState = currentBotState === "ON" ? "OFF" : "ON";
-            stateBtn.innerText = "PROSES CLOUD...";
-            try {
-                const res = await fetch(`${SECURE_CLOUD_URL}?action=toggleBot&pin=${pinField.value}&target=${targetState}`);
-                const result = await res.json();
-                alert(result.message);
-                syncWithCloud();
-            } catch(e) { alert("Koneksi gagal!"); syncWithCloud(); }
-        } 
-        else if (pendingModalAction === "api") {
-            const mode = document.getElementById('apiMode').value;
-            const exchange = document.getElementById('apiExchange').value;
-            const key = encodeURIComponent(document.getElementById('apiKeyField').value);
-            const secret = encodeURIComponent(document.getElementById('apiSecretField').value);
-            
-            document.getElementById('balanceDisplay').innerText = "Updating Balance...";
-            try {
-                const res = await fetch(`${SECURE_CLOUD_URL}?action=saveAPI&pin=${pinField.value}&mode=${mode}&exchange=${exchange}&key=${key}&secret=${secret}`);
-                const result = await res.json();
-                alert(result.message);
-                if(result.success) {
-                    document.getElementById('apiKeyField').value = "";
-                    document.getElementById('apiSecretField').value = "";
-                }
-                syncWithCloud();
-            } catch(e) { alert("Gagal menyimpan ke cloud server!"); syncWithCloud(); }
-        }
-        else if (pendingModalAction === "test") {
-            document.getElementById('recapBody').innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--gold)">Memaksa Entry di Server Cloud Google...</td></tr>`;
-            try {
-                const res = await fetch(`${SECURE_CLOUD_URL}?action=forceTestTrigger&pin=${pinField.value}`);
-                const result = await res.json();
-                alert(result.message);
-                syncWithCloud();
-            } catch(e) { alert("Gagal menghubungi server pemicu manual!"); syncWithCloud(); }
-        }
-    });
-
-    syncWithCloud();
-    setInterval(syncWithCloud, 25000);
+// Muat pertama kali
+muatUlangData();
 </script>
 </body>
 </html>
