@@ -15,7 +15,7 @@
         
         header { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 15px; border-radius: 10px; border: 1px solid #2b2f4a; }
         h1 { margin: 0; font-size: 1.2rem; }
-        h1 span { display: block; color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
+        h1 span { block; color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
         
         .header-actions { display: flex; gap: 10px; align-items: center; }
         .btn-status { padding: 12px 24px; font-size: 0.9rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; }
@@ -114,9 +114,6 @@
                         <label>Target Bursa (Exchange)</label>
                         <select id="apiExchange">
                             <option value="BINANCE">BINANCE</option>
-                            <option value="TOKOCRYPTO">TOKOCRYPTO</option>
-                            <option value="KUCOIN">KUCOIN</option>
-                            <option value="INDODAX">INDODAX</option>
                         </select>
                     </div>
                 </div>
@@ -149,12 +146,13 @@
 </div>
 
 <script>
-    const SECURE_CLOUD_URL = "https://script.google.com/macros/s/AKfycbwnnq0vvz_mHs3frGoLJVNPbP8CJ_u5XOXBefZQ3D9XhpygncZz7h2ZyZZ30uYFbVQ8jg/exec";
+    // URL Web App Google Apps Script Anda yang baru sudah terpasang sempurna di sini:
+    const SECURE_CLOUD_URL = "https://script.google.com/macros/s/AKfycby8-0cGqPGq8dbcAW5jlL-Mqopxm7EOkCI3Te4qqLp98pAHyMfpWmTgGSVlha-Q01kGIw/exec";
     let currentBotState = "OFF";
     let pendingModalAction = "toggle";
 
     async function syncWithCloud() {
-        if(SECURE_CLOUD_URL === "") return;
+        if(SECURE_CLOUD_URL === "TAUTAN_URL_WEB_APP_BARU_ANDA_DI_SINI") return;
         try {
             const res = await fetch(SECURE_CLOUD_URL + "?action=getData");
             const data = await res.json();
