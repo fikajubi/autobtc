@@ -23,30 +23,6 @@
         .long-press-row.holding::after { width: 100%; }
         .uppercase-input { text-transform: uppercase; }
 
-        /* --- STYLING HEADER --- */
-        #header-card-container {
-            break-inside: avoid;
-            page-break-inside: avoid;
-            -webkit-column-break-inside: avoid;
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* KHUSUS MODE RENDERING PDF A4 PORTRAIT PRESISI (300 DPI) */
-        .pdf-render-canvas {
-            width: 794px !important;
-            max-width: 794px !important;
-            margin: 0 auto !important;
-            padding: 10px !important;
-            background-color: #f1f5f9 !important;
-        }
-        .pdf-render-canvas #header-card-container {
-            background-size: 100% 100% !important;
-            background-position: center center !important;
-            padding-top: 2.5rem !important;
-            padding-bottom: 2.5rem !important;
-        }
-
         /* --- KHUSUS KODE WARNA PER BARIS TEXT HEADER --- */
         .header-baris-1 {
             color: #FFFFFF;
@@ -172,8 +148,8 @@
     <!-- CONTAINER UTAMA HALAMAN WEB -->
     <div id="main-web-content" class="w-full max-w-full mx-auto space-y-1.5 relative z-10 bg-slate-100 p-1">
         
-        <!-- HEADER KARTU ATAS -->
-        <div id="header-card-container" class="w-full rounded-lg p-3 sm:p-4 md:py-10 lg:py-14 text-center shadow-sm relative overflow-hidden bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/d/1rfppl0Roxa-m3F8FImsJ0_lhxf4Y7Wvs');">
+        <!-- HEADER KARTU ATAS DENGAN KODE WARNA SPESIFIK -->
+        <div class="w-full rounded-lg p-3 sm:p-4 md:py-10 lg:py-14 text-center shadow-sm relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/d/1rfppl0Roxa-m3F8FImsJ0_lhxf4Y7Wvs');">
             <!-- Overlay gelap tipis agar teks tetap terbaca dengan jelas -->
             <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
 
@@ -590,9 +566,9 @@
             <div class="p-4 space-y-3">
                 <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded-lg text-left text-[10px] text-emerald-900">
                     <p class="font-bold uppercase flex items-center gap-1 mb-0.5">
-                        <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak A4 Portrait Presisi Tinggi:
+                        <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak Presisi Tinggi:
                     </p>
-                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dalam format A4 Portrait (300 DPI) tanpa ada bagian header/logo yang terpotong.</p>
+                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dengan resolusi UHD 300 DPI.</p>
                 </div>
                 <div class="pt-1 flex flex-col gap-2">
                     <button id="btnDownloadPdfProcess" onclick="generatePdfUHD()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-lg shadow-md transition uppercase tracking-wider flex items-center justify-center gap-2">
@@ -1412,7 +1388,7 @@
             document.getElementById('modalInfoKursi').classList.remove('hidden');
         }
 
-        /* --- MODAL AKSI DENGAN EDIT & HAPUS (UNTUK TEKAN TAHAN BARIS PESERTA) --- */
+        /* --- MODAL AKSI DENGAN EDIT & HAPUS (UNTUK TEKAN TAHAN BARIS TABEL PESERTA) --- */
         function openActionModal(id) {
             activePesertaId = id;
             const item = dataPeserta.find(x => String(x.id) === String(id));
@@ -1446,10 +1422,8 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        /* --- TAMPILAN PDF A4 PORTRAIT PRESISI LENGKAP TANPA KETERPOTONGAN --- */
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
-            const mainContent = document.getElementById('main-web-content');
             const originalBtnHtml = btn.innerHTML;
             
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF...';
@@ -1457,43 +1431,36 @@
 
             closeModal('modalPdf');
 
-            // Kunci sementara lebar kontainer ke ukuran A4 Portrait Desktop (794px)
-            mainContent.classList.add('pdf-render-canvas');
-
             setTimeout(() => {
+                const element = document.getElementById('main-web-content');
                 let fileNamePrefix = 'Denah_Kursi_Bus';
                 if (currentTab === 'peserta') fileNamePrefix = 'Data_Peserta_Ziarah';
                 else if (currentTab === 'absensi') fileNamePrefix = 'Absensi_Destinasi_1-7';
                 else if (currentTab === 'roadmaps') fileNamePrefix = 'Roadmap_Peta_Ziarah';
 
                 const opt = {
-                    margin:       [3, 3, 3, 3],
+                    margin:       [5, 5, 5, 5],
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
-                        scale: 3,
+                        scale: 3.125,
                         useCORS: true, 
                         logging: false,
-                        scrollX: 0,
-                        scrollY: 0,
-                        windowWidth: 794
+                        scrollY: 0
                     },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                    pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
-                html2pdf().set(opt).from(mainContent).save().then(() => {
-                    mainContent.classList.remove('pdf-render-canvas');
+                html2pdf().set(opt).from(element).save().then(() => {
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
                 }).catch(err => {
-                    mainContent.classList.remove('pdf-render-canvas');
                     alert("Gagal membuat PDF: " + err);
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
                 });
 
-            }, 400);
+            }, 300);
         }
 
         function initLongPressEvents() {
