@@ -23,11 +23,19 @@
         .long-press-row.holding::after { width: 100%; }
         .uppercase-input { text-transform: uppercase; }
 
-        /* --- PREVENSI KETENTUAN POTONGAN PDF UNTUK HEADER --- */
+        /* --- STYLING HEADER --- */
         #header-card-container {
             break-inside: avoid;
             page-break-inside: avoid;
             -webkit-column-break-inside: avoid;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* CLASS KHUSUS SAAT RENDER PDF AGAR LOGO KIRI-KANAN TERAMBIL UTUH DENGAN RASIO PRESISI */
+        .pdf-export-mode #header-card-container {
+            background-size: 100% 100% !important;
+            background-position: center center !important;
         }
 
         /* --- KHUSUS KODE WARNA PER BARIS TEXT HEADER --- */
@@ -155,8 +163,8 @@
     <!-- CONTAINER UTAMA HALAMAN WEB -->
     <div id="main-web-content" class="w-full max-w-full mx-auto space-y-1.5 relative z-10 bg-slate-100 p-1">
         
-        <!-- HEADER KARTU ATAS DENGAN KODE WARNA SPESIFIK & DILINDUNGI AGAR TIDAK TERPOTONG SAAT CETAK PDF -->
-        <div id="header-card-container" class="w-full rounded-lg p-3 sm:p-4 md:py-10 lg:py-14 text-center shadow-sm relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/d/1rfppl0Roxa-m3F8FImsJ0_lhxf4Y7Wvs');">
+        <!-- HEADER KARTU ATAS -->
+        <div id="header-card-container" class="w-full rounded-lg p-3 sm:p-4 md:py-10 lg:py-14 text-center shadow-sm relative overflow-hidden bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/d/1rfppl0Roxa-m3F8FImsJ0_lhxf4Y7Wvs');">
             <!-- Overlay gelap tipis agar teks tetap terbaca dengan jelas -->
             <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
 
@@ -1429,7 +1437,7 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        /* --- PENYEMPURNAAN KODE EKSPOR PDF UNTUK MENCEGAH HEADER TERPOTONG --- */
+        /* --- PERBAIKAN EKSPOR PDF AGAR HEADER & LOGO TIDAK TERPOTONG SAMA SEBALIKNYA --- */
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn.innerHTML;
@@ -1438,6 +1446,9 @@
             btn.disabled = true;
 
             closeModal('modalPdf');
+
+            // Aktifkan mode khusus PDF untuk penyesuaian gambar background header
+            document.body.classList.add('pdf-export-mode');
 
             setTimeout(() => {
                 const element = document.getElementById('main-web-content');
@@ -1451,28 +1462,29 @@
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
-                        scale: 3,
+                        scale: 2.8,
                         useCORS: true, 
                         logging: false,
                         scrollX: 0,
                         scrollY: 0,
-                        windowWidth: document.documentElement.offsetWidth,
-                        windowHeight: document.documentElement.offsetHeight
+                        windowWidth: 1024
                     },
                     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
                     pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
+                    document.body.classList.remove('pdf-export-mode');
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
                 }).catch(err => {
+                    document.body.classList.remove('pdf-export-mode');
                     alert("Gagal membuat PDF: " + err);
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
                 });
 
-            }, 300);
+            }, 400);
         }
 
         function initLongPressEvents() {
