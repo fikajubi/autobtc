@@ -32,10 +32,16 @@
             background-position: center;
         }
 
-        /* CLASS KHUSUS SAAT RENDER PDF AGAR LOGO KIRI-KANAN TERAMBIL UTUH DENGAN RASIO PRESISI */
+        /* CLASS KHUSUS SAAT RENDER PDF AGAR LOGO KIRI-KANAN UTUH TANPA TERPOTONG */
+        .pdf-export-mode {
+            width: 1200px !important;
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+        }
         .pdf-export-mode #header-card-container {
-            background-size: 100% 100% !important;
+            background-size: contain !important;
             background-position: center center !important;
+            background-repeat: no-repeat !important;
         }
 
         /* --- KHUSUS KODE WARNA PER BARIS TEXT HEADER --- */
@@ -581,9 +587,9 @@
             <div class="p-4 space-y-3">
                 <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded-lg text-left text-[10px] text-emerald-900">
                     <p class="font-bold uppercase flex items-center gap-1 mb-0.5">
-                        <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak Presisi Tinggi:
+                        <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak Presisi Tinggi (Landscape):
                     </p>
-                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dengan resolusi UHD 300 DPI.</p>
+                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dalam format Landscape A4 agar header dan tabel tidak terpotong sama sekali.</p>
                 </div>
                 <div class="pt-1 flex flex-col gap-2">
                     <button id="btnDownloadPdfProcess" onclick="generatePdfUHD()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-lg shadow-md transition uppercase tracking-wider flex items-center justify-center gap-2">
@@ -1403,7 +1409,7 @@
             document.getElementById('modalInfoKursi').classList.remove('hidden');
         }
 
-        /* --- MODAL AKSI DENGAN EDIT & HAPUS (UNTUK TEKAN TAHAN BARIS TABEL PESERTA) --- */
+        /* --- MODAL AKSI DENGAN EDIT & HAPUS (UNTUK TEKAN TAHAN BARIS PESERTA) --- */
         function openActionModal(id) {
             activePesertaId = id;
             const item = dataPeserta.find(x => String(x.id) === String(id));
@@ -1437,9 +1443,10 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        /* --- PERBAIKAN EKSPOR PDF AGAR HEADER & LOGO TIDAK TERPOTONG SAMA SEBALIKNYA --- */
+        /* --- MODE EKSPOR LANDSCAPE PRESISI BEBAS TERPOTONG --- */
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
+            const mainContent = document.getElementById('main-web-content');
             const originalBtnHtml = btn.innerHTML;
             
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF...';
@@ -1447,38 +1454,37 @@
 
             closeModal('modalPdf');
 
-            // Aktifkan mode khusus PDF untuk penyesuaian gambar background header
-            document.body.classList.add('pdf-export-mode');
+            // Set styling khusus capture PDF
+            mainContent.classList.add('pdf-export-mode');
 
             setTimeout(() => {
-                const element = document.getElementById('main-web-content');
                 let fileNamePrefix = 'Denah_Kursi_Bus';
                 if (currentTab === 'peserta') fileNamePrefix = 'Data_Peserta_Ziarah';
                 else if (currentTab === 'absensi') fileNamePrefix = 'Absensi_Destinasi_1-7';
                 else if (currentTab === 'roadmaps') fileNamePrefix = 'Roadmap_Peta_Ziarah';
 
                 const opt = {
-                    margin:       [5, 5, 5, 5],
+                    margin:       [4, 4, 4, 4],
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
-                        scale: 2.8,
+                        scale: 2.5,
                         useCORS: true, 
                         logging: false,
                         scrollX: 0,
                         scrollY: 0,
-                        windowWidth: 1024
+                        windowWidth: 1200
                     },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' },
                     pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
                 };
 
-                html2pdf().set(opt).from(element).save().then(() => {
-                    document.body.classList.remove('pdf-export-mode');
+                html2pdf().set(opt).from(mainContent).save().then(() => {
+                    mainContent.classList.remove('pdf-export-mode');
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
                 }).catch(err => {
-                    document.body.classList.remove('pdf-export-mode');
+                    mainContent.classList.remove('pdf-export-mode');
                     alert("Gagal membuat PDF: " + err);
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
