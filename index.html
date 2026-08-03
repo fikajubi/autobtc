@@ -32,16 +32,19 @@
             background-position: center;
         }
 
-        /* CLASS KHUSUS SAAT RENDER PDF AGAR LOGO KIRI-KANAN UTUH TANPA TERPOTONG */
-        .pdf-export-mode {
-            width: 1200px !important;
-            max-width: 1200px !important;
+        /* KHUSUS MODE RENDERING PDF A4 PORTRAIT PRESISI (300 DPI) */
+        .pdf-render-canvas {
+            width: 794px !important;
+            max-width: 794px !important;
             margin: 0 auto !important;
+            padding: 10px !important;
+            background-color: #f1f5f9 !important;
         }
-        .pdf-export-mode #header-card-container {
-            background-size: contain !important;
+        .pdf-render-canvas #header-card-container {
+            background-size: 100% 100% !important;
             background-position: center center !important;
-            background-repeat: no-repeat !important;
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
         }
 
         /* --- KHUSUS KODE WARNA PER BARIS TEXT HEADER --- */
@@ -587,9 +590,9 @@
             <div class="p-4 space-y-3">
                 <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded-lg text-left text-[10px] text-emerald-900">
                     <p class="font-bold uppercase flex items-center gap-1 mb-0.5">
-                        <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak Presisi Tinggi (Landscape):
+                        <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak A4 Portrait Presisi Tinggi:
                     </p>
-                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dalam format Landscape A4 agar header dan tabel tidak terpotong sama sekali.</p>
+                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dalam format A4 Portrait (300 DPI) tanpa ada bagian header/logo yang terpotong.</p>
                 </div>
                 <div class="pt-1 flex flex-col gap-2">
                     <button id="btnDownloadPdfProcess" onclick="generatePdfUHD()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-lg shadow-md transition uppercase tracking-wider flex items-center justify-center gap-2">
@@ -1443,7 +1446,7 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        /* --- MODE EKSPOR LANDSCAPE PRESISI BEBAS TERPOTONG --- */
+        /* --- TAMPILAN PDF A4 PORTRAIT PRESISI LENGKAP TANPA KETERPOTONGAN --- */
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const mainContent = document.getElementById('main-web-content');
@@ -1454,8 +1457,8 @@
 
             closeModal('modalPdf');
 
-            // Set styling khusus capture PDF
-            mainContent.classList.add('pdf-export-mode');
+            // Kunci sementara lebar kontainer ke ukuran A4 Portrait Desktop (794px)
+            mainContent.classList.add('pdf-render-canvas');
 
             setTimeout(() => {
                 let fileNamePrefix = 'Denah_Kursi_Bus';
@@ -1464,27 +1467,27 @@
                 else if (currentTab === 'roadmaps') fileNamePrefix = 'Roadmap_Peta_Ziarah';
 
                 const opt = {
-                    margin:       [4, 4, 4, 4],
+                    margin:       [3, 3, 3, 3],
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
-                        scale: 2.5,
+                        scale: 3,
                         useCORS: true, 
                         logging: false,
                         scrollX: 0,
                         scrollY: 0,
-                        windowWidth: 1200
+                        windowWidth: 794
                     },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
                     pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
                 };
 
                 html2pdf().set(opt).from(mainContent).save().then(() => {
-                    mainContent.classList.remove('pdf-export-mode');
+                    mainContent.classList.remove('pdf-render-canvas');
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
                 }).catch(err => {
-                    mainContent.classList.remove('pdf-export-mode');
+                    mainContent.classList.remove('pdf-render-canvas');
                     alert("Gagal membuat PDF: " + err);
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
