@@ -132,7 +132,7 @@
 
     <div id="main-web-content" class="w-full max-w-full mx-auto space-y-1.5 relative z-10 bg-slate-100 p-1">
         
-        <!-- DITAMBAHKAN ID banner-header DI SINI -->
+        <!-- Banner Header -->
         <div id="banner-header" class="w-full rounded-lg p-3 sm:p-4 md:py-10 lg:py-14 text-center shadow-sm relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/d/1rfppl0Roxa-m3F8FImsJ0_lhxf4Y7Wvs');">
             <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
 
@@ -1368,7 +1368,7 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        // BAGIAN YANG DIPERBARUI UNTUK MEMPERBAIKI BANNER SAAT PDF DIBUAT
+        // --- BAGIAN FUNGSI YANG DIPERBARUI (TRIK MODE DESKTOP DI HP) ---
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn.innerHTML;
@@ -1378,64 +1378,59 @@
 
             closeModal('modalPdf');
 
+            // 1. AMBIL TAG VIEWPORT BAWAAN
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            const originalViewport = viewportMeta.getAttribute('content');
+            
+            // 2. PAKSA BROWSER HP MENJADI MODE DESKTOP 1200px SEMENTARA
+            viewportMeta.setAttribute('content', 'width=1200');
+
+            // Beri jeda 800ms agar browser HP sempat merubah layout & teks menjadi kecil (Desktop mode)
             setTimeout(() => {
                 const element = document.getElementById('main-web-content');
-                const banner = document.getElementById('banner-header'); // Mengambil div banner
+                const banner = document.getElementById('banner-header'); 
                 
                 let fileNamePrefix = 'Denah_Kursi_Bus';
                 if (currentTab === 'peserta') fileNamePrefix = 'Data_Peserta_Ziarah';
                 else if (currentTab === 'absensi') fileNamePrefix = 'Absensi_Destinasi_1-7';
                 else if (currentTab === 'roadmaps') fileNamePrefix = 'Roadmap_Peta_Ziarah';
 
-                // Simpan style asli
-                const originalWidth = element.style.width;
-                const originalMaxWidth = element.style.maxWidth;
+                // Tambahkan padding proporsional pada banner agar tidak gepeng di mode 1200px
                 const originalBannerPadding = banner ? banner.style.padding : '';
-                
-                // Paksa elemen menjadi lebar seperti tampilan desktop (mirip Gambar 2)
-                element.style.width = '1200px';
-                element.style.maxWidth = '1200px';
-                
-                // Paksa banner menjadi tinggi proporsional saat width = 1200px agar tidak gepeng
-                if (banner) {
-                    banner.style.padding = '100px 20px'; 
-                }
+                if (banner) banner.style.padding = '80px 20px';
 
                 const opt = {
                     margin:       [5, 5, 5, 5],
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
-                        scale: 3, // Skala resolusi tinggi
+                        scale: 2.5, // Skala resolusi diatur menengah agar sukses di HP
                         useCORS: true, 
                         logging: false,
                         scrollY: 0,
-                        windowWidth: 1200 // Paksa canvas membaca ukuran lebar 1200px
+                        windowWidth: 1200 // Paksa ukuran canvas
                     },
                     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
-                    // Kembalikan style elemen seperti semula setelah PDF berhasil dibuat
-                    element.style.width = originalWidth;
-                    element.style.maxWidth = originalMaxWidth;
+                    // 3. KEMBALIKAN KE MODE HP SETELAH PDF BERHASIL DIBUAT
+                    viewportMeta.setAttribute('content', originalViewport);
                     if (banner) banner.style.padding = originalBannerPadding;
                     
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
                 }).catch(err => {
-                    alert("Gagal membuat PDF: " + err);
-                    
-                    // Kembalikan style elemen jika terjadi error
-                    element.style.width = originalWidth;
-                    element.style.maxWidth = originalMaxWidth;
+                    // KEMBALIKAN KE MODE HP JIKA ERROR
+                    viewportMeta.setAttribute('content', originalViewport);
                     if (banner) banner.style.padding = originalBannerPadding;
-
+                    
+                    alert("Gagal membuat PDF: " + err);
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
                 });
 
-            }, 300);
+            }, 800); // 800 milidetik waktu tunggu render ulang
         }
 
         function initLongPressEvents() {
