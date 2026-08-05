@@ -132,7 +132,8 @@
 
     <div id="main-web-content" class="w-full max-w-full mx-auto space-y-1.5 relative z-10 bg-slate-100 p-1">
         
-        <div class="w-full rounded-lg p-3 sm:p-4 md:py-10 lg:py-14 text-center shadow-sm relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/d/1rfppl0Roxa-m3F8FImsJ0_lhxf4Y7Wvs');">
+        <!-- DITAMBAHKAN ID banner-header DI SINI -->
+        <div id="banner-header" class="w-full rounded-lg p-3 sm:p-4 md:py-10 lg:py-14 text-center shadow-sm relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/d/1rfppl0Roxa-m3F8FImsJ0_lhxf4Y7Wvs');">
             <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
 
             <div class="relative z-10">
@@ -1367,6 +1368,7 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
+        // BAGIAN YANG DIPERBARUI UNTUK MEMPERBAIKI BANNER SAAT PDF DIBUAT
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn.innerHTML;
@@ -1378,6 +1380,8 @@
 
             setTimeout(() => {
                 const element = document.getElementById('main-web-content');
+                const banner = document.getElementById('banner-header'); // Mengambil div banner
+                
                 let fileNamePrefix = 'Denah_Kursi_Bus';
                 if (currentTab === 'peserta') fileNamePrefix = 'Data_Peserta_Ziarah';
                 else if (currentTab === 'absensi') fileNamePrefix = 'Absensi_Destinasi_1-7';
@@ -1386,10 +1390,16 @@
                 // Simpan style asli
                 const originalWidth = element.style.width;
                 const originalMaxWidth = element.style.maxWidth;
+                const originalBannerPadding = banner ? banner.style.padding : '';
                 
                 // Paksa elemen menjadi lebar seperti tampilan desktop (mirip Gambar 2)
                 element.style.width = '1200px';
                 element.style.maxWidth = '1200px';
+                
+                // Paksa banner menjadi tinggi proporsional saat width = 1200px agar tidak gepeng
+                if (banner) {
+                    banner.style.padding = '100px 20px'; 
+                }
 
                 const opt = {
                     margin:       [5, 5, 5, 5],
@@ -1409,6 +1419,7 @@
                     // Kembalikan style elemen seperti semula setelah PDF berhasil dibuat
                     element.style.width = originalWidth;
                     element.style.maxWidth = originalMaxWidth;
+                    if (banner) banner.style.padding = originalBannerPadding;
                     
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
@@ -1418,6 +1429,7 @@
                     // Kembalikan style elemen jika terjadi error
                     element.style.width = originalWidth;
                     element.style.maxWidth = originalMaxWidth;
+                    if (banner) banner.style.padding = originalBannerPadding;
 
                     btn.innerHTML = originalBtnHtml;
                     btn.disabled = false;
