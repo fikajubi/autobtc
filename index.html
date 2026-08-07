@@ -125,6 +125,12 @@
             transform: translate(-50%, 0%) scale(1.2);
             z-index: 40;
         }
+
+        /* PERBAIKAN: Mencegah pemotongan baris tabel saat cetak/PDF */
+        tr {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+        }
     </style>
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 min-h-screen py-1 px-1 sm:py-3 sm:px-2 relative overflow-x-hidden">
@@ -843,7 +849,6 @@
             const isBusA = (busCode === 'A');
             const pinBgClass = isBusA ? "bg-blue-600" : "bg-purple-600";
             const tagNumClass = isBusA ? "text-blue-400" : "text-purple-400";
-            const tagBusClass = isBusA ? "text-blue-300" : "text-purple-300";
 
             seatCoordinates.forEach(seat => {
                 const peserta = mapSeatToPeserta[seat.id];
@@ -862,7 +867,6 @@
                             <div class="bg-slate-900/90 text-white text-[8px] sm:text-[10px] font-black px-2 py-0.5 rounded-full whitespace-nowrap shadow-lg border border-slate-700/80 tracking-tight flex items-center gap-1 backdrop-blur-xs">
                                 <span class="${tagNumClass}">#${seat.id}</span>
                                 <span class="truncate max-w-[110px] uppercase">${peserta.nama}</span>
-                                <span class="text-[7px] ${tagBusClass} font-bold">(BUS ${busCode})</span>
                             </div>
                             <div class="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[4px] border-t-slate-900/90 -mt-[1px]"></div>
                         </div>
@@ -941,12 +945,11 @@
 
             const isBusA = (busCode === 'A');
             const badgeBgClass = isBusA ? "bg-blue-600" : "bg-purple-600";
-            const busTagClass = isBusA ? "text-blue-600" : "text-purple-600";
 
             for (let i = 1; i <= 60; i++) {
                 const peserta = mapSeatToPeserta[i];
                 const namaPeserta = peserta 
-                    ? `<span class="font-bold text-slate-800 uppercase truncate">${peserta.nama} <span class="text-[8px] ${busTagClass} font-black">(BUS ${busCode})</span></span>` 
+                    ? `<span class="font-bold text-slate-800 uppercase truncate">${peserta.nama}</span>` 
                     : `<span class="text-slate-400 font-normal italic">Kosong / Belum Diisi</span>`;
             
                 const badgeStatus = peserta 
@@ -1609,6 +1612,7 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
+        // PERBAIKAN GENERATE PDF: Mengkonfigurasi pagebreak avoid-all agar baris/nama tidak terpotong
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn.innerHTML;
@@ -1635,7 +1639,8 @@
                         logging: false,
                         scrollY: 0
                     },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                    pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
