@@ -126,10 +126,14 @@
             z-index: 40;
         }
 
-        /* PERBAIKAN: Mencegah pemotongan baris tabel saat cetak/PDF */
-        tr {
+        /* PERBAIKAN PRESISI: Proteksi Pemotongan Baris Tabel/Elemen di Pemisah Halaman PDF */
+        table {
+            page-break-inside: auto;
+        }
+        tr, td, th, .long-press-row, .absensi-row {
             page-break-inside: avoid !important;
             break-inside: avoid !important;
+            -webkit-column-break-inside: avoid;
         }
     </style>
 </head>
@@ -1612,7 +1616,7 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        // PERBAIKAN GENERATE PDF: Mengkonfigurasi pagebreak avoid-all agar baris/nama tidak terpotong
+        // PERBAIKAN UTAMA EXPORT PDF: Mencegah Baris Terpotong Menggunakan Penetapan Opsi 'avoid' Spesifik
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn.innerHTML;
@@ -1634,13 +1638,16 @@
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
-                        scale: 3.125,
+                        scale: 2.5,
                         useCORS: true, 
                         logging: false,
                         scrollY: 0
                     },
                     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                    pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+                    pagebreak:    { 
+                        mode: ['avoid-all', 'css', 'legacy'],
+                        avoid: ['tr', '.long-press-row', '.absensi-row'] 
+                    }
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
