@@ -44,13 +44,8 @@
         .seat-overlay-pin { position: absolute; transform: translate(-50%, 0%); cursor: pointer; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.15s ease; }
         .seat-overlay-pin:hover, .seat-overlay-pin.active-tooltip { transform: translate(-50%, 0%) scale(1.2); z-index: 40; }
 
-        /* ATURAN KEAMANAN PEMOTONGAN HALAMAN PDF */
         table { page-break-inside: auto !important; }
-        tr, td, th, .long-press-row, .absensi-row, .pdf-keep-together, .bus-body-wrapper {
-            page-break-inside: avoid !important;
-            break-inside: avoid !important;
-            -webkit-column-break-inside: avoid !important;
-        }
+        tr, td, th, .long-press-row, .absensi-row { page-break-inside: avoid !important; break-inside: avoid !important; -webkit-column-break-inside: avoid !important; }
     </style>
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 min-h-screen py-1 px-1 sm:py-3 sm:px-2 relative overflow-x-hidden">
@@ -96,25 +91,25 @@
             </div>
         </div>
 
-        <!-- NAVIGASI TAB UTAMA -->
-        <div class="w-full flex gap-1 p-1 bg-white rounded-lg shadow-sm border border-slate-200 overflow-x-auto">
-            <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm">
-                <i class="fa-solid fa-chair"></i> Denah
+        <!-- NAVIGASI TAB UTAMA (GRID 6 KOLOM AGAR 1 BARIS TANPA SCROLL SAMPING) -->
+        <div class="w-full grid grid-cols-6 gap-0.5 sm:gap-1 p-1 bg-white rounded-lg shadow-sm border border-slate-200">
+            <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm">
+                <i class="fa-solid fa-chair text-[9px] sm:text-xs"></i> <span>Denah</span>
             </button>
-            <button id="btn-tab-peserta" onclick="switchTab('peserta')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-users"></i> Peserta
+            <button id="btn-tab-peserta" onclick="switchTab('peserta')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-users text-[9px] sm:text-xs"></i> <span>Peserta</span>
             </button>
-            <button id="btn-tab-absensi" onclick="switchTab('absensi')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-clipboard-check"></i> Absensi
+            <button id="btn-tab-absensi" onclick="switchTab('absensi')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-clipboard-check text-[9px] sm:text-xs"></i> <span>Absensi</span>
             </button>
-            <button id="btn-tab-roadmaps" onclick="switchTab('roadmaps')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-route"></i> Roadmap
+            <button id="btn-tab-roadmaps" onclick="switchTab('roadmaps')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-route text-[9px] sm:text-xs"></i> <span>Roadmap</span>
             </button>
-            <button id="btn-tab-keuangan" onclick="switchTab('keuangan')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-wallet"></i> Keuangan
+            <button id="btn-tab-keuangan" onclick="switchTab('keuangan')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-wallet text-[9px] sm:text-xs"></i> <span>Keuangan</span>
             </button>
-            <button id="btn-tab-lpj" onclick="switchTab('lpj')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-file-invoice-dollar"></i> LPJ
+            <button id="btn-tab-lpj" onclick="switchTab('lpj')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-file-invoice-dollar text-[9px] sm:text-xs"></i> <span>LPJ</span>
             </button>
         </div>
 
@@ -172,11 +167,13 @@
                 </div>
 
                 <div id="view-bus-a-section" class="space-y-3">
-                    <div class="border-b-2 border-blue-600 pb-1 flex justify-between items-center">
-                        <h2 class="font-black text-xs sm:text-sm text-blue-800 uppercase tracking-wider flex items-center gap-1.5">
-                            <i class="fa-solid fa-bus text-blue-600"></i> Visual Denah Tempat Duduk - BUS A
+                    <div class="border-b-2 border-blue-600 pb-1 flex justify-between items-center gap-1">
+                        <h2 class="font-black text-[10px] sm:text-sm text-blue-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
+                            <i class="fa-solid fa-bus text-blue-600 text-xs"></i> Visual Denah Tempat Duduk - BUS A
                         </h2>
-                        <span class="bg-blue-100 text-blue-800 text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase">Kapasitas 60 Kursi</span>
+                        <span class="bg-blue-100 text-blue-800 text-[8px] sm:text-[9px] font-black px-2 py-0.5 rounded-full uppercase whitespace-nowrap shrink-0">
+                            Kapasitas 60 Kursi
+                        </span>
                     </div>
                     <div class="bus-body-wrapper border-blue-500/50">
                         <div class="relative w-full">
@@ -193,11 +190,13 @@
                 </div>
 
                 <div id="view-bus-b-section" class="hidden space-y-3">
-                    <div class="border-b-2 border-purple-600 pb-1 flex justify-between items-center">
-                        <h2 class="font-black text-xs sm:text-sm text-purple-800 uppercase tracking-wider flex items-center gap-1.5">
-                            <i class="fa-solid fa-bus text-purple-600"></i> Visual Denah Tempat Duduk - BUS B
+                    <div class="border-b-2 border-purple-600 pb-1 flex justify-between items-center gap-1">
+                        <h2 class="font-black text-[10px] sm:text-sm text-purple-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
+                            <i class="fa-solid fa-bus text-purple-600 text-xs"></i> Visual Denah Tempat Duduk - BUS B
                         </h2>
-                        <span class="bg-purple-100 text-purple-800 text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase">Kapasitas 60 Kursi</span>
+                        <span class="bg-purple-100 text-purple-800 text-[8px] sm:text-[9px] font-black px-2 py-0.5 rounded-full uppercase whitespace-nowrap shrink-0">
+                            Kapasitas 60 Kursi
+                        </span>
                     </div>
                     <div class="bus-body-wrapper border-purple-500/50">
                         <div class="relative w-full">
@@ -226,8 +225,10 @@
                 </div>
 
                 <div id="section-tabel-peserta-all" class="w-full">
-                    <div id="header-peserta-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center">
-                        <h2 id="txt-header-peserta" class="font-black text-[11px] sm:text-xs text-blue-700 uppercase tracking-wide">Daftar Peserta Ziarah - BUS A</h2>
+                    <div id="header-peserta-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center gap-1">
+                        <h2 id="txt-header-peserta" class="font-black text-[10px] sm:text-xs text-blue-700 uppercase tracking-tight shrink-0">
+                            Daftar Peserta Ziarah - BUS A
+                        </h2>
                     </div>
                     <div class="w-full border border-slate-200 rounded-lg overflow-hidden bg-white">
                         <table class="w-full text-left border-collapse table-fixed">
@@ -267,8 +268,8 @@
                 </div>
 
                 <div id="section-absensi-all" class="w-full">
-                    <div id="header-absensi-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center">
-                        <h2 id="txt-header-absensi" class="font-black text-[11px] sm:text-xs text-blue-700 uppercase tracking-wide flex items-center gap-1.5">
+                    <div id="header-absensi-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center gap-1">
+                        <h2 id="txt-header-absensi" class="font-black text-[10px] sm:text-xs text-blue-700 uppercase tracking-tight flex items-center gap-1 shrink-0">
                             <i class="fa-solid fa-clipboard-check"></i> Rekap Absensi Peserta - BUS A
                         </h2>
                     </div>
@@ -298,11 +299,13 @@
 
             <!-- VIEW ROADMAPS -->
             <div id="view-tab-roadmaps" class="hidden space-y-3">
-                <div class="border-b-2 border-emerald-700 pb-1 flex justify-between items-center">
-                    <h2 class="font-black text-xs sm:text-sm text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="fa-solid fa-map-location-dot text-emerald-600"></i> Roadmap & Status Kunjungan Ziarah
+                <div class="border-b-2 border-emerald-700 pb-1 flex justify-between items-center gap-1">
+                    <h2 class="font-black text-[10px] sm:text-sm text-emerald-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
+                        <i class="fa-solid fa-map-location-dot text-emerald-600 text-xs"></i> Roadmap & Status Kunjungan Ziarah
                     </h2>
-                    <span id="roadmap-status-badge" class="bg-emerald-100 text-emerald-800 text-[9px] font-black px-2 py-0.5 rounded-full uppercase">0 / 7 Dikunjungi</span>
+                    <span id="roadmap-status-badge" class="bg-emerald-100 text-emerald-800 text-[8px] sm:text-[9px] font-black px-2 py-0.5 rounded-full uppercase whitespace-nowrap shrink-0">
+                        0 / 7 Dikunjungi
+                    </span>
                 </div>
                 <div class="w-full bg-slate-900 rounded-xl overflow-hidden border border-slate-300 shadow-md relative group">
                     <img src="https://lh3.googleusercontent.com/d/1PeZuwV8F9vO2-H81O3WYluR3qg9FyCLP" alt="Peta Roadmap Ziarah" class="w-full object-contain max-h-[600px] mx-auto block">
@@ -320,11 +323,11 @@
 
             <!-- TAB: KEUANGAN -->
             <div id="view-tab-keuangan" class="hidden space-y-4">
-                <div class="border-b-2 border-teal-600 pb-1 flex justify-between items-center">
-                    <h2 class="font-black text-xs sm:text-sm text-teal-800 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="fa-solid fa-wallet text-teal-600"></i> Manajemen Keuangan & Mutasi
+                <div class="border-b-2 border-teal-600 pb-1 flex justify-between items-center gap-1">
+                    <h2 class="font-black text-[10px] sm:text-sm text-teal-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
+                        <i class="fa-solid fa-wallet text-teal-600 text-xs"></i> Manajemen Keuangan & Mutasi
                     </h2>
-                    <button onclick="openFormPengeluaranModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-extrabold px-2.5 py-1 rounded-md flex items-center gap-1 text-[10px] transition uppercase shadow-sm">
+                    <button onclick="openFormPengeluaranModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-extrabold px-2 py-1 rounded-md flex items-center gap-1 text-[9px] sm:text-[10px] transition uppercase shadow-sm whitespace-nowrap shrink-0">
                         <i class="fa-solid fa-plus"></i> Input Pengeluaran
                     </button>
                 </div>
@@ -367,11 +370,11 @@
 
             <!-- TAB: LAPORAN LPJ -->
             <div id="view-tab-lpj" class="hidden space-y-4">
-                <div class="border-b-2 border-indigo-600 pb-1 flex justify-between items-center">
-                    <h2 class="font-black text-xs sm:text-sm text-indigo-800 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="fa-solid fa-file-invoice-dollar text-indigo-600"></i> Laporan Pertanggungjawaban (LPJ) Ziarah
+                <div class="border-b-2 border-indigo-600 pb-1 flex justify-between items-center gap-1">
+                    <h2 class="font-black text-[10px] sm:text-sm text-indigo-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
+                        <i class="fa-solid fa-file-invoice-dollar text-indigo-600 text-xs"></i> Laporan Pertanggungjawaban (LPJ) Ziarah
                     </h2>
-                    <button onclick="requestAccess('download_pdf')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-2.5 py-1 rounded-md flex items-center gap-1 text-[10px] transition uppercase">
+                    <button onclick="requestAccess('download_pdf')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-2 py-1 rounded-md flex items-center gap-1 text-[9px] sm:text-[10px] transition uppercase whitespace-nowrap shrink-0">
                         <i class="fa-solid fa-file-pdf"></i> Cetak / Download LPJ
                     </button>
                 </div>
@@ -769,7 +772,7 @@
             tabs.forEach(t => {
                 const btn = document.getElementById(`btn-tab-${t}`);
                 const view = document.getElementById(`view-tab-${t}`);
-                if (btn) btn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
+                if (btn) btn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
                 if (view) view.classList.add('hidden');
             });
 
@@ -784,30 +787,30 @@
             if (activeView) activeView.classList.remove('hidden');
 
             if (tabName === 'kursi') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm";
                 subTitle.innerText = "DENAH TEMPAT DUDUK / KURSI BUS";
                 switchBusSubtab(currentBusSubtab);
             } else if (tabName === 'peserta') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-700 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-emerald-700 text-white shadow-sm";
                 document.getElementById('controls-peserta').classList.remove('hidden');
                 document.getElementById('card-total-saldo').classList.remove('hidden');
                 subTitle.innerText = "DATA PESERTA ZIARAH WALI KENCENG";
                 switchPesertaBusSubtab(currentPesertaBusSubtab);
             } else if (tabName === 'absensi') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm";
                 document.getElementById('controls-absensi').classList.remove('hidden');
                 subTitle.innerText = "ABSENSI KUNJUNGAN DESTINASI 1 - 7";
                 switchAbsensiBusSubtab(currentAbsensiBusSubtab);
             } else if (tabName === 'roadmaps') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-800 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-emerald-800 text-white shadow-sm";
                 subTitle.innerText = "ROADMAP & PETA RUTE PERJALANAN ZIARAH";
                 renderRoadmapChecklist();
             } else if (tabName === 'keuangan') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-teal-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-teal-600 text-white shadow-sm";
                 subTitle.innerText = "REKAPITULASI KEUANGAN & OPERASIONAL";
                 renderKeuanganView();
             } else if (tabName === 'lpj') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-indigo-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-indigo-600 text-white shadow-sm";
                 subTitle.innerText = "LAPORAN PERTANGGUNGJAWABAN (LPJ)";
                 renderLPJView();
             }
@@ -827,8 +830,8 @@
 
         function switchPesertaBusSubtab(busCode) {
             currentPesertaBusSubtab = busCode;
-            document.getElementById('btn-subtab-peserta-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
-            document.getElementById('btn-subtab-peserta-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-peserta-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-peserta-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
             
             document.getElementById('txt-header-peserta').innerText = `Daftar Peserta Ziarah - BUS ${busCode}`;
             renderTables();
@@ -836,8 +839,8 @@
 
         function switchAbsensiBusSubtab(busCode) {
             currentAbsensiBusSubtab = busCode;
-            document.getElementById('btn-subtab-absensi-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
-            document.getElementById('btn-subtab-absensi-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-absensi-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-absensi-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
             
             document.getElementById('txt-header-absensi').innerHTML = `<i class="fa-solid fa-clipboard-check"></i> Rekap Absensi Peserta - BUS ${busCode}`;
             renderTableAbsensi();
@@ -1667,9 +1670,6 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        /* ----------------------------------------------------
-           PERBAIKAN UTAMA: GENERATE PDF DEKSTOP MODE UTUH TANPA TERPOTONG
-        ---------------------------------------------------- */
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn ? btn.innerHTML : '';
@@ -1691,17 +1691,14 @@
                 if (currentTab === 'peserta') fileNamePrefix = `Data_Peserta_Bus_${currentPesertaBusSubtab}`;
                 if (currentTab === 'absensi') fileNamePrefix = `Absensi_Bus_${currentAbsensiBusSubtab}`;
 
-                // Simpan Style Asli
                 const origWidth = element.style.width;
                 const origMaxWidth = element.style.maxWidth;
                 const origOverflow = element.style.overflow;
 
-                // Paksa Tampilan Mode Desktop Selama Proses Render Canvas PDF
                 element.style.width = '1050px';
                 element.style.maxWidth = '1050px';
                 element.style.overflow = 'visible';
 
-                // Bersihkan Offset Scroll HP
                 window.scrollTo(0, 0);
 
                 const opt = {
@@ -1712,7 +1709,7 @@
                         scale: 2,
                         useCORS: true, 
                         logging: false,
-                        windowWidth: 1280, // Render kanvas lebar mode desktop penuh
+                        windowWidth: 1280,
                         scrollY: 0,
                         scrollX: 0
                     },
@@ -1724,7 +1721,6 @@
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
-                    // Kembalikan Tampilan Asli
                     element.style.width = origWidth;
                     element.style.maxWidth = origMaxWidth;
                     element.style.overflow = origOverflow;
