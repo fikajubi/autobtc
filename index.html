@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <!-- NAVIGASI TAB UTAMA (GRID 6 KOLOM AGAR 1 BARIS TANPA SCROLL SAMPING) -->
+        <!-- NAVIGASI TAB UTAMA (GRID 6 KOLOM AGAR 1 BARIS PENUH TANPA SCROLL) -->
         <div class="w-full grid grid-cols-6 gap-0.5 sm:gap-1 p-1 bg-white rounded-lg shadow-sm border border-slate-200">
             <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm">
                 <i class="fa-solid fa-chair text-[9px] sm:text-xs"></i> <span>Denah</span>
@@ -670,7 +670,7 @@
                     <p class="font-bold uppercase flex items-center gap-1 mb-0.5">
                         <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak Presisi Tinggi:
                     </p>
-                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dengan mode Dekstop resolusi UHD 300 DPI.</p>
+                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dengan mode Desktop resolusi UHD 300 DPI (Full A4).</p>
                 </div>
                 <div class="pt-1 flex flex-col gap-2">
                     <button id="btnDownloadPdfProcess" onclick="generatePdfUHD()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-lg shadow-md transition uppercase tracking-wider flex items-center justify-center gap-2">
@@ -1670,11 +1670,14 @@
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
+        /* ------------------------------------------------------------------
+           PERBAIKAN UTAMA: CETAK PDF FULL A4 DESKTOP MODE (TIDAK TERPOTONG)
+        ------------------------------------------------------------------ */
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn ? btn.innerHTML : '';
             if (btn) {
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF Desktop Mode...';
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF Full A4...';
                 btn.disabled = true;
             }
 
@@ -1691,25 +1694,29 @@
                 if (currentTab === 'peserta') fileNamePrefix = `Data_Peserta_Bus_${currentPesertaBusSubtab}`;
                 if (currentTab === 'absensi') fileNamePrefix = `Absensi_Bus_${currentAbsensiBusSubtab}`;
 
+                // Simpan style asli
                 const origWidth = element.style.width;
                 const origMaxWidth = element.style.maxWidth;
                 const origOverflow = element.style.overflow;
+                const origPadding = element.style.padding;
 
-                element.style.width = '1050px';
-                element.style.maxWidth = '1050px';
+                // Paksa ukuran kontainer selebar ukuran desktop penuh (1200px) agar tabel memenuhi halaman A4 secara penuh
+                element.style.width = '1200px';
+                element.style.maxWidth = '1200px';
                 element.style.overflow = 'visible';
+                element.style.padding = '20px';
 
                 window.scrollTo(0, 0);
 
                 const opt = {
-                    margin:       [8, 8, 8, 8],
+                    margin:       [5, 5, 5, 5],
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
                         scale: 2,
                         useCORS: true, 
                         logging: false,
-                        windowWidth: 1280,
+                        windowWidth: 1400, // Lebar virtual canvas desktop agar tidak terpotong ke samping
                         scrollY: 0,
                         scrollX: 0
                     },
@@ -1721,9 +1728,11 @@
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
+                    // Kembalikan ke style asli
                     element.style.width = origWidth;
                     element.style.maxWidth = origMaxWidth;
                     element.style.overflow = origOverflow;
+                    element.style.padding = origPadding;
 
                     if (btn) {
                         btn.innerHTML = originalBtnHtml;
@@ -1733,6 +1742,7 @@
                     element.style.width = origWidth;
                     element.style.maxWidth = origMaxWidth;
                     element.style.overflow = origOverflow;
+                    element.style.padding = origPadding;
 
                     alert("Gagal membuat PDF: " + err);
                     if (btn) {
