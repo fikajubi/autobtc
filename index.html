@@ -340,19 +340,20 @@
                     </div>
                 </div>
 
-                <!-- LAPORAN MUTASI INFAQ MODEL DIGITAL -->
+                <!-- LAPORAN MUTASI INFAQ MODEL DIGITAL SENSITIF MOBILE -->
                 <div class="bg-white border border-slate-200 rounded-2xl p-2 sm:p-4 shadow-sm overflow-hidden">
                     <div class="flex justify-between items-center mb-3 w-full px-1">
                         <h3 class="text-teal-800 text-xs sm:text-sm tracking-wide uppercase border-b-2 border-teal-600 pb-0.5 font-black">LAPORAN MUTASI KEUANGAN</h3>
                     </div>
                     
                     <div class="w-full overflow-hidden">
-                        <div class="grid grid-cols-12 text-[9px] sm:text-xs text-slate-500 font-black uppercase border-b border-slate-200 pb-2 mb-1 tracking-wider bg-slate-50 p-2 text-center w-full">
-                            <div class="col-span-2 text-left">Tanggal</div>
-                            <div class="col-span-4 text-left">Nama / Keterangan</div>
-                            <div class="col-span-2 text-right">Masuk</div>
-                            <div class="col-span-2 text-right">Keluar</div>
-                            <div class="col-span-2 text-right">Saldo</div>
+                        <!-- HEADER MUTASI RESPONSIF DENGAN TEXT MENYESUAIKAN UKURAN LAYAR -->
+                        <div class="grid grid-cols-12 text-[8px] sm:text-xs text-slate-500 font-black uppercase border-b border-slate-200 pb-2 mb-1 tracking-tighter sm:tracking-wider bg-slate-50 p-1 sm:p-2 text-center w-full">
+                            <div class="col-span-2 text-left pl-0.5">Tanggal</div>
+                            <div class="col-span-4 text-left px-0.5">Nama / Ket</div>
+                            <div class="col-span-2 text-right px-0.5">Masuk</div>
+                            <div class="col-span-2 text-right px-0.5">Keluar</div>
+                            <div class="col-span-2 text-right pr-0.5">Saldo</div>
                         </div>
                         
                         <div id="table-pengeluaran-list" class="flex flex-col w-full"></div>
@@ -459,7 +460,7 @@
         </button>
     </div>
 
-    <!-- MODAL FORM INPUT PENGELUARAN (TERDAPAT INPUT LINK FOTO NOTA) -->
+    <!-- MODAL FORM INPUT PENGELUARAN -->
     <div id="modalPengeluaranForm" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center hidden z-50 p-2">
         <div class="bg-white rounded-xl shadow-xl w-full max-w-sm p-3 sm:p-4 relative">
             <h3 id="pengeluaranFormTitle" class="font-black text-teal-800 text-[11px] uppercase mb-2 pb-1 border-b border-slate-100 tracking-wide">Input Pengeluaran Operasional</h3>
@@ -749,12 +750,6 @@
                 if (parts.length === 3) return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
             }
             return new Date(dmyString);
-        }
-
-        function getNamaBulan(dmyString) {
-            const date = parseDMYToDate(dmyString);
-            const namaBulan = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
-            return !isNaN(date.getTime()) ? `${namaBulan[date.getMonth()]} ${date.getFullYear()}` : "-";
         }
 
         function switchTab(tabName) {
@@ -1059,7 +1054,7 @@
         }
 
         /* ----------------------------------------------------
-           RENDER TAB KEUANGAN: MUTASI DIGITAL DENGAN FOTO NOTA
+           RENDER TAB KEUANGAN: UKURAN FONT MOBILE RESPONSIF
         ---------------------------------------------------- */
         function renderKeuanganView() {
             const totalMasuk = getTotalPemasukan();
@@ -1108,7 +1103,7 @@
             mutasiList.sort((a, b) => parseDMYToDate(a.tgl) - parseDMYToDate(b.tgl));
 
             if (mutasiList.length === 0) {
-                container.innerHTML = `<div class="p-3 text-center text-slate-400 italic font-semibold">Belum ada mutasi transaksi keuangan.</div>`;
+                container.innerHTML = `<div class="p-3 text-center text-slate-400 italic font-semibold text-xs">Belum ada mutasi transaksi keuangan.</div>`;
                 return;
             }
 
@@ -1121,7 +1116,9 @@
 
                 const baseBgRow = index % 2 === 0 ? 'bg-white' : 'bg-slate-50/60';
                 const rowDiv = document.createElement("div");
-                rowDiv.className = `grid grid-cols-12 items-center py-2 px-1 sm:px-2 border-b border-slate-100 text-[10px] sm:text-xs font-semibold ${baseBgRow}`;
+                
+                // PENGATURAN KLAS FONT DINAMIS & PADDING PRESISI AGAR TIDAK BENTROK PADA LAYAR HP
+                rowDiv.className = `grid grid-cols-12 items-center py-1.5 px-0.5 sm:px-2 border-b border-slate-100 text-[8px] sm:text-xs font-semibold tracking-tighter sm:tracking-normal ${baseBgRow}`;
 
                 const displayTgl = formatToDDMMYYYY(item.tgl);
 
@@ -1129,21 +1126,21 @@
                 if (item.nota && item.nota.trim() !== "") {
                     notaHtml = `
                         <div class="block text-left mt-0.5">
-                            <a href="${item.nota}" target="_blank" class="text-[9px] sm:text-[10px] text-blue-600 font-bold uppercase hover:underline flex items-center gap-1">
-                                <i class="fa-solid fa-file-image"></i> Lihat Foto Nota
+                            <a href="${item.nota}" target="_blank" class="text-[7.5px] sm:text-[10px] text-blue-600 font-bold uppercase hover:underline flex items-center gap-0.5">
+                                <i class="fa-solid fa-file-image"></i> Nota
                             </a>
                         </div>`;
                 }
 
                 rowDiv.innerHTML = `
-                    <div class="col-span-2 text-left font-bold text-slate-500 whitespace-nowrap">${displayTgl}</div>
-                    <div class="col-span-4 text-left font-black text-slate-800 uppercase truncate pr-1 cursor-pointer select-none" id="mutasi-item-${index}">
-                        <span class="block leading-tight">${item.ket}</span>
+                    <div class="col-span-2 text-left font-bold text-slate-500 whitespace-nowrap text-[7.5px] sm:text-xs">${displayTgl}</div>
+                    <div class="col-span-4 text-left font-black text-slate-800 uppercase truncate px-0.5 cursor-pointer select-none" id="mutasi-item-${index}">
+                        <span class="block leading-tight truncate">${item.ket}</span>
                         ${notaHtml}
                     </div>
-                    <div class="col-span-2 text-right font-black text-emerald-600 whitespace-nowrap">${masuk > 0 ? formatRupiah(masuk) : '-'}</div>
-                    <div class="col-span-2 text-right font-black text-rose-500 whitespace-nowrap">${keluar > 0 ? formatRupiah(keluar) : '-'}</div>
-                    <div class="col-span-2 text-right font-black text-blue-600 whitespace-nowrap">${formatRupiah(runningSaldo)}</div>
+                    <div class="col-span-2 text-right font-black text-emerald-600 whitespace-nowrap px-0.5">${masuk > 0 ? formatRupiah(masuk) : '-'}</div>
+                    <div class="col-span-2 text-right font-black text-rose-500 whitespace-nowrap px-0.5">${keluar > 0 ? formatRupiah(keluar) : '-'}</div>
+                    <div class="col-span-2 text-right font-black text-blue-600 whitespace-nowrap pr-0.5">${formatRupiah(runningSaldo)}</div>
                 `;
 
                 container.appendChild(rowDiv);
@@ -1157,7 +1154,7 @@
 
                 if (isEndOfMonth) {
                     const rekapDiv = document.createElement("div");
-                    rekapDiv.className = "grid grid-cols-12 items-center py-1.5 px-2 my-1 bg-blue-600 text-white rounded-lg border border-blue-700 text-[9px] sm:text-xs font-black uppercase shadow-xs";
+                    rekapDiv.className = "grid grid-cols-12 items-center py-1.5 px-1.5 sm:px-2 my-1 bg-blue-600 text-white rounded-lg border border-blue-700 text-[8px] sm:text-xs font-black uppercase shadow-xs";
                     rekapDiv.innerHTML = `
                         <div class="col-span-7 text-left tracking-wider truncate">AKUMULASI SALDO AKHIR ZIARAH</div>
                         <div class="col-span-5 text-right font-black tracking-tight">${formatRupiah(runningSaldo)}</div>
