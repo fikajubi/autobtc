@@ -14,7 +14,6 @@
     
     <style>
         * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        
         .long-press-row { position: relative; user-select: none; -webkit-user-select: none; }
         .long-press-row::after {
             content: ''; position: absolute; bottom: 0; left: 0; height: 3px;
@@ -23,118 +22,30 @@
         .long-press-row.holding::after { width: 100%; }
         .uppercase-input { text-transform: uppercase; }
 
-        .header-baris-1 {
-            color: #FFFFFF;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.65), 0 0 10px rgba(0, 0, 0, 0.4);
-            -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.2);
-        }
+        .header-baris-1 { color: #FFFFFF; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.65), 0 0 10px rgba(0, 0, 0, 0.4); -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.2); }
         .header-baris-2 { color: #000000; }
         .header-baris-3 { color: #4B0082; text-shadow: 0 0 8px rgba(75, 0, 130, 0.3); }
         .header-baris-4 { color: #008000; text-shadow: 0 0 8px rgba(0, 128, 0, 0.3); }
 
-        .radar-pulse {
-            position: relative;
-            width: 8px;
-            height: 8px;
-            background-color: #00FF66;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #00FF66;
-        }
-        .radar-pulse::after {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #00FF66;
-            border-radius: 50%;
-            opacity: 0;
-            animation: radar-scan 1.8s ease-out infinite;
-        }
-        @keyframes radar-scan {
-            0% { transform: scale(0.4); opacity: 1; }
-            100% { transform: scale(1.4); opacity: 0; box-shadow: 0 0 12px #00FF66; }
-        }
+        .radar-pulse { position: relative; width: 8px; height: 8px; background-color: #00FF66; border-radius: 50%; box-shadow: 0 0 8px #00FF66; }
+        .radar-pulse::after { content: ''; position: absolute; top: -6px; left: -6px; width: 20px; height: 20px; border: 2px solid #00FF66; border-radius: 50%; opacity: 0; animation: radar-scan 1.8s ease-out infinite; }
+        @keyframes radar-scan { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; box-shadow: 0 0 12px #00FF66; } }
 
-        @keyframes mapPinBounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-8px) scale(1.2); }
-        }
-        .animate-pin-bounce {
-            display: inline-block;
-            animation: mapPinBounce 1.2s infinite ease-in-out;
-        }
+        @keyframes mapPinBounce { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.2); } }
+        .animate-pin-bounce { display: inline-block; animation: mapPinBounce 1.2s infinite ease-in-out; }
 
-        .snowflake {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.2em;
-            position: fixed;
-            top: -10%;
-            z-index: 9999;
-            user-select: none;
-            cursor: default;
-            pointer-events: none;
-            animation-name: snowflakes-fall, snowflakes-shake;
-            animation-duration: 20s, 4s;
-            animation-timing-function: linear, ease-in-out;
-            animation-iteration-count: infinite, infinite;
-        }
-        @keyframes snowflakes-fall {
-            0% { top: -10%; }
-            100% { top: 105%; }
-        }
-        @keyframes snowflakes-shake {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            50% { transform: translateX(50px) rotate(180deg); }
-        }
+        .snowflake { color: rgba(255, 255, 255, 0.6); font-size: 1.2em; position: fixed; top: -10%; z-index: 9999; user-select: none; cursor: default; pointer-events: none; animation-name: snowflakes-fall, snowflakes-shake; animation-duration: 20s, 4s; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite; }
+        @keyframes snowflakes-fall { 0% { top: -10%; } 100% { top: 105%; } }
+        @keyframes snowflakes-shake { 0%, 100% { transform: translateX(0) rotate(0deg); } 50% { transform: translateX(50px) rotate(180deg); } }
 
-        .bus-body-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 320px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #0f172a;
-            border: 2px solid #334155;
-            box-shadow: 0 12px 30px -5px rgba(0,0,0,0.5);
-            padding: 8px;
-        }
-        .bus-body-wrapper img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            pointer-events: none;
-            user-select: none;
-        }
+        .bus-body-wrapper { position: relative; width: 100%; max-width: 320px; margin: 0 auto; border-radius: 20px; overflow: hidden; background: #0f172a; border: 2px solid #334155; box-shadow: 0 12px 30px -5px rgba(0,0,0,0.5); padding: 8px; }
+        .bus-body-wrapper img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; user-select: none; }
 
-        .seat-overlay-pin {
-            position: absolute;
-            transform: translate(-50%, 0%);
-            cursor: pointer;
-            z-index: 20;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.15s ease;
-        }
-        .seat-overlay-pin:hover, .seat-overlay-pin.active-tooltip {
-            transform: translate(-50%, 0%) scale(1.2);
-            z-index: 40;
-        }
+        .seat-overlay-pin { position: absolute; transform: translate(-50%, 0%); cursor: pointer; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.15s ease; }
+        .seat-overlay-pin:hover, .seat-overlay-pin.active-tooltip { transform: translate(-50%, 0%) scale(1.2); z-index: 40; }
 
-        /* PERBAIKAN PRESISI: Proteksi Pemotongan Baris Tabel/Elemen di Pemisah Halaman PDF */
-        table {
-            page-break-inside: auto;
-        }
-        tr, td, th, .long-press-row, .absensi-row {
-            page-break-inside: avoid !important;
-            break-inside: avoid !important;
-            -webkit-column-break-inside: avoid;
-        }
+        table { page-break-inside: auto; }
+        tr, td, th, .long-press-row, .absensi-row { page-break-inside: avoid !important; break-inside: avoid !important; -webkit-column-break-inside: avoid; }
     </style>
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 min-h-screen py-1 px-1 sm:py-3 sm:px-2 relative overflow-x-hidden">
@@ -181,18 +92,24 @@
         </div>
 
         <!-- NAVIGASI TAB UTAMA -->
-        <div class="w-full flex gap-1 p-1 bg-white rounded-lg shadow-sm border border-slate-200">
-            <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm">
-                <i class="fa-solid fa-chair"></i> Denah Kursi
+        <div class="w-full flex gap-1 p-1 bg-white rounded-lg shadow-sm border border-slate-200 overflow-x-auto">
+            <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm">
+                <i class="fa-solid fa-chair"></i> Denah
             </button>
-            <button id="btn-tab-peserta" onclick="switchTab('peserta')" class="flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+            <button id="btn-tab-peserta" onclick="switchTab('peserta')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
                 <i class="fa-solid fa-users"></i> Peserta
             </button>
-            <button id="btn-tab-absensi" onclick="switchTab('absensi')" class="flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+            <button id="btn-tab-absensi" onclick="switchTab('absensi')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
                 <i class="fa-solid fa-clipboard-check"></i> Absensi
             </button>
-            <button id="btn-tab-roadmaps" onclick="switchTab('roadmaps')" class="flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-route"></i> Roadmaps
+            <button id="btn-tab-roadmaps" onclick="switchTab('roadmaps')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-route"></i> Roadmap
+            </button>
+            <button id="btn-tab-keuangan" onclick="switchTab('keuangan')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-wallet"></i> Keuangan
+            </button>
+            <button id="btn-tab-lpj" onclick="switchTab('lpj')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-file-invoice-dollar"></i> LPJ
             </button>
         </div>
 
@@ -215,10 +132,8 @@
                 </div>
             </div>
 
-            <!-- VIEW DENAH KURSI (SUB-TAB BUS A DAN BUS B) -->
+            <!-- VIEW DENAH KURSI -->
             <div id="view-tab-kursi" class="space-y-3">
-                
-                <!-- SUB-TAB SWITCHER DENAH KURSI: BUS A & BUS B -->
                 <div class="flex gap-2">
                     <button id="btn-subtab-bus-a" onclick="switchBusSubtab('A')" class="flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800">
                         <i class="fa-solid fa-bus text-sm"></i> BUS A
@@ -241,38 +156,29 @@
                             <i class="fa-brands fa-whatsapp text-emerald-600 text-xs"></i> Konfirmasi Booking via WhatsApp Panitia:
                         </p>
                         <div class="flex flex-col sm:flex-row gap-1.5">
-                            <a href="https://wa.me/6285791358773?text=Assalamu%27alaikum.%0A%0ASaya%20ingin%20melakukan%20konfirmasi%20booking%20kursi%20Bus%20Ziarah%20Wali%20Kenceng.%0A%0ANama%20%3A%20%0ANomor%20Kursi%20%3A%20%0A%0ATerima%20kasih%20%F0%9F%98%8A%F0%9F%99%8F" 
-                               target="_blank" 
-                               class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] sm:text-[10px] py-1.5 px-2.5 rounded-lg flex items-center justify-center gap-1.5 shadow-sm transition uppercase">
+                            <a href="https://wa.me/6285791358773?text=Assalamu%27alaikum.%0A%0ASaya%20ingin%20melakukan%20konfirmasi%20booking%20kursi%20Bus%20Ziarah%20Wali%20Kenceng.%0A%0ANama%20%3A%20%0ANomor%20Kursi%20%3A%20%0A%0ATerima%20kasih%20%F0%9F%98%8A%F0%9F%99%8F" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] sm:text-[10px] py-1.5 px-2.5 rounded-lg flex items-center justify-center gap-1.5 shadow-sm transition uppercase">
                                 <i class="fa-brands fa-whatsapp text-xs"></i> BP YATIRAN
                             </a>
-                            <a href="https://wa.me/6285234367426?text=Assalamu%27alaikum.%0A%0ASaya%20ingin%20melakukan%20konfirmasi%20booking%20kursi%20Bus%20Ziarah%20Wali%20Kenceng.%0A%0ANama%20%3A%20%0ANomor%20Kursi%20%3A%20%0A%0ATerima%20kasih%20%F0%9F%98%8A%F0%9F%99%8F" 
-                               target="_blank" 
-                               class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] sm:text-[10px] py-1.5 px-2.5 rounded-lg flex items-center justify-center gap-1.5 shadow-sm transition uppercase">
+                            <a href="https://wa.me/6285234367426?text=Assalamu%27alaikum.%0A%0ASaya%20ingin%20melakukan%20konfirmasi%20booking%20kursi%20Bus%20Ziarah%20Wali%20Kenceng.%0A%0ANama%20%3A%20%0ANomor%20Kursi%20%3A%20%0A%0ATerima%20kasih%20%F0%9F%98%8A%F0%9F%99%8F" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] sm:text-[10px] py-1.5 px-2.5 rounded-lg flex items-center justify-center gap-1.5 shadow-sm transition uppercase">
                                 <i class="fa-brands fa-whatsapp text-xs"></i> IBU RATNA
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- SECTION DENAH BUS A -->
                 <div id="view-bus-a-section" class="space-y-3">
                     <div class="border-b-2 border-blue-600 pb-1 flex justify-between items-center">
                         <h2 class="font-black text-xs sm:text-sm text-blue-800 uppercase tracking-wider flex items-center gap-1.5">
                             <i class="fa-solid fa-bus text-blue-600"></i> Visual Denah Tempat Duduk - BUS A
                         </h2>
-                        <span class="bg-blue-100 text-blue-800 text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                            Kapasitas 60 Kursi
-                        </span>
+                        <span class="bg-blue-100 text-blue-800 text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase">Kapasitas 60 Kursi</span>
                     </div>
-
                     <div class="bus-body-wrapper border-blue-500/50">
                         <div class="relative w-full">
-                            <img src="https://lh3.googleusercontent.com/d/1Gt7VGMjA6CLkBoyDwWT-vR0mqqj6C4nW" alt="Denah Body Bus A 60 Kursi">
+                            <img src="https://lh3.googleusercontent.com/d/1Gt7VGMjA6CLkBoyDwWT-vR0mqqj6C4nW" alt="Denah Body Bus A">
                             <div id="bus-a-seat-overlay" class="absolute inset-0 pointer-events-auto"></div>
                         </div>
                     </div>
-
                     <div class="mt-4 border-t border-slate-200 pt-3">
                         <h3 class="font-black text-xs text-blue-800 uppercase mb-2 flex items-center gap-1.5">
                             <i class="fa-solid fa-list-ol text-blue-600"></i> Daftar Peserta BUS A (1–60)
@@ -281,24 +187,19 @@
                     </div>
                 </div>
 
-                <!-- SECTION DENAH BUS B -->
                 <div id="view-bus-b-section" class="hidden space-y-3">
                     <div class="border-b-2 border-purple-600 pb-1 flex justify-between items-center">
                         <h2 class="font-black text-xs sm:text-sm text-purple-800 uppercase tracking-wider flex items-center gap-1.5">
                             <i class="fa-solid fa-bus text-purple-600"></i> Visual Denah Tempat Duduk - BUS B
                         </h2>
-                        <span class="bg-purple-100 text-purple-800 text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                            Kapasitas 60 Kursi
-                        </span>
+                        <span class="bg-purple-100 text-purple-800 text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase">Kapasitas 60 Kursi</span>
                     </div>
-
                     <div class="bus-body-wrapper border-purple-500/50">
                         <div class="relative w-full">
-                            <img src="https://lh3.googleusercontent.com/d/1Gt7VGMjA6CLkBoyDwWT-vR0mqqj6C4nW" alt="Denah Body Bus B 60 Kursi">
+                            <img src="https://lh3.googleusercontent.com/d/1Gt7VGMjA6CLkBoyDwWT-vR0mqqj6C4nW" alt="Denah Body Bus B">
                             <div id="bus-b-seat-overlay" class="absolute inset-0 pointer-events-auto"></div>
                         </div>
                     </div>
-
                     <div class="mt-4 border-t border-slate-200 pt-3">
                         <h3 class="font-black text-xs text-purple-800 uppercase mb-2 flex items-center gap-1.5">
                             <i class="fa-solid fa-list-ol text-purple-600"></i> Daftar Peserta BUS B (1–60)
@@ -306,13 +207,10 @@
                         <div id="kursi-legend-grid-b" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1.5 text-[10px]"></div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- VIEW DAFTAR PESERTA (SUB-TAB BUS A DAN BUS B) -->
+            <!-- VIEW DAFTAR PESERTA -->
             <div id="view-tab-peserta" class="hidden space-y-3">
-                
-                <!-- SUB-TAB SWITCHER DAFTAR PESERTA: BUS A & BUS B -->
                 <div class="flex gap-2">
                     <button id="btn-subtab-peserta-bus-a" onclick="switchPesertaBusSubtab('A')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800">
                         <i class="fa-solid fa-users text-xs"></i> Peserta BUS A
@@ -324,9 +222,7 @@
 
                 <div id="section-tabel-peserta-all" class="w-full">
                     <div id="header-peserta-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center">
-                        <h2 id="txt-header-peserta" class="font-black text-[11px] sm:text-xs text-blue-700 uppercase tracking-wide">
-                            Daftar Peserta Ziarah - BUS A
-                        </h2>
+                        <h2 id="txt-header-peserta" class="font-black text-[11px] sm:text-xs text-blue-700 uppercase tracking-wide">Daftar Peserta Ziarah - BUS A</h2>
                     </div>
                     <div class="w-full border border-slate-200 rounded-lg overflow-hidden bg-white">
                         <table class="w-full text-left border-collapse table-fixed">
@@ -354,10 +250,8 @@
                 </p>
             </div>
 
-            <!-- VIEW ABSENSI (SUB-TAB BUS A DAN BUS B) -->
+            <!-- VIEW ABSENSI -->
             <div id="view-tab-absensi" class="hidden space-y-3">
-                
-                <!-- SUB-TAB SWITCHER ABSENSI: BUS A & BUS B -->
                 <div class="flex gap-2">
                     <button id="btn-subtab-absensi-bus-a" onclick="switchAbsensiBusSubtab('A')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800">
                         <i class="fa-solid fa-clipboard-check text-xs"></i> Absensi BUS A
@@ -397,21 +291,18 @@
                 </div>
             </div>
 
+            <!-- VIEW ROADMAPS -->
             <div id="view-tab-roadmaps" class="hidden space-y-3">
                 <div class="border-b-2 border-emerald-700 pb-1 flex justify-between items-center">
                     <h2 class="font-black text-xs sm:text-sm text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
                         <i class="fa-solid fa-map-location-dot text-emerald-600"></i> Roadmap & Status Kunjungan Ziarah
                     </h2>
-                    <span id="roadmap-status-badge" class="bg-emerald-100 text-emerald-800 text-[9px] font-black px-2 py-0.5 rounded-full uppercase">
-                        0 / 7 Dikunjungi
-                    </span>
+                    <span id="roadmap-status-badge" class="bg-emerald-100 text-emerald-800 text-[9px] font-black px-2 py-0.5 rounded-full uppercase">0 / 7 Dikunjungi</span>
                 </div>
-
                 <div class="w-full bg-slate-900 rounded-xl overflow-hidden border border-slate-300 shadow-md relative group">
                     <img src="https://lh3.googleusercontent.com/d/1PeZuwV8F9vO2-H81O3WYluR3qg9FyCLP" alt="Peta Roadmap Ziarah" class="w-full object-contain max-h-[600px] mx-auto block">
                     <div id="roadmap-map-pins-overlay" class="absolute inset-0 pointer-events-none"></div>
                 </div>
-
                 <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-3 space-y-2">
                     <div class="flex items-center justify-between border-b border-emerald-200 pb-1.5">
                         <p class="text-[10px] sm:text-xs font-black uppercase text-emerald-900 flex items-center gap-1.5">
@@ -421,6 +312,130 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs" id="roadmap-list-container"></div>
                 </div>
             </div>
+
+            <!-- TAB: KEUANGAN -->
+            <div id="view-tab-keuangan" class="hidden space-y-4">
+                <div class="border-b-2 border-teal-600 pb-1 flex justify-between items-center">
+                    <h2 class="font-black text-xs sm:text-sm text-teal-800 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-wallet text-teal-600"></i> Manajemen Keuangan & Mutasi
+                    </h2>
+                    <button onclick="openFormPengeluaranModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-extrabold px-2.5 py-1 rounded-md flex items-center gap-1 text-[10px] transition uppercase shadow-sm">
+                        <i class="fa-solid fa-plus"></i> Input Pengeluaran
+                    </button>
+                </div>
+
+                <!-- CARDS RINGKASAN KEUANGAN -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl shadow-xs">
+                        <p class="text-[9px] font-extrabold text-emerald-600 uppercase">Total Pemasukan</p>
+                        <h3 id="keuangan-total-pemasukan" class="text-lg font-black text-emerald-800">Rp. 0</h3>
+                    </div>
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl shadow-xs">
+                        <p class="text-[9px] font-extrabold text-rose-600 uppercase">Total Pengeluaran</p>
+                        <h3 id="keuangan-total-pengeluaran" class="text-lg font-black text-rose-800">Rp. 0</h3>
+                    </div>
+                    <div class="bg-teal-50 border border-teal-200 p-3 rounded-xl shadow-xs">
+                        <p class="text-[9px] font-extrabold text-teal-600 uppercase">Saldo Akhir Ziarah</p>
+                        <h3 id="keuangan-saldo-akhir" class="text-lg font-black text-teal-800">Rp. 0</h3>
+                    </div>
+                </div>
+
+                <!-- LAPORAN MUTASI INFAQ MODEL DIGITAL -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-2 sm:p-4 shadow-sm overflow-hidden">
+                    <div class="flex justify-between items-center mb-3 w-full px-1">
+                        <h3 class="text-teal-800 text-xs sm:text-sm tracking-wide uppercase border-b-2 border-teal-600 pb-0.5 font-black">LAPORAN MUTASI KEUANGAN</h3>
+                    </div>
+                    
+                    <div class="w-full overflow-hidden">
+                        <div class="grid grid-cols-12 text-[9px] sm:text-xs text-slate-500 font-black uppercase border-b border-slate-200 pb-2 mb-1 tracking-wider bg-slate-50 p-2 text-center w-full">
+                            <div class="col-span-2 text-left">Tanggal</div>
+                            <div class="col-span-4 text-left">Nama / Keterangan</div>
+                            <div class="col-span-2 text-right">Masuk</div>
+                            <div class="col-span-2 text-right">Keluar</div>
+                            <div class="col-span-2 text-right">Saldo</div>
+                        </div>
+                        
+                        <div id="table-pengeluaran-list" class="flex flex-col w-full"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: LAPORAN LPJ -->
+            <div id="view-tab-lpj" class="hidden space-y-4">
+                <div class="border-b-2 border-indigo-600 pb-1 flex justify-between items-center">
+                    <h2 class="font-black text-xs sm:text-sm text-indigo-800 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-invoice-dollar text-indigo-600"></i> Laporan Pertanggungjawaban (LPJ) Ziarah
+                    </h2>
+                    <button onclick="requestAccess('download_pdf')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-2.5 py-1 rounded-md flex items-center gap-1 text-[10px] transition uppercase">
+                        <i class="fa-solid fa-file-pdf"></i> Cetak / Download LPJ
+                    </button>
+                </div>
+
+                <div id="lpj-report-container" class="bg-white p-4 border border-slate-200 rounded-xl space-y-4 text-xs">
+                    <div class="text-center border-b pb-3 border-slate-200">
+                        <h2 class="font-black text-base uppercase text-slate-800">LAPORAN PERTANGGUNGJAWABAN (LPJ)</h2>
+                        <p class="font-bold text-slate-600 uppercase">KEGIATAN ZIARAH WALI KENCENG - MUSHOLA WAKAF AN-NUR</p>
+                        <p class="text-[10px] text-slate-500">Desa Bakalan Lor, RT 08 / RW 04</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+                        <div class="bg-slate-50 p-2 rounded-lg border">
+                            <span class="text-[9px] text-slate-500 uppercase block font-bold">Total Peserta</span>
+                            <span id="lpj-total-peserta" class="font-black text-sm text-slate-800">0 Orang</span>
+                        </div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">
+                            <span class="text-[9px] text-slate-500 uppercase block font-bold">Peserta Bus A</span>
+                            <span id="lpj-peserta-bus-a" class="font-black text-sm text-blue-600">0 Orang</span>
+                        </div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">
+                            <span class="text-[9px] text-slate-500 uppercase block font-bold">Peserta Bus B</span>
+                            <span id="lpj-peserta-bus-b" class="font-black text-sm text-purple-600">0 Orang</span>
+                        </div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">
+                            <span class="text-[9px] text-slate-500 uppercase block font-bold">Status Kas</span>
+                            <span id="lpj-status-kas" class="font-black text-sm text-emerald-600">SURPLUS</span>
+                        </div>
+                    </div>
+
+                    <div class="border rounded-lg overflow-hidden">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-slate-100 uppercase text-[9px] font-bold">
+                                <tr>
+                                    <th class="p-2">Uraian Transaksi Kas</th>
+                                    <th class="p-2 text-right">Nominal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 font-semibold">
+                                <tr>
+                                    <td class="p-2 text-slate-700">Total Pemasukan (Iuran Peserta Ziarah)</td>
+                                    <td id="lpj-val-pemasukan" class="p-2 text-right text-emerald-600 font-black">Rp. 0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-slate-700">Total Pengeluaran (Sewa Bus & Operasional)</td>
+                                    <td id="lpj-val-pengeluaran" class="p-2 text-right text-rose-600 font-black">Rp. 0</td>
+                                </tr>
+                                <tr class="bg-slate-50 font-black">
+                                    <td class="p-2 text-slate-800 uppercase">SISA KAS / SALDO AKHIR KEGIATAN</td>
+                                    <td id="lpj-val-saldo" class="p-2 text-right text-blue-700 text-sm">Rp. 0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pt-6 grid grid-cols-2 text-center text-xs font-bold text-slate-700">
+                        <div>
+                            <p class="uppercase">Ketua RT 08 / Ketua Takmir</p>
+                            <div class="h-16"></div>
+                            <p class="underline font-black uppercase">BP. PURNOMO</p>
+                        </div>
+                        <div>
+                            <p class="uppercase">Bendahara</p>
+                            <div class="h-16"></div>
+                            <p class="underline font-black uppercase">BP. BUDI S</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
         </div>
 
@@ -428,6 +443,49 @@
             <p onclick="requestAccess('download_pdf')" class="text-[8px] sm:text-[10px] font-bold tracking-widest text-slate-400 uppercase cursor-pointer hover:text-slate-600 transition select-none">
                 POWERED BY : MBS ID
             </p>
+        </div>
+    </div>
+
+    <!-- POPOVER MENU AKSI MELAYANG PENGELUARAN / MUTASI -->
+    <div id="mobile-action-menu" class="hidden fixed z-50 bg-slate-900 text-white rounded-xl shadow-xl border border-slate-700 px-3 py-2 flex items-center gap-3">
+        <button id="mobile-btn-edit" class="hidden items-center gap-1.5 text-amber-400 text-xs uppercase font-black tracking-wider hover:opacity-80">
+            <i class="fa-solid fa-pen"></i>
+            <span>Edit</span>
+        </button>
+        <div id="mobile-btn-divider" class="hidden w-[1px] h-4 bg-slate-700"></div>
+        <button id="mobile-btn-delete" class="flex items-center gap-1.5 text-rose-500 text-xs uppercase font-black tracking-wider hover:opacity-80">
+            <i class="fa-solid fa-trash"></i>
+            <span id="mobile-btn-delete-label">Hapus</span>
+        </button>
+    </div>
+
+    <!-- MODAL FORM INPUT PENGELUARAN (TERDAPAT INPUT LINK FOTO NOTA) -->
+    <div id="modalPengeluaranForm" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center hidden z-50 p-2">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-sm p-3 sm:p-4 relative">
+            <h3 id="pengeluaranFormTitle" class="font-black text-teal-800 text-[11px] uppercase mb-2 pb-1 border-b border-slate-100 tracking-wide">Input Pengeluaran Operasional</h3>
+            <form onsubmit="handlePengeluaranSubmit(event)" class="space-y-2">
+                <input type="hidden" id="form-pengeluaran-id">
+                <div>
+                    <label class="text-[9px] font-bold text-slate-500 uppercase block mb-0.5">Tanggal Transaksi</label>
+                    <input type="date" id="form-pengeluaran-tgl" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-1.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-teal-600" required>
+                </div>
+                <div>
+                    <label class="text-[9px] font-bold text-slate-500 uppercase block mb-0.5">Keterangan Pengeluaran</label>
+                    <input type="text" id="form-pengeluaran-ket" placeholder="Contoh: DP Sewa Bus A & B" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-1.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-teal-600 uppercase-input" required>
+                </div>
+                <div>
+                    <label class="text-[9px] font-bold text-slate-500 uppercase block mb-0.5">Nominal (Rp)</label>
+                    <input type="number" id="form-pengeluaran-nominal" min="1000" placeholder="1000000" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-1.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-teal-600" required>
+                </div>
+                <div>
+                    <label class="text-[9px] font-bold text-slate-500 uppercase block mb-0.5">Link URL Foto Nota (Opsional)</label>
+                    <input type="url" id="form-pengeluaran-nota" placeholder="https://drive.google.com/..." class="w-full bg-slate-50 border border-slate-300 rounded-lg p-1.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-teal-600">
+                </div>
+                <div class="flex justify-end gap-1.5 pt-1.5">
+                    <button type="button" onclick="closeModal('modalPengeluaranForm')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-md text-[10px] font-bold uppercase">Batal</button>
+                    <button type="submit" class="px-2.5 py-1 bg-teal-600 hover:bg-teal-700 text-white rounded-md text-[10px] font-bold uppercase tracking-wider">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -628,18 +686,20 @@
         let activeSeatTargetBus = 'A';
         let pendingAbsensiChange = null;
         let currentAccessSession = { mode: null };
+        let longPressTimer = null;
 
         let backendPin = localStorage.getItem('cached_backend_pin') || "9"; 
         let dataPeserta = JSON.parse(localStorage.getItem('cached_data_peserta') || '[]');
+        let dataPengeluaran = JSON.parse(localStorage.getItem('cached_data_pengeluaran') || '[]');
 
         let currentTab = 'kursi';
-        let currentBusSubtab = 'A';        // Untuk Tab Denah Kursi
-        let currentPesertaBusSubtab = 'A'; // Untuk Tab Peserta
-        let currentAbsensiBusSubtab = 'A'; // Untuk Tab Absensi
+        let currentBusSubtab = 'A';
+        let currentPesertaBusSubtab = 'A';
+        let currentAbsensiBusSubtab = 'A';
         let syncTimeoutTimer = null;
 
         const seatCoordinates = [
-            { id: 60, x: 18.5, y: 19.8 }, // Kursi No 60 (Sebelah Kiri Depan)
+            { id: 60, x: 18.5, y: 19.8 },
             { id: 1, x: 23, y: 30.6 },  { id: 2, x: 35, y: 30.6 },  { id: 3, x: 55, y: 30.6 },  { id: 4, x: 67, y: 30.6 },  { id: 5, x: 79, y: 30.6 },
             { id: 6, x: 23, y: 36.4 },  { id: 7, x: 35, y: 36.4 },  { id: 8, x: 55, y: 36.4 },  { id: 9, x: 67, y: 36.4 },  { id: 10, x: 79, y: 36.4 },
             { id: 11, x: 23, y: 42.2 }, { id: 12, x: 35, y: 42.2 }, { id: 13, x: 55, y: 42.2 }, { id: 14, x: 67, y: 42.2 }, { id: 15, x: 79, y: 42.2 },
@@ -672,166 +732,118 @@
             snow.className = 'snowflake';
             snow.innerHTML = snowChars[Math.floor(Math.random() * snowChars.length)];
             snow.style.left = Math.random() * window.innerWidth + 'px';
-            const randomDelayFall = (Math.random() * -20) + 's';
-            const randomDelayShake = (Math.random() * -4) + 's';
-            snow.style.animationDelay = `${randomDelayFall}, ${randomDelayShake}`;
+            snow.style.animationDelay = `${(Math.random() * -20)}s, ${(Math.random() * -4)}s`;
             const container = document.getElementById('snow-container');
             if (container) container.appendChild(snow);
         }
         for (let i = 0; i < 12; i++) { createSnowflake(); }
 
-        function switchTab(tabName) {
-            if (tabName === 'peserta') {
-                requestAccess('view_peserta_tab');
-                return;
+        function parseDMYToDate(dmyString) {
+            if (!dmyString || dmyString === '-') return new Date();
+            if (typeof dmyString === 'string' && dmyString.includes("/")) {
+                const parts = dmyString.split("/");
+                if (parts.length === 3) return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
             }
+            if (typeof dmyString === 'string' && dmyString.includes("-")) {
+                const parts = dmyString.split("T")[0].split("-");
+                if (parts.length === 3) return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+            }
+            return new Date(dmyString);
+        }
+
+        function getNamaBulan(dmyString) {
+            const date = parseDMYToDate(dmyString);
+            const namaBulan = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
+            return !isNaN(date.getTime()) ? `${namaBulan[date.getMonth()]} ${date.getFullYear()}` : "-";
+        }
+
+        function switchTab(tabName) {
+            if (tabName === 'peserta') { requestAccess('view_peserta_tab'); return; }
+            if (tabName === 'keuangan') { requestAccess('view_keuangan_tab'); return; }
+            if (tabName === 'lpj') { requestAccess('view_lpj_tab'); return; }
             executeSwitchTab(tabName);
         }
 
         function executeSwitchTab(tabName) {
             currentTab = tabName;
-            const btnKursi = document.getElementById('btn-tab-kursi');
-            const btnPeserta = document.getElementById('btn-tab-peserta');
-            const btnAbsensi = document.getElementById('btn-tab-absensi');
-            const btnRoadmaps = document.getElementById('btn-tab-roadmaps');
+            const tabs = ['kursi', 'peserta', 'absensi', 'roadmaps', 'keuangan', 'lpj'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`btn-tab-${t}`);
+                const view = document.getElementById(`view-tab-${t}`);
+                if (btn) btn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
+                if (view) view.classList.add('hidden');
+            });
 
-            const viewKursi = document.getElementById('view-tab-kursi');
-            const viewPeserta = document.getElementById('view-tab-peserta');
-            const viewAbsensi = document.getElementById('view-tab-absensi');
-            const viewRoadmaps = document.getElementById('view-tab-roadmaps');
+            document.getElementById('controls-peserta').classList.add('hidden');
+            document.getElementById('controls-absensi').classList.add('hidden');
+            document.getElementById('card-total-saldo').classList.add('hidden');
 
-            const controlsPeserta = document.getElementById('controls-peserta');
-            const controlsAbsensi = document.getElementById('controls-absensi');
-            const cardTotalSaldo = document.getElementById('card-total-saldo');
+            const activeBtn = document.getElementById(`btn-tab-${tabName}`);
+            const activeView = document.getElementById(`view-tab-${tabName}`);
             const subTitle = document.getElementById('sub-header-title');
 
-            btnKursi.className = "flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
-            btnPeserta.className = "flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
-            btnAbsensi.className = "flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
-            btnRoadmaps.className = "flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
-
-            viewKursi.classList.add('hidden');
-            viewPeserta.classList.add('hidden');
-            viewAbsensi.classList.add('hidden');
-            viewRoadmaps.classList.add('hidden');
-
-            controlsPeserta.classList.add('hidden');
-            controlsAbsensi.classList.add('hidden');
+            if (activeView) activeView.classList.remove('hidden');
 
             if (tabName === 'kursi') {
-                btnKursi.className = "flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
-                viewKursi.classList.remove('hidden');
-                cardTotalSaldo.classList.add('hidden');
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
                 subTitle.innerText = "DENAH TEMPAT DUDUK / KURSI BUS";
                 switchBusSubtab(currentBusSubtab);
             } else if (tabName === 'peserta') {
-                btnPeserta.className = "flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-700 text-white shadow-sm";
-                viewPeserta.classList.remove('hidden');
-                controlsPeserta.classList.remove('hidden');
-                cardTotalSaldo.classList.remove('hidden');
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-700 text-white shadow-sm";
+                document.getElementById('controls-peserta').classList.remove('hidden');
+                document.getElementById('card-total-saldo').classList.remove('hidden');
                 subTitle.innerText = "DATA PESERTA ZIARAH WALI KENCENG";
                 switchPesertaBusSubtab(currentPesertaBusSubtab);
             } else if (tabName === 'absensi') {
-                btnAbsensi.className = "flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
-                viewAbsensi.classList.remove('hidden');
-                controlsAbsensi.classList.remove('hidden');
-                cardTotalSaldo.classList.add('hidden');
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
+                document.getElementById('controls-absensi').classList.remove('hidden');
                 subTitle.innerText = "ABSENSI KUNJUNGAN DESTINASI 1 - 7";
                 switchAbsensiBusSubtab(currentAbsensiBusSubtab);
             } else if (tabName === 'roadmaps') {
-                btnRoadmaps.className = "flex-1 py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-800 text-white shadow-sm";
-                viewRoadmaps.classList.remove('hidden');
-                cardTotalSaldo.classList.add('hidden');
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-800 text-white shadow-sm";
                 subTitle.innerText = "ROADMAP & PETA RUTE PERJALANAN ZIARAH";
                 renderRoadmapChecklist();
+            } else if (tabName === 'keuangan') {
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-teal-600 text-white shadow-sm";
+                subTitle.innerText = "REKAPITULASI KEUANGAN & OPERASIONAL";
+                renderKeuanganView();
+            } else if (tabName === 'lpj') {
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-indigo-600 text-white shadow-sm";
+                subTitle.innerText = "LAPORAN PERTANGGUNGJAWABAN (LPJ)";
+                renderLPJView();
             }
         }
 
-        // SWITCH SUB-TAB DENAH KURSI
         function switchBusSubtab(busCode) {
             currentBusSubtab = busCode;
-            const btnA = document.getElementById('btn-subtab-bus-a');
-            const btnB = document.getElementById('btn-subtab-bus-b');
-            const secA = document.getElementById('view-bus-a-section');
-            const secB = document.getElementById('view-bus-b-section');
-
-            if (busCode === 'A') {
-                btnA.className = "flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800";
-                btnB.className = "flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
-                secA.classList.remove('hidden');
-                secB.classList.add('hidden');
-            } else {
-                btnB.className = "flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800";
-                btnA.className = "flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
-                secB.classList.remove('hidden');
-                secA.classList.add('hidden');
-            }
+            document.getElementById('btn-subtab-bus-a').className = busCode === 'A' ? "flex-1 py-2 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-2 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-bus-b').className = busCode === 'B' ? "flex-1 py-2 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-2 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            
+            document.getElementById('view-bus-a-section').classList.toggle('hidden', busCode !== 'A');
+            document.getElementById('view-bus-b-section').classList.toggle('hidden', busCode !== 'B');
 
             renderInteractiveSeatOverlay();
             renderBusSeatsLegends();
         }
 
-        // SWITCH SUB-TAB DAFTAR PESERTA
         function switchPesertaBusSubtab(busCode) {
             currentPesertaBusSubtab = busCode;
-            const btnA = document.getElementById('btn-subtab-peserta-bus-a');
-            const btnB = document.getElementById('btn-subtab-peserta-bus-b');
-            const headerTitleBorder = document.getElementById('header-peserta-title');
-            const txtHeader = document.getElementById('txt-header-peserta');
-            const trHeader = document.getElementById('header-tr-peserta');
-
-            if (busCode === 'A') {
-                btnA.className = "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800";
-                btnB.className = "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
-                
-                headerTitleBorder.className = "mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center";
-                txtHeader.className = "font-black text-[11px] sm:text-xs text-blue-700 uppercase tracking-wide";
-                txtHeader.innerText = "Daftar Peserta Ziarah - BUS A";
-                trHeader.className = "bg-blue-600 text-white font-bold text-[8.5px] sm:text-[10px] uppercase border-b border-blue-700";
-            } else {
-                btnB.className = "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800";
-                btnA.className = "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
-                
-                headerTitleBorder.className = "mb-0.5 pb-0.5 border-b-2 border-purple-600 flex justify-between items-center";
-                txtHeader.className = "font-black text-[11px] sm:text-xs text-purple-700 uppercase tracking-wide";
-                txtHeader.innerText = "Daftar Peserta Ziarah - BUS B";
-                trHeader.className = "bg-purple-600 text-white font-bold text-[8.5px] sm:text-[10px] uppercase border-b border-purple-700";
-            }
-
+            document.getElementById('btn-subtab-peserta-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-peserta-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            
+            document.getElementById('txt-header-peserta').innerText = `Daftar Peserta Ziarah - BUS ${busCode}`;
             renderTables();
         }
 
-        // SWITCH SUB-TAB ABSENSI
         function switchAbsensiBusSubtab(busCode) {
             currentAbsensiBusSubtab = busCode;
-            const btnA = document.getElementById('btn-subtab-absensi-bus-a');
-            const btnB = document.getElementById('btn-subtab-absensi-bus-b');
-            const headerTitleBorder = document.getElementById('header-absensi-title');
-            const txtHeader = document.getElementById('txt-header-absensi');
-            const trHeader = document.getElementById('header-tr-absensi');
-
-            if (busCode === 'A') {
-                btnA.className = "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800";
-                btnB.className = "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
-                
-                headerTitleBorder.className = "mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center";
-                txtHeader.className = "font-black text-[11px] sm:text-xs text-blue-700 uppercase tracking-wide flex items-center gap-1.5";
-                txtHeader.innerHTML = `<i class="fa-solid fa-clipboard-check"></i> Rekap Absensi Peserta - BUS A`;
-                trHeader.className = "bg-blue-600 text-white font-black text-[7px] sm:text-[8.5px] uppercase border-b border-blue-700 leading-tight";
-            } else {
-                btnB.className = "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800";
-                btnA.className = "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
-                
-                headerTitleBorder.className = "mb-0.5 pb-0.5 border-b-2 border-purple-600 flex justify-between items-center";
-                txtHeader.className = "font-black text-[11px] sm:text-xs text-purple-700 uppercase tracking-wide flex items-center gap-1.5";
-                txtHeader.innerHTML = `<i class="fa-solid fa-clipboard-check"></i> Rekap Absensi Peserta - BUS B`;
-                trHeader.className = "bg-purple-600 text-white font-black text-[7px] sm:text-[8.5px] uppercase border-b border-purple-700 leading-tight";
-            }
-
+            document.getElementById('btn-subtab-absensi-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-absensi-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            
+            document.getElementById('txt-header-absensi').innerHTML = `<i class="fa-solid fa-clipboard-check"></i> Rekap Absensi Peserta - BUS ${busCode}`;
             renderTableAbsensi();
         }
 
-        // RENDER DENAH INTERAKTIF TERPISAH BUS A & BUS B
         function renderInteractiveSeatOverlay() {
             renderSingleBusOverlay('bus-a-seat-overlay', 'A');
             renderSingleBusOverlay('bus-b-seat-overlay', 'B');
@@ -844,15 +856,10 @@
 
             const mapSeatToPeserta = {};
             dataPeserta.forEach(p => {
-                const pBus = p.bus ? p.bus.toUpperCase() : 'A';
-                if (pBus === busCode && p.noKursi && p.noKursi !== '-') {
+                if ((p.bus || 'A').toUpperCase() === busCode && p.noKursi && p.noKursi !== '-') {
                     mapSeatToPeserta[p.noKursi] = p;
                 }
             });
-
-            const isBusA = (busCode === 'A');
-            const pinBgClass = isBusA ? "bg-blue-600" : "bg-purple-600";
-            const tagNumClass = isBusA ? "text-blue-400" : "text-purple-400";
 
             seatCoordinates.forEach(seat => {
                 const peserta = mapSeatToPeserta[seat.id];
@@ -863,25 +870,19 @@
 
                 if (peserta) {
                     pin.innerHTML = `
-                        <div class="${pinBgClass} text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[9px] sm:text-[11px] shadow-md border border-white">
+                        <div class="${busCode === 'A' ? 'bg-blue-600' : 'bg-purple-600'} text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[9px] shadow-md border border-white">
                             <i class="fa-solid fa-check"></i>
                         </div>
-                        <!-- Floating Tooltip Tag / Bayangan Nama -->
                         <div class="seat-name-tag pointer-events-none absolute bottom-full mb-1 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 z-30 flex flex-col items-center">
-                            <div class="bg-slate-900/90 text-white text-[8px] sm:text-[10px] font-black px-2 py-0.5 rounded-full whitespace-nowrap shadow-lg border border-slate-700/80 tracking-tight flex items-center gap-1 backdrop-blur-xs">
-                                <span class="${tagNumClass}">#${seat.id}</span>
+                            <div class="bg-slate-900/90 text-white text-[8px] font-black px-2 py-0.5 rounded-full whitespace-nowrap shadow-lg border border-slate-700/80 flex items-center gap-1">
+                                <span>#${seat.id}</span>
                                 <span class="truncate max-w-[110px] uppercase">${peserta.nama}</span>
                             </div>
-                            <div class="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[4px] border-t-slate-900/90 -mt-[1px]"></div>
                         </div>
                     `;
-                    pin.onclick = (e) => {
-                        e.stopPropagation();
-                        toggleSeatTooltip(pin);
-                    };
                 } else {
                     pin.innerHTML = `
-                        <div class="bg-slate-400/40 text-white rounded-full w-3 h-3 sm:w-3.5 sm:h-3.5 flex items-center justify-center text-[6px] sm:text-[7px] border border-white/50">
+                        <div class="bg-slate-400/40 text-white rounded-full w-3 h-3 flex items-center justify-center text-[6px] border border-white/50">
                             <i class="fa-solid fa-minus"></i>
                         </div>
                     `;
@@ -890,45 +891,10 @@
                         requestAccess('seat_click_add', { seatId: seat.id, busCode: busCode });
                     };
                 }
-
                 container.appendChild(pin);
             });
         }
 
-        function toggleSeatTooltip(pinElement) {
-            const isAlreadyActive = pinElement.classList.contains('active-tooltip');
-            
-            document.querySelectorAll('.seat-overlay-pin').forEach(p => {
-                p.classList.remove('active-tooltip');
-                const tag = p.querySelector('.seat-name-tag');
-                if (tag) {
-                    tag.classList.add('opacity-0');
-                    tag.classList.remove('opacity-100');
-                }
-            });
-
-            if (!isAlreadyActive) {
-                pinElement.classList.add('active-tooltip');
-                const tag = pinElement.querySelector('.seat-name-tag');
-                if (tag) {
-                    tag.classList.remove('opacity-0');
-                    tag.classList.add('opacity-100');
-                }
-            }
-        }
-
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.seat-overlay-pin').forEach(p => {
-                p.classList.remove('active-tooltip');
-                const tag = p.querySelector('.seat-name-tag');
-                if (tag) {
-                    tag.classList.add('opacity-0');
-                    tag.classList.remove('opacity-100');
-                }
-            });
-        });
-
-        // RENDER LIST/LEGEND KURSI TERPISAH BUS A & BUS B
         function renderBusSeatsLegends() {
             renderSingleBusLegend('A', 'kursi-legend-grid-a');
             renderSingleBusLegend('B', 'kursi-legend-grid-b');
@@ -941,33 +907,20 @@
 
             const mapSeatToPeserta = {};
             dataPeserta.forEach(p => {
-                const pBus = p.bus ? p.bus.toUpperCase() : 'A';
-                if (pBus === busCode && p.noKursi && p.noKursi !== '-') {
+                if ((p.bus || 'A').toUpperCase() === busCode && p.noKursi && p.noKursi !== '-') {
                     mapSeatToPeserta[p.noKursi] = p;
                 }
             });
 
-            const isBusA = (busCode === 'A');
-            const badgeBgClass = isBusA ? "bg-blue-600" : "bg-purple-600";
-
             for (let i = 1; i <= 60; i++) {
                 const peserta = mapSeatToPeserta[i];
-                const namaPeserta = peserta 
-                    ? `<span class="font-bold text-slate-800 uppercase truncate">${peserta.nama}</span>` 
-                    : `<span class="text-slate-400 font-normal italic">Kosong / Belum Diisi</span>`;
-            
-                const badgeStatus = peserta 
-                    ? `<span class="${isBusA ? 'text-blue-600' : 'text-purple-600'} font-extrabold text-[8px] flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Terisi</span>` 
-                    : `<span class="text-slate-400 text-[8px]">(Kosong)</span>`;
-
                 gridLegend.innerHTML += `
                     <div class="bg-slate-50 border border-slate-200 rounded p-1.5 flex items-center justify-between">
                         <div class="flex items-center gap-1.5 truncate">
                             <span class="text-slate-400 font-bold text-[8px] w-4 text-right shrink-0">${i}.</span>
-                            <span class="${badgeBgClass} text-white font-black px-1.5 py-0.5 rounded text-[8px] shrink-0">#${i}</span>
-                            ${namaPeserta}
+                            <span class="${busCode === 'A' ? 'bg-blue-600' : 'bg-purple-600'} text-white font-black px-1.5 py-0.5 rounded text-[8px] shrink-0">#${i}</span>
+                            ${peserta ? `<span class="font-bold text-slate-800 uppercase truncate">${peserta.nama}</span>` : `<span class="text-slate-400 font-normal italic">Kosong</span>`}
                         </div>
-                        <span class="shrink-0 ml-1">${badgeStatus}</span>
                     </div>
                 `;
             }
@@ -989,55 +942,18 @@
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.onclick = () => requestAccess('toggle_roadmap', dest.id);
+                btn.className = isVisited 
+                    ? "p-2 rounded-lg border flex items-center justify-between transition text-left bg-emerald-700 text-white border-emerald-800 shadow-sm"
+                    : "p-2 rounded-lg border flex items-center justify-between transition text-left bg-white text-slate-700 border-slate-300";
                 
-                if (isVisited) {
-                    btn.className = "p-2 rounded-lg border flex items-center justify-between transition text-left bg-emerald-700 text-white border-emerald-800 shadow-sm";
-                    btn.innerHTML = `
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-[#00FF66] text-base animate-pin-bounce" style="filter: drop-shadow(0 0 5px #00FF66);"></i>
-                            <span class="font-bold text-[10px] sm:text-xs uppercase">${dest.name}</span>
-                        </div>
-                        <span class="bg-emerald-950 text-[#00FF66] text-[9px] font-black px-1.5 py-0.5 rounded flex items-center gap-1 uppercase shrink-0 border border-[#00FF66]/30">
-                            <i class="fa-solid fa-check text-[#00FF66]"></i> Dikunjungi
-                        </span>
-                    `;
-                } else {
-                    btn.className = "p-2 rounded-lg border flex items-center justify-between transition text-left bg-white text-slate-700 border-slate-300 hover:border-emerald-500 hover:bg-slate-50";
-                    btn.innerHTML = `
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-rose-500 text-base animate-pin-bounce"></i>
-                            <span class="font-bold text-[10px] sm:text-xs uppercase">${dest.name}</span>
-                        </div>
-                        <span class="bg-rose-100 text-rose-600 text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1 uppercase shrink-0">
-                            <i class="fa-solid fa-xmark text-rose-600"></i> Belum
-                        </span>
-                    `;
-                }
+                btn.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot ${isVisited ? 'text-[#00FF66]' : 'text-rose-500'} text-base"></i>
+                        <span class="font-bold text-[10px] sm:text-xs uppercase">${dest.name}</span>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase">${isVisited ? 'Dikunjungi' : 'Belum'}</span>
+                `;
                 container.appendChild(btn);
-
-                if (mapOverlay) {
-                    const pinOverlay = document.createElement('div');
-                    pinOverlay.style.left = `${dest.x}%`;
-                    pinOverlay.style.top = `${dest.y}%`;
-                    pinOverlay.className = "absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center z-10 pointer-events-none";
-
-                    const badgeStatusHtml = isVisited
-                        ? `<span class="bg-slate-950 text-[#00FF66] font-black text-[9px] sm:text-[11px] px-1 py-0.2 rounded-full shadow -mt-1 border border-[#00FF66] whitespace-nowrap flex items-center justify-center">
-                            <i class="fa-solid fa-check text-[#00FF66]"></i>
-                           </span>`
-                        : `<span class="bg-rose-700 text-white font-black text-[9px] sm:text-[11px] px-1 py-0.2 rounded-full shadow -mt-1 border border-white whitespace-nowrap flex items-center justify-center">
-                            <i class="fa-solid fa-xmark text-rose-200"></i>
-                           </span>`;
-
-                    const pinColorClass = isVisited ? "text-[#00FF66]" : "text-rose-600";
-                    const glowStyle = isVisited ? "filter: drop-shadow(0 0 8px #00FF66);" : "filter: drop-shadow(0 2px 6px rgba(0,0,0,0.9));";
-
-                    pinOverlay.innerHTML = `
-                        <i class="fa-solid fa-location-dot ${pinColorClass} text-xl sm:text-3xl animate-pin-bounce" style="${glowStyle}"></i>
-                        ${badgeStatusHtml}
-                    `;
-                    mapOverlay.appendChild(pinOverlay);
-                }
             });
 
             document.getElementById('roadmap-status-badge').innerText = `${visitedCount} / 7 Dikunjungi`;
@@ -1054,10 +970,8 @@
             if (syncTimeoutTimer) clearTimeout(syncTimeoutTimer);
 
             if (isSyncing) {
-                txt.innerText = "PROSES DATA...";
-                syncTimeoutTimer = setTimeout(() => {
-                    txt.innerText = "SYSTEM ONLINE";
-                }, 8000);
+                txt.innerText = "MENYIMPAN KE SERVER...";
+                syncTimeoutTimer = setTimeout(() => { txt.innerText = "SYSTEM ONLINE"; }, 8000);
             } else {
                 txt.innerText = "SYSTEM ONLINE";
             }
@@ -1068,18 +982,23 @@
             renderTableAbsensi();
             renderBusSeatsLegends();
             renderInteractiveSeatOverlay();
+            renderKeuanganView();
+            renderLPJView();
         }
 
         function sendRequest(params, callbackSuccess) {
             setSyncing(true);
-            const query = new URLSearchParams(params).toString();
-            fetch(`${SCRIPT_URL}?${query}`)
+            fetch(`${SCRIPT_URL}?${new URLSearchParams(params).toString()}`)
                 .then(res => res.json())
                 .then(res => {
                     if (res && !res.error) {
                         if (res.peserta) {
                             dataPeserta = res.peserta;
                             localStorage.setItem('cached_data_peserta', JSON.stringify(res.peserta));
+                        }
+                        if (res.pengeluaran) {
+                            dataPengeluaran = res.pengeluaran;
+                            localStorage.setItem('cached_data_pengeluaran', JSON.stringify(res.pengeluaran));
                         }
                         if (res.pin) {
                             backendPin = String(res.pin).trim();
@@ -1088,15 +1007,11 @@
                         updateAllViews();
                         if (callbackSuccess) callbackSuccess();
                     } else if (res && res.error) {
-                        alert("Error Server: " + res.error);
+                        console.error("Error Server: ", res.error);
                     }
                 })
-                .catch(err => {
-                    console.log("Koneksi bermasalah: ", err);
-                })
-                .finally(() => {
-                    setSyncing(false);
-                });
+                .catch(err => console.log("Network error: ", err))
+                .finally(() => setSyncing(false));
         }
 
         function loadDataFromServer() {
@@ -1105,10 +1020,7 @@
 
         function getTodayYYYYMMDD() {
             const today = new Date();
-            const y = today.getFullYear();
-            const m = String(today.getMonth() + 1).padStart(2, '0');
-            const d = String(today.getDate()).padStart(2, '0');
-            return `${y}-${m}-${d}`;
+            return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
         }
 
         function formatToDDMMYYYY(strDate) {
@@ -1132,28 +1044,241 @@
         }
 
         function formatRupiah(num) {
-            return "Rp. " + new Intl.NumberFormat('id-ID').format(num);
+            return "Rp. " + new Intl.NumberFormat('id-ID').format(num || 0);
         }
 
-        // TABEL PESERTA BERDASARKAN SUB-TAB BUS A / B
+        function getTotalPemasukan() {
+            return dataPeserta.reduce((grandSum, item) => {
+                const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
+                return grandSum + cicilanArr.reduce((sum, c) => sum + (Number(c.nominal) || 0), 0);
+            }, 0);
+        }
+
+        function getTotalPengeluaran() {
+            return dataPengeluaran.reduce((sum, e) => sum + (Number(e.nominal) || 0), 0);
+        }
+
+        /* ----------------------------------------------------
+           RENDER TAB KEUANGAN: MUTASI DIGITAL DENGAN FOTO NOTA
+        ---------------------------------------------------- */
+        function renderKeuanganView() {
+            const totalMasuk = getTotalPemasukan();
+            const totalKeluar = getTotalPengeluaran();
+            const saldoAkhir = totalMasuk - totalKeluar;
+
+            document.getElementById('keuangan-total-pemasukan').innerText = formatRupiah(totalMasuk);
+            document.getElementById('keuangan-total-pengeluaran').innerText = formatRupiah(totalKeluar);
+            document.getElementById('keuangan-saldo-akhir').innerText = formatRupiah(saldoAkhir);
+
+            const container = document.getElementById('table-pengeluaran-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            let mutasiList = [];
+
+            // Pemasukan Iuran Peserta
+            dataPeserta.forEach(p => {
+                const cicilanArr = Array.isArray(p.cicilan) ? p.cicilan : [];
+                cicilanArr.forEach(c => {
+                    mutasiList.push({
+                        id: p.id,
+                        tgl: c.tgl,
+                        ket: p.nama,
+                        masuk: Number(c.nominal) || 0,
+                        keluar: 0,
+                        nota: "",
+                        type: 'peserta'
+                    });
+                });
+            });
+
+            // Pengeluaran Operasional
+            dataPengeluaran.forEach(e => {
+                mutasiList.push({
+                    id: e.idPengeluaran,
+                    tgl: e.tgl,
+                    ket: e.ket,
+                    masuk: 0,
+                    keluar: Number(e.nominal) || 0,
+                    nota: e.nota || "",
+                    type: 'pengeluaran'
+                });
+            });
+
+            mutasiList.sort((a, b) => parseDMYToDate(a.tgl) - parseDMYToDate(b.tgl));
+
+            if (mutasiList.length === 0) {
+                container.innerHTML = `<div class="p-3 text-center text-slate-400 italic font-semibold">Belum ada mutasi transaksi keuangan.</div>`;
+                return;
+            }
+
+            let runningSaldo = 0;
+
+            mutasiList.forEach((item, index) => {
+                const masuk = item.masuk;
+                const keluar = item.keluar;
+                runningSaldo += (masuk - keluar);
+
+                const baseBgRow = index % 2 === 0 ? 'bg-white' : 'bg-slate-50/60';
+                const rowDiv = document.createElement("div");
+                rowDiv.className = `grid grid-cols-12 items-center py-2 px-1 sm:px-2 border-b border-slate-100 text-[10px] sm:text-xs font-semibold ${baseBgRow}`;
+
+                const displayTgl = formatToDDMMYYYY(item.tgl);
+
+                let notaHtml = "";
+                if (item.nota && item.nota.trim() !== "") {
+                    notaHtml = `
+                        <div class="block text-left mt-0.5">
+                            <a href="${item.nota}" target="_blank" class="text-[9px] sm:text-[10px] text-blue-600 font-bold uppercase hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-file-image"></i> Lihat Foto Nota
+                            </a>
+                        </div>`;
+                }
+
+                rowDiv.innerHTML = `
+                    <div class="col-span-2 text-left font-bold text-slate-500 whitespace-nowrap">${displayTgl}</div>
+                    <div class="col-span-4 text-left font-black text-slate-800 uppercase truncate pr-1 cursor-pointer select-none" id="mutasi-item-${index}">
+                        <span class="block leading-tight">${item.ket}</span>
+                        ${notaHtml}
+                    </div>
+                    <div class="col-span-2 text-right font-black text-emerald-600 whitespace-nowrap">${masuk > 0 ? formatRupiah(masuk) : '-'}</div>
+                    <div class="col-span-2 text-right font-black text-rose-500 whitespace-nowrap">${keluar > 0 ? formatRupiah(keluar) : '-'}</div>
+                    <div class="col-span-2 text-right font-black text-blue-600 whitespace-nowrap">${formatRupiah(runningSaldo)}</div>
+                `;
+
+                container.appendChild(rowDiv);
+
+                const ketElem = container.querySelector(`#mutasi-item-${index}`);
+                if (ketElem) {
+                    setupMutasiLongPress(ketElem, item);
+                }
+
+                let isEndOfMonth = (index === mutasiList.length - 1);
+
+                if (isEndOfMonth) {
+                    const rekapDiv = document.createElement("div");
+                    rekapDiv.className = "grid grid-cols-12 items-center py-1.5 px-2 my-1 bg-blue-600 text-white rounded-lg border border-blue-700 text-[9px] sm:text-xs font-black uppercase shadow-xs";
+                    rekapDiv.innerHTML = `
+                        <div class="col-span-7 text-left tracking-wider truncate">AKUMULASI SALDO AKHIR ZIARAH</div>
+                        <div class="col-span-5 text-right font-black tracking-tight">${formatRupiah(runningSaldo)}</div>
+                    `;
+                    container.appendChild(rekapDiv);
+                }
+            });
+        }
+
+        /* ----------------------------------------------------
+           EVENT LONG-PRESS MUTASI (TEKAN & TAHAN 2 DETIK)
+        ---------------------------------------------------- */
+        function setupMutasiLongPress(element, itemData) {
+            element.addEventListener('touchstart', (e) => {
+                longPressTimer = setTimeout(() => {
+                    showMutasiActionMenu(e.touches[0].clientX, e.touches[0].clientY, itemData);
+                }, 2000);
+            }, { passive: true });
+
+            element.addEventListener('touchend', () => clearTimeout(longPressTimer));
+            element.addEventListener('touchmove', () => clearTimeout(longPressTimer));
+
+            element.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                longPressTimer = setTimeout(() => {
+                    showMutasiActionMenu(e.clientX, e.clientY, itemData);
+                }, 2000);
+            });
+
+            element.addEventListener('mouseup', () => clearTimeout(longPressTimer));
+            element.addEventListener('mouseleave', () => clearTimeout(longPressTimer));
+        }
+
+        function showMutasiActionMenu(x, y, itemData) {
+            const menu = document.getElementById("mobile-action-menu");
+            const btnEdit = document.getElementById("mobile-btn-edit");
+            const divider = document.getElementById("mobile-btn-divider");
+            const btnDeleteLabel = document.getElementById("mobile-btn-delete-label");
+            if (!menu) return;
+
+            if (itemData.type === 'peserta') {
+                btnEdit.classList.remove("hidden");
+                btnEdit.classList.add("flex");
+                divider.classList.remove("hidden");
+                btnDeleteLabel.innerText = "Hapus Peserta";
+
+                btnEdit.onclick = () => {
+                    hideMutasiActionMenu();
+                    activePesertaId = itemData.id;
+                    requestAccess('edit_peserta');
+                };
+
+                document.getElementById("mobile-btn-delete").onclick = () => {
+                    hideMutasiActionMenu();
+                    activePesertaId = itemData.id;
+                    requestAccess('delete_peserta');
+                };
+            } else {
+                btnEdit.classList.add("hidden");
+                btnEdit.classList.remove("flex");
+                divider.classList.add("hidden");
+                btnDeleteLabel.innerText = "Hapus Pengeluaran";
+
+                document.getElementById("mobile-btn-delete").onclick = () => {
+                    hideMutasiActionMenu();
+                    requestAccess('delete_pengeluaran', itemData.id);
+                };
+            }
+
+            menu.classList.remove("hidden");
+            
+            let menuWidth = 180; 
+            let posX = x - (menuWidth / 2);
+            let posY = y - 50; 
+
+            if (posX < 10) posX = 10;
+            if (posX + menuWidth > window.innerWidth) posX = window.innerWidth - menuWidth - 10;
+            if (posY < 10) posY = y + 20;
+
+            menu.style.left = `${posX}px`;
+            menu.style.top = `${posY}px`;
+        }
+
+        function hideMutasiActionMenu() {
+            const menu = document.getElementById("mobile-action-menu");
+            if (menu) menu.classList.add("hidden");
+        }
+
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById("mobile-action-menu");
+            if (menu && !menu.contains(e.target)) {
+                hideMutasiActionMenu();
+            }
+        });
+
+        function renderLPJView() {
+            const totalMasuk = getTotalPemasukan();
+            const totalKeluar = getTotalPengeluaran();
+            const saldo = totalMasuk - totalKeluar;
+
+            const busA = dataPeserta.filter(p => (p.bus || 'A').toUpperCase() === 'A').length;
+            const busB = dataPeserta.filter(p => (p.bus || 'A').toUpperCase() === 'B').length;
+
+            document.getElementById('lpj-total-peserta').innerText = `${dataPeserta.length} Orang`;
+            document.getElementById('lpj-peserta-bus-a').innerText = `${busA} Orang`;
+            document.getElementById('lpj-peserta-bus-b').innerText = `${busB} Orang`;
+            document.getElementById('lpj-status-kas').innerText = saldo >= 0 ? 'SURPLUS' : 'DEFISIT';
+            document.getElementById('lpj-status-kas').className = saldo >= 0 ? 'font-black text-sm text-emerald-600' : 'font-black text-sm text-rose-600';
+
+            document.getElementById('lpj-val-pemasukan').innerText = formatRupiah(totalMasuk);
+            document.getElementById('lpj-val-pengeluaran').innerText = formatRupiah(totalKeluar);
+            document.getElementById('lpj-val-saldo').innerText = formatRupiah(saldo);
+        }
+
         function renderTables() {
             const tableAll = document.getElementById('table-peserta-all');
             if (!tableAll) return;
             tableAll.innerHTML = '';
 
-            // Filter Peserta Berdasarkan Subtab Bus Aktif
-            const filteredPeserta = dataPeserta.filter(item => {
-                const pBus = item.bus ? item.bus.toUpperCase() : 'A';
-                return pBus === currentPesertaBusSubtab;
-            });
-
+            const filteredPeserta = dataPeserta.filter(item => (item.bus || 'A').toUpperCase() === currentPesertaBusSubtab);
             const dataSorted = [...filteredPeserta].sort((a,b) => (parseInt(a.noKursi)||999) - (parseInt(b.noKursi)||999));
-
-            // Hitung Total Seluruh Pembayaran (Bus A + Bus B)
-            let totalGrand = dataPeserta.reduce((grandSum, item) => {
-                const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
-                return grandSum + cicilanArr.reduce((sum, c) => sum + (Number(c.nominal) || 0), 0);
-            }, 0);
 
             if (dataSorted.length === 0) {
                 tableAll.innerHTML = `<tr><td colspan="7" class="p-2 text-center text-slate-400 italic">Belum ada data peserta untuk BUS ${currentPesertaBusSubtab}</td></tr>`;
@@ -1165,7 +1290,7 @@
                 });
             }
 
-            document.getElementById('total-pembayaran-header').innerText = formatRupiah(totalGrand);
+            document.getElementById('total-pembayaran-header').innerText = formatRupiah(getTotalPemasukan());
             initLongPressEvents();
         }
 
@@ -1178,24 +1303,13 @@
                 ? '<span class="bg-blue-100 text-blue-800 font-black text-[9px] px-1.5 py-0.5 rounded-full">L</span>'
                 : '<span class="bg-pink-100 text-pink-800 font-black text-[9px] px-1.5 py-0.5 rounded-full">P</span>';
 
-            const kursiNum = (item.noKursi && item.noKursi !== '-') ? item.noKursi : '-';
-            const busLetter = item.bus ? item.bus.toUpperCase() : 'A';
-            const busColorClass = (busLetter === 'B') ? 'text-purple-700' : 'text-blue-600';
-            const kursiBusCombined = `<span class="font-black ${busColorClass}">${kursiNum}/${busLetter}</span>`;
-
-            const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
-            const rawTgl = item.tglDaftar || (cicilanArr.length > 0 ? cicilanArr[0].tgl : '-');
-            const tglDisplay = formatToDDMMYYYY(rawTgl);
-
-            const hpDisplay = (item.hp && item.hp !== '') ? item.hp : '-';
-
             tr.innerHTML = `
                 <td class="py-1.5 px-0.5 text-center font-bold text-slate-500 whitespace-nowrap text-[9px] sm:text-xs">${noRow}</td>
-                <td class="py-1.5 px-0.5 text-center font-black whitespace-nowrap text-[9px] sm:text-xs">${kursiBusCombined}</td>
-                <td class="py-1.5 px-0.5 text-center font-bold text-slate-600 truncate text-[8px] sm:text-xs tracking-tighter w-[14%] shrink-0" title="${tglDisplay}">${tglDisplay}</td>
+                <td class="py-1.5 px-0.5 text-center font-black whitespace-nowrap text-[9px] sm:text-xs"><span class="font-black ${item.bus === 'B' ? 'text-purple-700' : 'text-blue-600'}">${item.noKursi || '-'}/${item.bus || 'A'}</span></td>
+                <td class="py-1.5 px-0.5 text-center font-bold text-slate-600 truncate text-[8px] sm:text-xs tracking-tighter w-[14%] shrink-0">${formatToDDMMYYYY(item.tglDaftar)}</td>
                 <td class="py-1.5 px-1 font-bold text-slate-800 uppercase truncate text-[9px] sm:text-xs" style="max-width: 0;">${item.nama}</td>
                 <td class="py-1.5 px-0.5 text-center whitespace-nowrap">${badgeJk}</td>
-                <td class="py-1.5 px-0.5 text-center font-bold text-slate-600 whitespace-nowrap text-[8.5px] sm:text-xs">${hpDisplay}</td>
+                <td class="py-1.5 px-0.5 text-center font-bold text-slate-600 whitespace-nowrap text-[8.5px] sm:text-xs">${item.hp || '-'}</td>
                 <td class="py-1.5 px-0.5 text-right whitespace-nowrap text-[9px] sm:text-xs">
                     <span class="font-black text-emerald-600 underline decoration-dashed underline-offset-2">${formatRupiah(totalBayar)}</span>
                 </td>
@@ -1219,84 +1333,37 @@
         }
 
         function handleAbsensiCheckboxChange(checkboxElem, pesertaId, locIndex) {
-            const item = dataPeserta.find(x => String(x.id) === String(pesertaId));
-            if (!item) return;
-
-            const isChecking = checkboxElem.checked;
-            checkboxElem.checked = !isChecking;
-
-            pendingAbsensiChange = {
-                pesertaId: pesertaId,
-                locIndex: locIndex,
-                targetState: isChecking
-            };
-
-            const subtitle = document.getElementById("pin-modal-subtitle");
-            subtitle.innerText = "🔒 Masukkan PIN Otorisasi Admin";
-            
+            pendingAbsensiChange = { pesertaId, locIndex, targetState: checkboxElem.checked };
             requestAccess('absensi_verify');
         }
 
         function executeAbsensiWithPin(isPinValid) {
             if (!pendingAbsensiChange) return;
-
             const { pesertaId, locIndex, targetState } = pendingAbsensiChange;
             const item = dataPeserta.find(x => String(x.id) === String(pesertaId));
 
-            if (!item) {
-                pendingAbsensiChange = null;
-                return;
-            }
-
-            if (!item.absensi) {
-                item.absensi = {1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false};
-            }
-
-            if (isPinValid) {
+            if (item && isPinValid) {
+                if (!item.absensi) item.absensi = {};
                 item.absensi[locIndex] = targetState;
-                saveAbsensiStateToServer(pesertaId, locIndex, targetState);
+                localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+                renderTableAbsensi();
+                sendRequest({ action: "saveAbsensi", data: JSON.stringify({ idPeserta: pesertaId, absensi: item.absensi }) });
             } else {
-                alert("⚠️ PIN Absensi Salah!");
                 renderTableAbsensi();
             }
-
             pendingAbsensiChange = null;
         }
 
-        function saveAbsensiStateToServer(pesertaId, locIndex, isChecked) {
-            const item = dataPeserta.find(x => String(x.id) === String(pesertaId));
-            if (!item) return;
-
-            if (!item.absensi) {
-                item.absensi = {1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false};
-            }
-            item.absensi[locIndex] = isChecked;
-
-            const payload = {
-                idPeserta: pesertaId,
-                absensi: item.absensi
-            };
-
-            sendRequest({ action: "saveAbsensi", data: JSON.stringify(payload) });
-        }
-
-        // TABEL ABSENSI BERDASARKAN SUB-TAB BUS A / B
         function renderTableAbsensi() {
             const tbodyAll = document.getElementById('table-absensi-all');
             if (!tbodyAll) return;
-
             tbodyAll.innerHTML = '';
 
-            // Filter Peserta untuk Absensi Berdasarkan Subtab Bus Aktif
-            const filteredPeserta = dataPeserta.filter(item => {
-                const pBus = item.bus ? item.bus.toUpperCase() : 'A';
-                return pBus === currentAbsensiBusSubtab;
-            });
-
+            const filteredPeserta = dataPeserta.filter(item => (item.bus || 'A').toUpperCase() === currentAbsensiBusSubtab);
             const dataSorted = [...filteredPeserta].sort((a,b) => (parseInt(a.noKursi)||999) - (parseInt(b.noKursi)||999));
 
             if (dataSorted.length === 0) {
-                tbodyAll.innerHTML = `<tr><td colspan="10" class="p-2 text-center text-slate-400 italic">Belum ada data peserta absensi untuk BUS ${currentAbsensiBusSubtab}.</td></tr>`;
+                tbodyAll.innerHTML = `<tr><td colspan="10" class="p-2 text-center text-slate-400 italic">Belum ada data absensi.</td></tr>`;
             } else {
                 dataSorted.forEach((item, index) => {
                     tbodyAll.appendChild(createAbsensiRow(item, index + 1));
@@ -1311,31 +1378,27 @@
             let checkboxesHtml = '';
             for (let i = 1; i <= 7; i++) {
                 const isChecked = (item.absensi && item.absensi[i]) ? 'checked' : '';
-                const accentColor = (currentAbsensiBusSubtab === 'B') ? 'accent-purple-600 focus:ring-purple-500' : 'accent-blue-600 focus:ring-blue-500';
                 checkboxesHtml += `
                     <td class="py-1.5 px-0.5 text-center border-l border-slate-100 whitespace-nowrap">
-                        <input type="checkbox" ${isChecked} onchange="handleAbsensiCheckboxChange(this, '${item.id}', ${i})" class="w-3.5 h-3.5 rounded cursor-pointer ${accentColor}">
+                        <input type="checkbox" ${isChecked} onchange="handleAbsensiCheckboxChange(this, '${item.id}', ${i})" class="w-3.5 h-3.5 rounded cursor-pointer accent-blue-600">
                     </td>
                 `;
             }
 
-            const kursiNum = (item.noKursi && item.noKursi !== '-') ? item.noKursi : '-';
-            const busLetter = item.bus ? item.bus.toUpperCase() : 'A';
-            const busColorClass = (busLetter === 'B') ? 'text-purple-700' : 'text-blue-600';
-            const kursiBusCombined = `<span class="font-black ${busColorClass}">${kursiNum}/${busLetter}</span>`;
-
             tr.innerHTML = `
-                <td class="py-1.5 px-0.5 text-center font-bold text-slate-500 whitespace-nowrap text-[9px] sm:text-xs">${noRow}</td>
-                <td class="py-1.5 px-0.5 text-center font-black whitespace-nowrap text-[9px] sm:text-xs">${kursiBusCombined}</td>
-                <td class="py-1.5 px-1 font-bold text-slate-800 uppercase truncate text-[9px] sm:text-xs" style="max-width: 0;" title="${item.nama}">${item.nama}</td>
+                <td class="py-1.5 px-0.5 text-center font-bold text-slate-500 text-[9px] sm:text-xs">${noRow}</td>
+                <td class="py-1.5 px-0.5 text-center font-black text-[9px] sm:text-xs">${item.noKursi || '-'}/${item.bus || 'A'}</td>
+                <td class="py-1.5 px-1 font-bold text-slate-800 uppercase truncate text-[9px] sm:text-xs" style="max-width: 0;">${item.nama}</td>
                 ${checkboxesHtml}
             `;
             return tr;
         }
 
         function requestAccess(mode, extraId = null) {
+            hideMutasiActionMenu();
             currentAccessSession.mode = mode;
             if (mode === 'edit_cicilan' || mode === 'delete_cicilan') activeCicilanIndex = extraId;
+            if (mode === 'delete_pengeluaran') activePesertaId = extraId;
             if (mode === 'toggle_roadmap') activeRoadmapDestId = extraId;
             if (mode === 'seat_click_add') {
                 activeSeatTargetNumber = extraId.seatId;
@@ -1346,11 +1409,7 @@
             
             const pinInput = document.getElementById("input-security-pin");
             pinInput.value = "";
-            pinInput.maxLength = 6;
-            pinInput.placeholder = "••••••";
-            document.getElementById("pin-modal-subtitle").innerText = mode === 'view_peserta_tab' 
-                ? "Masukkan PIN untuk melihat Data Peserta" 
-                : "Masukkan PIN Keamanan Admin";
+            document.getElementById("pin-modal-subtitle").innerText = "Masukkan PIN Otorisasi Admin (Default: 9)";
 
             document.getElementById("pin-modal").classList.remove("hidden");
             pinInput.focus();
@@ -1359,7 +1418,6 @@
         function submitPinVerification(e) {
             e.preventDefault();
             const typedPin = document.getElementById("input-security-pin").value.trim();
-
             if (typedPin === backendPin) {
                 processPinResult(true);
             } else {
@@ -1376,15 +1434,13 @@
 
             if (isValid) {
                 closeModal('pin-modal');
-                if (currentAccessSession.mode === 'view_peserta_tab') {
-                    executeSwitchTab('peserta');
-                } else {
-                    executeProtectedMode(currentAccessSession.mode);
-                }
+                if (currentAccessSession.mode === 'view_peserta_tab') executeSwitchTab('peserta');
+                else if (currentAccessSession.mode === 'view_keuangan_tab') executeSwitchTab('keuangan');
+                else if (currentAccessSession.mode === 'view_lpj_tab') executeSwitchTab('lpj');
+                else executeProtectedMode(currentAccessSession.mode);
             } else {
                 alert("⚠️ PIN Salah! Akses ditolak.");
                 document.getElementById("input-security-pin").value = "";
-                document.getElementById("input-security-pin").focus();
             }
         }
 
@@ -1395,6 +1451,7 @@
             else if (mode === 'delete_peserta') executeDeletePeserta();
             else if (mode === 'edit_cicilan') openEditCicilanModal(activeCicilanIndex);
             else if (mode === 'delete_cicilan') executeDeleteCicilan(activeCicilanIndex);
+            else if (mode === 'delete_pengeluaran') executeDeletePengeluaran(activePesertaId);
             else if (mode === 'download_pdf') openPdfModal();
             else if (mode === 'toggle_roadmap') toggleRoadmapVisited(activeRoadmapDestId);
             else if (mode === 'seat_click_add') openAddPesertaModalWithSeat(activeSeatTargetNumber, activeSeatTargetBus);
@@ -1408,8 +1465,6 @@
 
         function openAddPesertaModal() {
             document.getElementById('pesertaFormTitle').innerText = "Tambah Peserta Baru";
-            document.getElementById('lbl-peserta-tgl').innerText = "Tanggal Pendaftaran (DD/MM/YYYY)";
-            document.getElementById('lbl-peserta-dp').innerText = "Pembayaran Awal / DP (Rp)";
             document.getElementById('form-peserta-id').value = "";
             document.getElementById('form-peserta-bus').value = currentBusSubtab || "A";
             document.getElementById('form-peserta-no-kursi').value = "-";
@@ -1418,36 +1473,21 @@
             document.getElementById('form-peserta-hp').value = "-";
             document.getElementById('form-peserta-tgl').value = getTodayYYYYMMDD();
             document.getElementById('form-peserta-dp').value = "0";
-            document.getElementById('initialPaymentGroup').classList.remove('hidden');
             document.getElementById('modalPesertaForm').classList.remove('hidden');
         }
 
         function openEditPesertaModal() {
             const item = dataPeserta.find(x => String(x.id) === String(activePesertaId));
-            if (!item) {
-                alert("Data peserta tidak ditemukan!");
-                return;
-            }
+            if (!item) return;
             
             document.getElementById('pesertaFormTitle').innerText = "Edit Data Peserta";
             document.getElementById('form-peserta-id').value = item.id;
             document.getElementById('form-peserta-bus').value = item.bus || "A";
-            document.getElementById('form-peserta-no-kursi').value = (item.noKursi && item.noKursi !== '') ? item.noKursi : "-";
+            document.getElementById('form-peserta-no-kursi').value = item.noKursi || "-";
             document.getElementById('form-peserta-nama').value = item.nama || "";
             document.getElementById('form-peserta-jk').value = item.jk || "L";
-            document.getElementById('form-peserta-hp').value = (item.hp && item.hp !== '') ? item.hp : "-";
-            
-            const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
-            const firstCicilan = cicilanArr.length > 0 ? cicilanArr[0] : null;
-            const tglDaftar = item.tglDaftar || (firstCicilan ? firstCicilan.tgl : '');
-            const dpNominal = firstCicilan ? firstCicilan.nominal : 0;
-            
-            document.getElementById('lbl-peserta-tgl').innerText = "Tanggal Pendaftaran (DD/MM/YYYY)";
-            document.getElementById('lbl-peserta-dp').innerText = "Pembayaran Awal / DP (Rp)";
-            document.getElementById('form-peserta-tgl').value = formatToYYYYMMDD(tglDaftar);
-            document.getElementById('form-peserta-dp').value = dpNominal;
-            
-            document.getElementById('initialPaymentGroup').classList.remove('hidden');
+            document.getElementById('form-peserta-hp').value = item.hp || "-";
+            document.getElementById('form-peserta-tgl').value = formatToYYYYMMDD(item.tglDaftar);
             document.getElementById('modalPesertaForm').classList.remove('hidden');
         }
 
@@ -1455,50 +1495,79 @@
             e.preventDefault();
             const id = document.getElementById('form-peserta-id').value;
             const bus = document.getElementById('form-peserta-bus').value;
-            
-            let noKursiVal = document.getElementById('form-peserta-no-kursi').value.trim();
-            const noKursi = (noKursiVal !== "" && noKursiVal !== "-") ? noKursiVal : "-";
-            
+            const noKursi = document.getElementById('form-peserta-no-kursi').value.trim() || "-";
             const nama = document.getElementById('form-peserta-nama').value.trim().toUpperCase();
             const jk = document.getElementById('form-peserta-jk').value;
-            
-            let hpVal = document.getElementById('form-peserta-hp').value.trim();
-            const hp = (hpVal !== "" && hpVal !== "-") ? hpVal : "-";
-            
+            const hp = document.getElementById('form-peserta-hp').value.trim() || "-";
             const rawTgl = document.getElementById('form-peserta-tgl').value;
             const tglFormatted = formatToDDMMYYYY(rawTgl);
             const dp = parseInt(document.getElementById('form-peserta-dp').value) || 0;
 
-            const payload = { id, bus, noKursi, nama, jk, hp, tglDaftar: tglFormatted, dp };
+            const targetId = id || ('temp_' + Date.now());
+            let existingIdx = dataPeserta.findIndex(x => String(x.id) === String(targetId));
 
+            if (existingIdx >= 0) {
+                dataPeserta[existingIdx] = { ...dataPeserta[existingIdx], bus, noKursi, nama, jk, hp };
+            } else {
+                dataPeserta.push({
+                    id: targetId, bus, noKursi, nama, jk, hp, tglDaftar: tglFormatted,
+                    cicilan: dp > 0 ? [{ idCicilan: 'c_temp_' + Date.now(), tgl: tglFormatted, ket: 'PEMBAYARAN DP', nominal: dp }] : [],
+                    absensi: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false}
+                });
+            }
+
+            localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+            updateAllViews();
             closeModal('modalPesertaForm');
-            sendRequest({ action: "savePeserta", data: JSON.stringify(payload) });
+
+            sendRequest({ action: "savePeserta", data: JSON.stringify({ id, bus, noKursi, nama, jk, hp, tglDaftar: tglFormatted, dp }) });
+        }
+
+        function openFormPengeluaranModal() {
+            document.getElementById('form-pengeluaran-id').value = "";
+            document.getElementById('form-pengeluaran-tgl').value = getTodayYYYYMMDD();
+            document.getElementById('form-pengeluaran-ket').value = "";
+            document.getElementById('form-pengeluaran-nominal').value = "";
+            document.getElementById('form-pengeluaran-nota').value = "";
+            document.getElementById('modalPengeluaranForm').classList.remove('hidden');
+        }
+
+        function handlePengeluaranSubmit(e) {
+            e.preventDefault();
+            const idPengeluaran = document.getElementById('form-pengeluaran-id').value;
+            const rawTgl = document.getElementById('form-pengeluaran-tgl').value;
+            const tglFormatted = formatToDDMMYYYY(rawTgl);
+            const ket = document.getElementById('form-pengeluaran-ket').value.trim().toUpperCase();
+            const nominal = parseInt(document.getElementById('form-pengeluaran-nominal').value) || 0;
+            const nota = document.getElementById('form-pengeluaran-nota').value.trim();
+
+            const targetId = idPengeluaran || ('e_temp_' + Date.now());
+            dataPengeluaran.push({ idPengeluaran: targetId, tgl: tglFormatted, ket, nominal, nota });
+
+            localStorage.setItem('cached_data_pengeluaran', JSON.stringify(dataPengeluaran));
+            updateAllViews();
+            closeModal('modalPengeluaranForm');
+
+            sendRequest({ action: "savePengeluaran", data: JSON.stringify({ idPengeluaran, tgl: tglFormatted, ket, nominal, nota }) });
+        }
+
+        function executeDeletePengeluaran(idE) {
+            if (confirm("Hapus data pengeluaran operasional ini?")) {
+                dataPengeluaran = dataPengeluaran.filter(x => String(x.idPengeluaran) !== String(idE));
+                localStorage.setItem('cached_data_pengeluaran', JSON.stringify(dataPengeluaran));
+                updateAllViews();
+                sendRequest({ action: "deletePengeluaran", idPengeluaran: idE });
+            }
         }
 
         function openBayarModal() {
             const item = dataPeserta.find(x => String(x.id) === String(activePesertaId));
             if (!item) return;
-            document.getElementById('bayarFormTitle').innerText = "Input Bayar Angsuran";
             document.getElementById('bayarTargetNama').innerText = "Peserta: " + item.nama;
             document.getElementById('form-cicilan-id').value = "";
             document.getElementById('form-bayar-tgl').value = getTodayYYYYMMDD();
             document.getElementById('form-bayar-ket').value = "ANGSURAN";
             document.getElementById('form-bayar-nominal').value = "";
-            document.getElementById('modalBayarForm').classList.remove('hidden');
-        }
-
-        function openEditCicilanModal(cIndex) {
-            const item = dataPeserta.find(x => String(x.id) === String(activePesertaId));
-            const cicilanArr = (item && Array.isArray(item.cicilan)) ? item.cicilan : [];
-            if (!item || !cicilanArr[cIndex]) return;
-
-            const cData = cicilanArr[cIndex];
-            document.getElementById('bayarFormTitle').innerText = "Edit Transaksi Angsuran";
-            document.getElementById('bayarTargetNama').innerText = "Peserta: " + item.nama;
-            document.getElementById('form-cicilan-id').value = cData.idCicilan;
-            document.getElementById('form-bayar-tgl').value = formatToYYYYMMDD(cData.tgl);
-            document.getElementById('form-bayar-ket').value = cData.ket;
-            document.getElementById('form-bayar-nominal').value = cData.nominal;
             document.getElementById('modalBayarForm').classList.remove('hidden');
         }
 
@@ -1510,16 +1579,17 @@
             const ket = document.getElementById('form-bayar-ket').value.trim().toUpperCase();
             const nominal = parseInt(document.getElementById('form-bayar-nominal').value) || 0;
 
-            const payload = {
-                idCicilan: idCicilan,
-                idPeserta: activePesertaId,
-                tgl: tglFormatted,
-                ket: ket,
-                nominal: nominal
-            };
+            const pItem = dataPeserta.find(x => String(x.id) === String(activePesertaId));
+            if (pItem) {
+                if (!Array.isArray(pItem.cicilan)) pItem.cicilan = [];
+                pItem.cicilan.push({ idCicilan: 'c_temp_' + Date.now(), tgl: tglFormatted, ket, nominal });
+                localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+                updateAllViews();
+                openDetailModal(activePesertaId);
+            }
 
             closeModal('modalBayarForm');
-            sendRequest({ action: "saveCicilan", data: JSON.stringify(payload) }, () => openDetailModal(activePesertaId));
+            sendRequest({ action: "saveCicilan", data: JSON.stringify({ idCicilan, idPeserta: activePesertaId, tgl: tglFormatted, ket, nominal }) });
         }
 
         function executeDeleteCicilan(cIndex) {
@@ -1527,8 +1597,12 @@
             const cicilanArr = (item && Array.isArray(item.cicilan)) ? item.cicilan : [];
             if (item && cicilanArr[cIndex]) {
                 const cData = item.cicilan[cIndex];
-                if (confirm(`Hapus transaksi "${cData.ket}" (${formatRupiah(cData.nominal)})?`)) {
-                    sendRequest({ action: "deleteCicilan", idCicilan: cData.idCicilan }, () => openDetailModal(activePesertaId));
+                if (confirm(`Hapus transaksi "${cData.ket}"?`)) {
+                    item.cicilan.splice(cIndex, 1);
+                    localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+                    updateAllViews();
+                    openDetailModal(activePesertaId);
+                    sendRequest({ action: "deleteCicilan", idCicilan: cData.idCicilan });
                 }
             }
         }
@@ -1536,6 +1610,10 @@
         function executeDeletePeserta() {
             const item = dataPeserta.find(x => String(x.id) === String(activePesertaId));
             if (item && confirm(`Yakin ingin menghapus peserta "${item.nama}"?`)) {
+                dataPeserta = dataPeserta.filter(x => String(x.id) !== String(activePesertaId));
+                localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+                updateAllViews();
+                closeModal('modalAksi');
                 sendRequest({ action: "deletePeserta", idPeserta: activePesertaId });
             }
         }
@@ -1546,34 +1624,23 @@
             if (!item) return;
 
             document.getElementById('modalNama').innerText = item.nama;
-            const badge = document.getElementById('modalJKBadge');
-            badge.innerText = item.jk === 'L' ? 'Laki-Laki' : 'Perempuan';
-            badge.className = item.jk === 'L' ? 'bg-blue-100 text-blue-800 font-black text-xs px-2.5 py-0.5 rounded-full' : 'bg-pink-100 text-pink-800 font-black text-xs px-2.5 py-0.5 rounded-full';
+            document.getElementById('modalJKBadge').innerText = item.jk === 'L' ? 'Laki-Laki' : 'Perempuan';
 
             const tbody = document.getElementById('modalListCicilan');
             tbody.innerHTML = '';
-
             const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
 
             if (cicilanArr.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="4" class="p-2 text-center text-slate-400 italic">Belum ada riwayat pembayaran.</td></tr>`;
             } else {
                 cicilanArr.forEach((c, idx) => {
-                    const cTgl = formatToDDMMYYYY(c.tgl);
                     tbody.innerHTML += `
                         <tr class="hover:bg-slate-50">
-                            <td class="p-1 text-slate-500 whitespace-nowrap">${cTgl}</td>
+                            <td class="p-1 text-slate-500 font-bold">${formatToDDMMYYYY(c.tgl)}</td>
                             <td class="p-1 font-bold text-slate-700 uppercase">${c.ket}</td>
-                            <td class="p-1 text-right font-black text-slate-800 whitespace-nowrap">${formatRupiah(c.nominal)}</td>
+                            <td class="p-1 text-right font-black text-slate-800">${formatRupiah(c.nominal)}</td>
                             <td class="p-1 text-center">
-                                <div class="flex items-center justify-center gap-1">
-                                    <button onclick="requestAccess('edit_cicilan', ${idx})" title="Edit Transaksi" class="text-amber-500 hover:text-amber-600 p-0.5">
-                                        <i class="fa-solid fa-pen text-xs"></i>
-                                    </button>
-                                    <button onclick="requestAccess('delete_cicilan', ${idx})" title="Hapus Transaksi" class="text-rose-500 hover:text-rose-600 p-0.5">
-                                        <i class="fa-solid fa-trash text-xs"></i>
-                                    </button>
-                                </div>
+                                <button onclick="requestAccess('delete_cicilan', ${idx})" class="text-rose-500 font-bold text-xs p-0.5"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
                     `;
@@ -1596,83 +1663,42 @@
         }
 
         function openPdfModal() {
-            const title = document.getElementById('pdf-modal-title');
-            const desc = document.getElementById('pdf-modal-desc');
-
-            if (currentTab === 'peserta') {
-                title.innerText = `Download PDF Data Peserta BUS ${currentPesertaBusSubtab} (UHD)`;
-                desc.innerText = `Meng-capture tabel Data Peserta Ziarah BUS ${currentPesertaBusSubtab} dengan resolusi UHD 300 DPI.`;
-            } else if (currentTab === 'absensi') {
-                title.innerText = `Download PDF Absensi BUS ${currentAbsensiBusSubtab} (UHD)`;
-                desc.innerText = `Meng-capture tabel Rekap Absensi Destinasi 1 - 7 BUS ${currentAbsensiBusSubtab} dengan resolusi UHD 300 DPI.`;
-            } else if (currentTab === 'roadmaps') {
-                title.innerText = "Download PDF Roadmap & Rute (UHD)";
-                desc.innerText = "Meng-capture peta roadmap & status kunjungan destinasi ziarah dengan resolusi UHD 300 DPI.";
-            } else {
-                title.innerText = `Download PDF Denah Kursi BUS ${currentBusSubtab} (UHD)`;
-                desc.innerText = `Meng-capture data pemetaan nomor kursi BUS ${currentBusSubtab} beserta keterangan nama dengan resolusi UHD 300 DPI.`;
-            }
-
+            document.getElementById('pdf-modal-title').innerText = "Download Cetak Laporan (UHD)";
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        // PERBAIKAN UTAMA EXPORT PDF: Mencegah Baris Terpotong Menggunakan Penetapan Opsi 'avoid' Spesifik
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
-            const originalBtnHtml = btn.innerHTML;
-            
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF...';
             btn.disabled = true;
-
             closeModal('modalPdf');
 
             setTimeout(() => {
-                const element = document.getElementById('main-web-content');
-                let fileNamePrefix = `Denah_Kursi_Bus_${currentBusSubtab}`;
-                if (currentTab === 'peserta') fileNamePrefix = `Data_Peserta_Bus_${currentPesertaBusSubtab}`;
-                else if (currentTab === 'absensi') fileNamePrefix = `Absensi_Bus_${currentAbsensiBusSubtab}`;
-                else if (currentTab === 'roadmaps') fileNamePrefix = 'Roadmap_Peta_Ziarah';
-
+                const element = currentTab === 'lpj' ? document.getElementById('lpj-report-container') : document.getElementById('main-web-content');
                 const opt = {
-                    margin:       [5, 5, 5, 5],
-                    filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { 
-                        scale: 2.5,
-                        useCORS: true, 
-                        logging: false,
-                        scrollY: 0
-                    },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                    pagebreak:    { 
-                        mode: ['avoid-all', 'css', 'legacy'],
-                        avoid: ['tr', '.long-press-row', '.absensi-row'] 
-                    }
+                    margin: [5, 5, 5, 5],
+                    filename: `Laporan_Ziarah_${currentTab}_${getTodayYYYYMMDD()}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2.5, useCORS: true, logging: false },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
-                    btn.innerHTML = originalBtnHtml;
-                    btn.disabled = false;
-                }).catch(err => {
-                    alert("Gagal membuat PDF: " + err);
-                    btn.innerHTML = originalBtnHtml;
+                    btn.innerHTML = '<i class="fa-solid fa-download"></i> Download PDF Web 300 DPI';
                     btn.disabled = false;
                 });
-
             }, 300);
         }
 
         function initLongPressEvents() {
             let timer = null;
             let isLongPress = false;
-            let activeRow = null;
 
             document.querySelectorAll('.long-press-row').forEach(row => {
                 const id = row.getAttribute('data-id');
 
                 const startPress = () => {
                     isLongPress = false;
-                    activeRow = row;
                     row.classList.add('holding');
                     timer = setTimeout(() => {
                         isLongPress = true;
@@ -1683,7 +1709,7 @@
 
                 const cancelPress = () => {
                     clearTimeout(timer);
-                    if (activeRow) activeRow.classList.remove('holding');
+                    row.classList.remove('holding');
                 };
 
                 row.addEventListener('pointerdown', startPress);
