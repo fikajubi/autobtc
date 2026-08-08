@@ -44,8 +44,8 @@
         .seat-overlay-pin { position: absolute; transform: translate(-50%, 0%); cursor: pointer; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.15s ease; }
         .seat-overlay-pin:hover, .seat-overlay-pin.active-tooltip { transform: translate(-50%, 0%) scale(1.2); z-index: 40; }
 
-        table { page-break-inside: auto !important; }
-        tr, td, th, .long-press-row, .absensi-row { page-break-inside: avoid !important; break-inside: avoid !important; -webkit-column-break-inside: avoid !important; }
+        table { page-break-inside: auto; }
+        tr, td, th, .long-press-row, .absensi-row { page-break-inside: avoid !important; break-inside: avoid !important; -webkit-column-break-inside: avoid; }
     </style>
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 min-h-screen py-1 px-1 sm:py-3 sm:px-2 relative overflow-x-hidden">
@@ -167,14 +167,11 @@
                 </div>
 
                 <div id="view-bus-a-section" class="space-y-3">
-                    <!-- HEADER SECTION DISESUAIKAN AGAR 1 BARIS & TIDAK MENUMPUK -->
-                    <div class="border-b-2 border-blue-600 pb-1 flex justify-between items-center gap-1">
-                        <h2 class="font-black text-[10px] sm:text-sm text-blue-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
-                            <i class="fa-solid fa-bus text-blue-600 text-xs"></i> Visual Denah Tempat Duduk - BUS A
+                    <div class="border-b-2 border-blue-600 pb-1 flex justify-between items-center">
+                        <h2 class="font-black text-xs sm:text-sm text-blue-800 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-bus text-blue-600"></i> Visual Denah Tempat Duduk - BUS A
                         </h2>
-                        <span class="bg-blue-100 text-blue-800 text-[8px] sm:text-[9px] font-black px-2 py-0.5 rounded-full uppercase whitespace-nowrap shrink-0">
-                            Kapasitas 60 Kursi
-                        </span>
+                        <span class="bg-blue-100 text-blue-800 text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase">Kapasitas 60 Kursi</span>
                     </div>
                     <div class="bus-body-wrapper border-blue-500/50">
                         <div class="relative w-full">
@@ -191,14 +188,11 @@
                 </div>
 
                 <div id="view-bus-b-section" class="hidden space-y-3">
-                    <!-- HEADER SECTION DISESUAIKAN AGAR 1 BARIS & TIDAK MENUMPUK -->
-                    <div class="border-b-2 border-purple-600 pb-1 flex justify-between items-center gap-1">
-                        <h2 class="font-black text-[10px] sm:text-sm text-purple-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
-                            <i class="fa-solid fa-bus text-purple-600 text-xs"></i> Visual Denah Tempat Duduk - BUS B
+                    <div class="border-b-2 border-purple-600 pb-1 flex justify-between items-center">
+                        <h2 class="font-black text-xs sm:text-sm text-purple-800 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-bus text-purple-600"></i> Visual Denah Tempat Duduk - BUS B
                         </h2>
-                        <span class="bg-purple-100 text-purple-800 text-[8px] sm:text-[9px] font-black px-2 py-0.5 rounded-full uppercase whitespace-nowrap shrink-0">
-                            Kapasitas 60 Kursi
-                        </span>
+                        <span class="bg-purple-100 text-purple-800 text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase">Kapasitas 60 Kursi</span>
                     </div>
                     <div class="bus-body-wrapper border-purple-500/50">
                         <div class="relative w-full">
@@ -227,10 +221,8 @@
                 </div>
 
                 <div id="section-tabel-peserta-all" class="w-full">
-                    <div id="header-peserta-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center gap-1">
-                        <h2 id="txt-header-peserta" class="font-black text-[10px] sm:text-xs text-blue-700 uppercase tracking-tight shrink-0">
-                            Daftar Peserta Ziarah - BUS A
-                        </h2>
+                    <div id="header-peserta-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center">
+                        <h2 id="txt-header-peserta" class="font-black text-[11px] sm:text-xs text-blue-700 uppercase tracking-wide">Daftar Peserta Ziarah - BUS A</h2>
                     </div>
                     <div class="w-full border border-slate-200 rounded-lg overflow-hidden bg-white">
                         <table class="w-full text-left border-collapse table-fixed">
@@ -270,8 +262,8 @@
                 </div>
 
                 <div id="section-absensi-all" class="w-full">
-                    <div id="header-absensi-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center gap-1">
-                        <h2 id="txt-header-absensi" class="font-black text-[10px] sm:text-xs text-blue-700 uppercase tracking-tight flex items-center gap-1 shrink-0">
+                    <div id="header-absensi-title" class="mb-0.5 pb-0.5 border-b-2 border-blue-600 flex justify-between items-center">
+                        <h2 id="txt-header-absensi" class="font-black text-[11px] sm:text-xs text-blue-700 uppercase tracking-wide flex items-center gap-1.5">
                             <i class="fa-solid fa-clipboard-check"></i> Rekap Absensi Peserta - BUS A
                         </h2>
                     </div>
@@ -301,13 +293,11 @@
 
             <!-- VIEW ROADMAPS -->
             <div id="view-tab-roadmaps" class="hidden space-y-3">
-                <div class="border-b-2 border-emerald-700 pb-1 flex justify-between items-center gap-1">
-                    <h2 class="font-black text-[10px] sm:text-sm text-emerald-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
-                        <i class="fa-solid fa-map-location-dot text-emerald-600 text-xs"></i> Roadmap & Status Kunjungan Ziarah
+                <div class="border-b-2 border-emerald-700 pb-1 flex justify-between items-center">
+                    <h2 class="font-black text-xs sm:text-sm text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-map-location-dot text-emerald-600"></i> Roadmap & Status Kunjungan Ziarah
                     </h2>
-                    <span id="roadmap-status-badge" class="bg-emerald-100 text-emerald-800 text-[8px] sm:text-[9px] font-black px-2 py-0.5 rounded-full uppercase whitespace-nowrap shrink-0">
-                        0 / 7 Dikunjungi
-                    </span>
+                    <span id="roadmap-status-badge" class="bg-emerald-100 text-emerald-800 text-[9px] font-black px-2 py-0.5 rounded-full uppercase">0 / 7 Dikunjungi</span>
                 </div>
                 <div class="w-full bg-slate-900 rounded-xl overflow-hidden border border-slate-300 shadow-md relative group">
                     <img src="https://lh3.googleusercontent.com/d/1PeZuwV8F9vO2-H81O3WYluR3qg9FyCLP" alt="Peta Roadmap Ziarah" class="w-full object-contain max-h-[600px] mx-auto block">
@@ -325,11 +315,11 @@
 
             <!-- TAB: KEUANGAN -->
             <div id="view-tab-keuangan" class="hidden space-y-4">
-                <div class="border-b-2 border-teal-600 pb-1 flex justify-between items-center gap-1">
-                    <h2 class="font-black text-[10px] sm:text-sm text-teal-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
-                        <i class="fa-solid fa-wallet text-teal-600 text-xs"></i> Manajemen Keuangan & Mutasi
+                <div class="border-b-2 border-teal-600 pb-1 flex justify-between items-center">
+                    <h2 class="font-black text-xs sm:text-sm text-teal-800 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-wallet text-teal-600"></i> Manajemen Keuangan & Mutasi
                     </h2>
-                    <button onclick="openFormPengeluaranModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-extrabold px-2 py-1 rounded-md flex items-center gap-1 text-[9px] sm:text-[10px] transition uppercase shadow-sm whitespace-nowrap shrink-0">
+                    <button onclick="openFormPengeluaranModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-extrabold px-2.5 py-1 rounded-md flex items-center gap-1 text-[10px] transition uppercase shadow-sm">
                         <i class="fa-solid fa-plus"></i> Input Pengeluaran
                     </button>
                 </div>
@@ -350,19 +340,19 @@
                     </div>
                 </div>
 
-                <!-- LAPORAN MUTASI INFAQ MODEL DIGITAL SENSITIF MOBILE -->
+                <!-- LAPORAN MUTASI INFAQ MODEL DIGITAL -->
                 <div class="bg-white border border-slate-200 rounded-2xl p-2 sm:p-4 shadow-sm overflow-hidden">
                     <div class="flex justify-between items-center mb-3 w-full px-1">
                         <h3 class="text-teal-800 text-xs sm:text-sm tracking-wide uppercase border-b-2 border-teal-600 pb-0.5 font-black">LAPORAN MUTASI KEUANGAN</h3>
                     </div>
                     
                     <div class="w-full overflow-hidden">
-                        <div class="grid grid-cols-12 text-[8px] sm:text-xs text-slate-500 font-black uppercase border-b border-slate-200 pb-2 mb-1 tracking-tighter sm:tracking-wider bg-slate-50 p-1 sm:p-2 text-center w-full">
-                            <div class="col-span-2 text-left pl-0.5">Tanggal</div>
-                            <div class="col-span-4 text-left px-0.5">Nama / Ket</div>
-                            <div class="col-span-2 text-right px-0.5">Masuk</div>
-                            <div class="col-span-2 text-right px-0.5">Keluar</div>
-                            <div class="col-span-2 text-right pr-0.5">Saldo</div>
+                        <div class="grid grid-cols-12 text-[9px] sm:text-xs text-slate-500 font-black uppercase border-b border-slate-200 pb-2 mb-1 tracking-wider bg-slate-50 p-2 text-center w-full">
+                            <div class="col-span-2 text-left">Tanggal</div>
+                            <div class="col-span-4 text-left">Nama / Keterangan</div>
+                            <div class="col-span-2 text-right">Masuk</div>
+                            <div class="col-span-2 text-right">Keluar</div>
+                            <div class="col-span-2 text-right">Saldo</div>
                         </div>
                         
                         <div id="table-pengeluaran-list" class="flex flex-col w-full"></div>
@@ -372,11 +362,11 @@
 
             <!-- TAB: LAPORAN LPJ -->
             <div id="view-tab-lpj" class="hidden space-y-4">
-                <div class="border-b-2 border-indigo-600 pb-1 flex justify-between items-center gap-1">
-                    <h2 class="font-black text-[10px] sm:text-sm text-indigo-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
-                        <i class="fa-solid fa-file-invoice-dollar text-indigo-600 text-xs"></i> Laporan Pertanggungjawaban (LPJ) Ziarah
+                <div class="border-b-2 border-indigo-600 pb-1 flex justify-between items-center">
+                    <h2 class="font-black text-xs sm:text-sm text-indigo-800 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-invoice-dollar text-indigo-600"></i> Laporan Pertanggungjawaban (LPJ) Ziarah
                     </h2>
-                    <button onclick="requestAccess('download_pdf')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-2 py-1 rounded-md flex items-center gap-1 text-[9px] sm:text-[10px] transition uppercase whitespace-nowrap shrink-0">
+                    <button onclick="requestAccess('download_pdf')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-2.5 py-1 rounded-md flex items-center gap-1 text-[10px] transition uppercase">
                         <i class="fa-solid fa-file-pdf"></i> Cetak / Download LPJ
                     </button>
                 </div>
@@ -469,7 +459,7 @@
         </button>
     </div>
 
-    <!-- MODAL FORM INPUT PENGELUARAN -->
+    <!-- MODAL FORM INPUT PENGELUARAN (TERDAPAT INPUT LINK FOTO NOTA) -->
     <div id="modalPengeluaranForm" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center hidden z-50 p-2">
         <div class="bg-white rounded-xl shadow-xl w-full max-w-sm p-3 sm:p-4 relative">
             <h3 id="pengeluaranFormTitle" class="font-black text-teal-800 text-[11px] uppercase mb-2 pb-1 border-b border-slate-100 tracking-wide">Input Pengeluaran Operasional</h3>
@@ -672,7 +662,7 @@
                     <p class="font-bold uppercase flex items-center gap-1 mb-0.5">
                         <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak Presisi Tinggi:
                     </p>
-                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dengan mode Dekstop resolusi UHD 300 DPI.</p>
+                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dengan resolusi UHD 300 DPI.</p>
                 </div>
                 <div class="pt-1 flex flex-col gap-2">
                     <button id="btnDownloadPdfProcess" onclick="generatePdfUHD()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-lg shadow-md transition uppercase tracking-wider flex items-center justify-center gap-2">
@@ -761,6 +751,12 @@
             return new Date(dmyString);
         }
 
+        function getNamaBulan(dmyString) {
+            const date = parseDMYToDate(dmyString);
+            const namaBulan = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
+            return !isNaN(date.getTime()) ? `${namaBulan[date.getMonth()]} ${date.getFullYear()}` : "-";
+        }
+
         function switchTab(tabName) {
             if (tabName === 'peserta') { requestAccess('view_peserta_tab'); return; }
             if (tabName === 'keuangan') { requestAccess('view_keuangan_tab'); return; }
@@ -832,8 +828,8 @@
 
         function switchPesertaBusSubtab(busCode) {
             currentPesertaBusSubtab = busCode;
-            document.getElementById('btn-subtab-peserta-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
-            document.getElementById('btn-subtab-peserta-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-peserta-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-peserta-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
             
             document.getElementById('txt-header-peserta').innerText = `Daftar Peserta Ziarah - BUS ${busCode}`;
             renderTables();
@@ -841,8 +837,8 @@
 
         function switchAbsensiBusSubtab(busCode) {
             currentAbsensiBusSubtab = busCode;
-            document.getElementById('btn-subtab-absensi-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
-            document.getElementById('btn-subtab-absensi-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-absensi-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-absensi-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
             
             document.getElementById('txt-header-absensi').innerHTML = `<i class="fa-solid fa-clipboard-check"></i> Rekap Absensi Peserta - BUS ${busCode}`;
             renderTableAbsensi();
@@ -1063,7 +1059,7 @@
         }
 
         /* ----------------------------------------------------
-           RENDER TAB KEUANGAN: UKURAN FONT MOBILE RESPONSIF
+           RENDER TAB KEUANGAN: MUTASI DIGITAL DENGAN FOTO NOTA
         ---------------------------------------------------- */
         function renderKeuanganView() {
             const totalMasuk = getTotalPemasukan();
@@ -1112,7 +1108,7 @@
             mutasiList.sort((a, b) => parseDMYToDate(a.tgl) - parseDMYToDate(b.tgl));
 
             if (mutasiList.length === 0) {
-                container.innerHTML = `<div class="p-3 text-center text-slate-400 italic font-semibold text-xs">Belum ada mutasi transaksi keuangan.</div>`;
+                container.innerHTML = `<div class="p-3 text-center text-slate-400 italic font-semibold">Belum ada mutasi transaksi keuangan.</div>`;
                 return;
             }
 
@@ -1125,8 +1121,7 @@
 
                 const baseBgRow = index % 2 === 0 ? 'bg-white' : 'bg-slate-50/60';
                 const rowDiv = document.createElement("div");
-                
-                rowDiv.className = `grid grid-cols-12 items-center py-2 px-0.5 sm:px-2 border-b border-slate-100 text-[8px] sm:text-xs font-semibold tracking-tighter sm:tracking-normal ${baseBgRow}`;
+                rowDiv.className = `grid grid-cols-12 items-center py-2 px-1 sm:px-2 border-b border-slate-100 text-[10px] sm:text-xs font-semibold ${baseBgRow}`;
 
                 const displayTgl = formatToDDMMYYYY(item.tgl);
 
@@ -1134,21 +1129,21 @@
                 if (item.nota && item.nota.trim() !== "") {
                     notaHtml = `
                         <div class="block text-left mt-0.5">
-                            <a href="${item.nota}" target="_blank" class="text-[7.5px] sm:text-[10px] text-blue-600 font-bold uppercase hover:underline flex items-center gap-0.5">
-                                <i class="fa-solid fa-file-image"></i> Nota
+                            <a href="${item.nota}" target="_blank" class="text-[9px] sm:text-[10px] text-blue-600 font-bold uppercase hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-file-image"></i> Lihat Foto Nota
                             </a>
                         </div>`;
                 }
 
                 rowDiv.innerHTML = `
-                    <div class="col-span-2 text-left font-bold text-slate-500 whitespace-nowrap text-[7.5px] sm:text-xs">${displayTgl}</div>
-                    <div class="col-span-4 text-left font-black text-slate-800 uppercase truncate px-0.5 cursor-pointer select-none" id="mutasi-item-${index}">
-                        <span class="block leading-tight truncate">${item.ket}</span>
+                    <div class="col-span-2 text-left font-bold text-slate-500 whitespace-nowrap">${displayTgl}</div>
+                    <div class="col-span-4 text-left font-black text-slate-800 uppercase truncate pr-1 cursor-pointer select-none" id="mutasi-item-${index}">
+                        <span class="block leading-tight">${item.ket}</span>
                         ${notaHtml}
                     </div>
-                    <div class="col-span-2 text-right font-black text-emerald-600 whitespace-nowrap px-0.5">${masuk > 0 ? formatRupiah(masuk) : '-'}</div>
-                    <div class="col-span-2 text-right font-black text-rose-500 whitespace-nowrap px-0.5">${keluar > 0 ? formatRupiah(keluar) : '-'}</div>
-                    <div class="col-span-2 text-right font-black text-blue-600 whitespace-nowrap pr-0.5">${formatRupiah(runningSaldo)}</div>
+                    <div class="col-span-2 text-right font-black text-emerald-600 whitespace-nowrap">${masuk > 0 ? formatRupiah(masuk) : '-'}</div>
+                    <div class="col-span-2 text-right font-black text-rose-500 whitespace-nowrap">${keluar > 0 ? formatRupiah(keluar) : '-'}</div>
+                    <div class="col-span-2 text-right font-black text-blue-600 whitespace-nowrap">${formatRupiah(runningSaldo)}</div>
                 `;
 
                 container.appendChild(rowDiv);
@@ -1162,7 +1157,7 @@
 
                 if (isEndOfMonth) {
                     const rekapDiv = document.createElement("div");
-                    rekapDiv.className = "grid grid-cols-12 items-center py-1.5 px-1.5 sm:px-2 my-1 bg-blue-600 text-white rounded-lg border border-blue-700 text-[8px] sm:text-xs font-black uppercase shadow-xs";
+                    rekapDiv.className = "grid grid-cols-12 items-center py-1.5 px-2 my-1 bg-blue-600 text-white rounded-lg border border-blue-700 text-[9px] sm:text-xs font-black uppercase shadow-xs";
                     rekapDiv.innerHTML = `
                         <div class="col-span-7 text-left tracking-wider truncate">AKUMULASI SALDO AKHIR ZIARAH</div>
                         <div class="col-span-5 text-right font-black tracking-tight">${formatRupiah(runningSaldo)}</div>
@@ -1674,75 +1669,24 @@
 
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
-            const originalBtnHtml = btn ? btn.innerHTML : '';
-            if (btn) {
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF Desktop Mode...';
-                btn.disabled = true;
-            }
-
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF...';
+            btn.disabled = true;
             closeModal('modalPdf');
 
             setTimeout(() => {
-                let element = document.getElementById('main-web-content');
-                if (currentTab === 'lpj') {
-                    element = document.getElementById('lpj-report-container');
-                }
-
-                let fileNamePrefix = `Laporan_Ziarah_${currentTab.toUpperCase()}`;
-                if (currentTab === 'kursi') fileNamePrefix = `Denah_Kursi_Bus_${currentBusSubtab}`;
-                if (currentTab === 'peserta') fileNamePrefix = `Data_Peserta_Bus_${currentPesertaBusSubtab}`;
-                if (currentTab === 'absensi') fileNamePrefix = `Absensi_Bus_${currentAbsensiBusSubtab}`;
-
-                const origWidth = element.style.width;
-                const origMaxWidth = element.style.maxWidth;
-                const origOverflow = element.style.overflow;
-
-                element.style.width = '1050px';
-                element.style.maxWidth = '1050px';
-                element.style.overflow = 'visible';
-
-                window.scrollTo(0, 0);
-
+                const element = currentTab === 'lpj' ? document.getElementById('lpj-report-container') : document.getElementById('main-web-content');
                 const opt = {
-                    margin:       [8, 8, 8, 8],
-                    filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { 
-                        scale: 2,
-                        useCORS: true, 
-                        logging: false,
-                        windowWidth: 1280,
-                        scrollY: 0,
-                        scrollX: 0
-                    },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                    pagebreak:    { 
-                        mode: ['avoid-all', 'css', 'legacy'],
-                        avoid: ['tr', '.long-press-row', '.absensi-row', '.pdf-keep-together', '.bus-body-wrapper'] 
-                    }
+                    margin: [5, 5, 5, 5],
+                    filename: `Laporan_Ziarah_${currentTab}_${getTodayYYYYMMDD()}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2.5, useCORS: true, logging: false },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
-                    element.style.width = origWidth;
-                    element.style.maxWidth = origMaxWidth;
-                    element.style.overflow = origOverflow;
-
-                    if (btn) {
-                        btn.innerHTML = originalBtnHtml;
-                        btn.disabled = false;
-                    }
-                }).catch(err => {
-                    element.style.width = origWidth;
-                    element.style.maxWidth = origMaxWidth;
-                    element.style.overflow = origOverflow;
-
-                    alert("Gagal membuat PDF: " + err);
-                    if (btn) {
-                        btn.innerHTML = originalBtnHtml;
-                        btn.disabled = false;
-                    }
+                    btn.innerHTML = '<i class="fa-solid fa-download"></i> Download PDF Web 300 DPI';
+                    btn.disabled = false;
                 });
-
             }, 300);
         }
 
