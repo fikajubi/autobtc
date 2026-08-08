@@ -454,6 +454,30 @@
         </div>
     </div>
 
+    <!-- AREA KHUSUS CETAK PDF PRESISI A4 (TERSEMBUNYI DI LAYAR, AKTIF SAAT DOWNLOAD PDF) -->
+    <div id="pdf-print-container" style="display: none; width: 750px; background: #ffffff; color: #1e293b; padding: 20px; font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box;">
+        <div style="background-color: #115e3b; color: white; text-align: center; padding: 18px 14px; border-radius: 12px; margin-bottom: 16px; page-break-inside: avoid;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 16pt; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">MUSHOLA WAKAF AN-NUR</h1>
+            <p style="color: #00FF66; margin: 4px 0 0 0; font-size: 9pt; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;">SISTEM MANAJEMEN ZIARAH WALI KENCENG</p>
+            <div style="color: #ffffff; font-size: 8pt; font-weight: 500; margin-top: 4px; opacity: 0.9;">Desa Bakalan Lor, RT 08 / RW 04 | Laporan Resmi Kegiatan</div>
+        </div>
+
+        <div id="pdf-print-content-body"></div>
+
+        <div style="margin-top: 30px; padding-top: 15px; border-top: 2px solid #cbd5e1; display: flex; justify-content: space-between; page-break-inside: avoid;">
+            <div style="text-align: center; font-size: 9pt; font-weight: bold;">
+                <p style="margin: 0; text-transform: uppercase;">Ketua RT 08 / Ketua Takmir</p>
+                <div style="height: 50px;"></div>
+                <p style="margin: 0; text-decoration: underline; text-transform: uppercase;">BP. PURNOMO</p>
+            </div>
+            <div style="text-align: center; font-size: 9pt; font-weight: bold;">
+                <p style="margin: 0; text-transform: uppercase;">Bendahara</p>
+                <div style="height: 50px;"></div>
+                <p style="margin: 0; text-decoration: underline; text-transform: uppercase;">BP. BUDI S</p>
+            </div>
+        </div>
+    </div>
+
     <!-- POPOVER MENU AKSI MELAYANG PENGELUARAN / MUTASI -->
     <div id="mobile-action-menu" class="hidden fixed z-50 bg-slate-900 text-white rounded-xl shadow-xl border border-slate-700 px-3 py-2 flex items-center gap-3">
         <button id="mobile-btn-edit" class="hidden items-center gap-1.5 text-amber-400 text-xs uppercase font-black tracking-wider hover:opacity-80">
@@ -670,11 +694,11 @@
                     <p class="font-bold uppercase flex items-center gap-1 mb-0.5">
                         <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak Presisi Tinggi:
                     </p>
-                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dengan mode Desktop resolusi UHD 300 DPI (Full A4).</p>
+                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture laporan dengan format standar A4 penuh tanpa terpotong.</p>
                 </div>
                 <div class="pt-1 flex flex-col gap-2">
                     <button id="btnDownloadPdfProcess" onclick="generatePdfUHD()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-lg shadow-md transition uppercase tracking-wider flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-download"></i> Download PDF Web 300 DPI
+                        <i class="fa-solid fa-download"></i> Download PDF A4 Presisi
                     </button>
                     <button onclick="closeModal('modalPdf')" class="w-full py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-[10px] rounded-lg uppercase">
                         Batal
@@ -1671,79 +1695,71 @@
         }
 
         /* ------------------------------------------------------------------
-           PERBAIKAN UTAMA: CETAK PDF FULL A4 DESKTOP MODE (TIDAK TERPOTONG)
+           PERBAIKAN UTAMA: CETAK MENGGUNAKAN KANVAS KHUSUS A4 TERSEMBUNYI
         ------------------------------------------------------------------ */
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn ? btn.innerHTML : '';
             if (btn) {
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF Full A4...';
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Merapikan Dokumen A4...';
                 btn.disabled = true;
             }
 
             closeModal('modalPdf');
 
             setTimeout(() => {
-                let element = document.getElementById('main-web-content');
-                if (currentTab === 'lpj') {
-                    element = document.getElementById('lpj-report-container');
-                }
+                const printContainer = document.getElementById('pdf-print-container');
+                const printBody = document.getElementById('pdf-print-content-body');
+                printBody.innerHTML = '';
 
                 let fileNamePrefix = `Laporan_Ziarah_${currentTab.toUpperCase()}`;
-                if (currentTab === 'kursi') fileNamePrefix = `Denah_Kursi_Bus_${currentBusSubtab}`;
-                if (currentTab === 'peserta') fileNamePrefix = `Data_Peserta_Bus_${currentPesertaBusSubtab}`;
-                if (currentTab === 'absensi') fileNamePrefix = `Absensi_Bus_${currentAbsensiBusSubtab}`;
 
-                // Simpan style asli
-                const origWidth = element.style.width;
-                const origMaxWidth = element.style.maxWidth;
-                const origOverflow = element.style.overflow;
-                const origPadding = element.style.padding;
+                if (currentTab === 'keuangan') {
+                    fileNamePrefix = `Laporan_Mutasi_Keuangan`;
+                    let cardHtml = document.querySelector('#view-tab-keuangan .grid').outerHTML;
+                    let tableHtml = document.querySelector('#view-tab-keuangan .bg-white.border.border-slate-200').outerHTML;
+                    printBody.innerHTML = `<div style="display: flex; flex-direction: column; gap: 15px;">${cardHtml}${tableHtml}</div>`;
+                } else if (currentTab === 'peserta') {
+                    fileNamePrefix = `Data_Peserta_Bus_${currentPesertaBusSubtab}`;
+                    printBody.innerHTML = document.getElementById('section-tabel-peserta-all').outerHTML;
+                } else if (currentTab === 'absensi') {
+                    fileNamePrefix = `Absensi_Bus_${currentAbsensiBusSubtab}`;
+                    printBody.innerHTML = document.getElementById('section-absensi-all').outerHTML;
+                } else if (currentTab === 'lpj') {
+                    fileNamePrefix = `Laporan_LPJ_Ziarah`;
+                    printBody.innerHTML = document.getElementById('lpj-report-container').outerHTML;
+                } else {
+                    printBody.innerHTML = document.getElementById('view-tab-' + currentTab).outerHTML;
+                }
 
-                // Paksa ukuran kontainer selebar ukuran desktop penuh (1200px) agar tabel memenuhi halaman A4 secara penuh
-                element.style.width = '1200px';
-                element.style.maxWidth = '1200px';
-                element.style.overflow = 'visible';
-                element.style.padding = '20px';
-
+                printContainer.style.display = 'block';
                 window.scrollTo(0, 0);
 
                 const opt = {
-                    margin:       [5, 5, 5, 5],
+                    margin:       [10, 10, 10, 10],
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
                         scale: 2,
                         useCORS: true, 
                         logging: false,
-                        windowWidth: 1400, // Lebar virtual canvas desktop agar tidak terpotong ke samping
-                        scrollY: 0,
-                        scrollX: 0
+                        windowWidth: 794 // Lebar persis standar pixel kertas A4 (794px pada 96 DPI)
                     },
                     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
                     pagebreak:    { 
                         mode: ['avoid-all', 'css', 'legacy'],
-                        avoid: ['tr', '.long-press-row', '.absensi-row', '.pdf-keep-together', '.bus-body-wrapper'] 
+                        avoid: ['tr', 'div', 'table', 'td', 'th', '.pdf-keep-together'] 
                     }
                 };
 
-                html2pdf().set(opt).from(element).save().then(() => {
-                    // Kembalikan ke style asli
-                    element.style.width = origWidth;
-                    element.style.maxWidth = origMaxWidth;
-                    element.style.overflow = origOverflow;
-                    element.style.padding = origPadding;
-
+                html2pdf().set(opt).from(printContainer).save().then(() => {
+                    printContainer.style.display = 'none';
                     if (btn) {
                         btn.innerHTML = originalBtnHtml;
                         btn.disabled = false;
                     }
                 }).catch(err => {
-                    element.style.width = origWidth;
-                    element.style.maxWidth = origMaxWidth;
-                    element.style.overflow = origOverflow;
-                    element.style.padding = origPadding;
-
+                    printContainer.style.display = 'none';
                     alert("Gagal membuat PDF: " + err);
                     if (btn) {
                         btn.innerHTML = originalBtnHtml;
