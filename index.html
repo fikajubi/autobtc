@@ -92,24 +92,24 @@
         </div>
 
         <!-- NAVIGASI TAB UTAMA -->
-        <div class="w-full flex gap-1 p-1 bg-white rounded-lg shadow-sm border border-slate-200 overflow-x-auto">
-            <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm">
-                <i class="fa-solid fa-chair"></i> Denah
+        <div class="w-full flex justify-between gap-0.5 p-1 bg-white rounded-lg shadow-sm border border-slate-200">
+            <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm">
+                <i class="fa-solid fa-chair text-[10px] sm:text-sm"></i> <span class="truncate w-full text-center">Denah</span>
             </button>
-            <button id="btn-tab-peserta" onclick="switchTab('peserta')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-users"></i> Peserta
+            <button id="btn-tab-peserta" onclick="switchTab('peserta')" class="flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-users text-[10px] sm:text-sm"></i> <span class="truncate w-full text-center">Peserta</span>
             </button>
-            <button id="btn-tab-absensi" onclick="switchTab('absensi')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-clipboard-check"></i> Absensi
+            <button id="btn-tab-absensi" onclick="switchTab('absensi')" class="flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-clipboard-check text-[10px] sm:text-sm"></i> <span class="truncate w-full text-center">Absensi</span>
             </button>
-            <button id="btn-tab-roadmaps" onclick="switchTab('roadmaps')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-route"></i> Roadmap
+            <button id="btn-tab-roadmaps" onclick="switchTab('roadmaps')" class="flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-route text-[10px] sm:text-sm"></i> <span class="truncate w-full text-center">Roadmap</span>
             </button>
-            <button id="btn-tab-keuangan" onclick="switchTab('keuangan')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-wallet"></i> Keuangan
+            <button id="btn-tab-keuangan" onclick="switchTab('keuangan')" class="flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-wallet text-[10px] sm:text-sm"></i> <span class="truncate w-full text-center">Keuangan</span>
             </button>
-            <button id="btn-tab-lpj" onclick="switchTab('lpj')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-file-invoice-dollar"></i> LPJ
+            <button id="btn-tab-lpj" onclick="switchTab('lpj')" class="flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-file-invoice-dollar text-[10px] sm:text-sm"></i> <span class="truncate w-full text-center">LPJ</span>
             </button>
         </div>
 
@@ -135,10 +135,10 @@
             <!-- VIEW DENAH KURSI -->
             <div id="view-tab-kursi" class="space-y-3">
                 <div class="flex gap-2">
-                    <button id="btn-subtab-bus-a" onclick="switchBusSubtab('A')" class="flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800">
+                    <button id="btn-subtab-bus-a" onclick="switchBusSubtab('A')" class="flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-2 border-blue-800">
                         <i class="fa-solid fa-bus text-sm"></i> BUS A
                     </button>
-                    <button id="btn-subtab-bus-b" onclick="switchBusSubtab('B')" class="flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300">
+                    <button id="btn-subtab-bus-b" onclick="switchBusSubtab('B')" class="flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300">
                         <i class="fa-solid fa-bus text-sm"></i> BUS B
                     </button>
                 </div>
@@ -212,10 +212,10 @@
             <!-- VIEW DAFTAR PESERTA -->
             <div id="view-tab-peserta" class="hidden space-y-3">
                 <div class="flex gap-2">
-                    <button id="btn-subtab-peserta-bus-a" onclick="switchPesertaBusSubtab('A')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800">
+                    <button id="btn-subtab-peserta-bus-a" onclick="switchPesertaBusSubtab('A')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-2 border-blue-800">
                         <i class="fa-solid fa-users text-xs"></i> Peserta BUS A
                     </button>
-                    <button id="btn-subtab-peserta-bus-b" onclick="switchPesertaBusSubtab('B')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300">
+                    <button id="btn-subtab-peserta-bus-b" onclick="switchPesertaBusSubtab('B')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300">
                         <i class="fa-solid fa-users text-xs"></i> Peserta BUS B
                     </button>
                 </div>
@@ -253,10 +253,10 @@
             <!-- VIEW ABSENSI -->
             <div id="view-tab-absensi" class="hidden space-y-3">
                 <div class="flex gap-2">
-                    <button id="btn-subtab-absensi-bus-a" onclick="switchAbsensiBusSubtab('A')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800">
+                    <button id="btn-subtab-absensi-bus-a" onclick="switchAbsensiBusSubtab('A')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-2 border-blue-800">
                         <i class="fa-solid fa-clipboard-check text-xs"></i> Absensi BUS A
                     </button>
-                    <button id="btn-subtab-absensi-bus-b" onclick="switchAbsensiBusSubtab('B')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-4 border-slate-300">
+                    <button id="btn-subtab-absensi-bus-b" onclick="switchAbsensiBusSubtab('B')" class="flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300">
                         <i class="fa-solid fa-clipboard-check text-xs"></i> Absensi BUS B
                     </button>
                 </div>
@@ -301,7 +301,7 @@
                 </div>
                 <div class="w-full bg-slate-900 rounded-xl overflow-hidden border border-slate-300 shadow-md relative group">
                     <img src="https://lh3.googleusercontent.com/d/1PeZuwV8F9vO2-H81O3WYluR3qg9FyCLP" alt="Peta Roadmap Ziarah" class="w-full object-contain max-h-[600px] mx-auto block">
-                    <div id="roadmap-map-pins-overlay" class="absolute inset-0 pointer-events-none"></div>
+                    <div id="roadmap-map-pins-overlay" class="absolute inset-0 pointer-events-none z-10"></div>
                 </div>
                 <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-3 space-y-2">
                     <div class="flex items-center justify-between border-b border-emerald-200 pb-1.5">
@@ -347,12 +347,12 @@
                     </div>
                     
                     <div class="w-full overflow-hidden">
-                        <div class="grid grid-cols-12 text-[9px] sm:text-xs text-slate-500 font-black uppercase border-b border-slate-200 pb-2 mb-1 tracking-wider bg-slate-50 p-2 text-center w-full">
-                            <div class="col-span-2 text-left">Tanggal</div>
-                            <div class="col-span-4 text-left">Nama / Keterangan</div>
-                            <div class="col-span-2 text-right">Masuk</div>
-                            <div class="col-span-2 text-right">Keluar</div>
-                            <div class="col-span-2 text-right">Saldo</div>
+                        <div class="grid grid-cols-12 text-[7px] sm:text-xs text-slate-500 font-black uppercase border-b border-slate-200 pb-2 mb-1 tracking-tighter sm:tracking-wider bg-slate-50 p-1.5 sm:p-2 text-center w-full gap-0.5">
+                            <div class="col-span-2 text-left truncate">Tgl</div>
+                            <div class="col-span-3 text-left truncate">Ket</div>
+                            <div class="col-span-2 text-right truncate">Masuk</div>
+                            <div class="col-span-2 text-right truncate">Keluar</div>
+                            <div class="col-span-3 text-right truncate">Saldo</div>
                         </div>
                         
                         <div id="table-pengeluaran-list" class="flex flex-col w-full"></div>
@@ -770,7 +770,7 @@
             tabs.forEach(t => {
                 const btn = document.getElementById(`btn-tab-${t}`);
                 const view = document.getElementById(`view-tab-${t}`);
-                if (btn) btn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
+                if (btn) btn.className = "flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
                 if (view) view.classList.add('hidden');
             });
 
@@ -785,30 +785,30 @@
             if (activeView) activeView.classList.remove('hidden');
 
             if (tabName === 'kursi') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm";
                 subTitle.innerText = "DENAH TEMPAT DUDUK / KURSI BUS";
                 switchBusSubtab(currentBusSubtab);
             } else if (tabName === 'peserta') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-700 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-emerald-700 text-white shadow-sm";
                 document.getElementById('controls-peserta').classList.remove('hidden');
                 document.getElementById('card-total-saldo').classList.remove('hidden');
                 subTitle.innerText = "DATA PESERTA ZIARAH WALI KENCENG";
                 switchPesertaBusSubtab(currentPesertaBusSubtab);
             } else if (tabName === 'absensi') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm";
                 document.getElementById('controls-absensi').classList.remove('hidden');
                 subTitle.innerText = "ABSENSI KUNJUNGAN DESTINASI 1 - 7";
                 switchAbsensiBusSubtab(currentAbsensiBusSubtab);
             } else if (tabName === 'roadmaps') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-800 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-emerald-800 text-white shadow-sm";
                 subTitle.innerText = "ROADMAP & PETA RUTE PERJALANAN ZIARAH";
                 renderRoadmapChecklist();
             } else if (tabName === 'keuangan') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-teal-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-teal-600 text-white shadow-sm";
                 subTitle.innerText = "REKAPITULASI KEUANGAN & OPERASIONAL";
                 renderKeuanganView();
             } else if (tabName === 'lpj') {
-                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-indigo-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-0 py-1.5 sm:py-2 px-0.5 rounded-md font-black text-[7px] sm:text-[9px] md:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-indigo-600 text-white shadow-sm";
                 subTitle.innerText = "LAPORAN PERTANGGUNGJAWABAN (LPJ)";
                 renderLPJView();
             }
@@ -816,8 +816,8 @@
 
         function switchBusSubtab(busCode) {
             currentBusSubtab = busCode;
-            document.getElementById('btn-subtab-bus-a').className = busCode === 'A' ? "flex-1 py-2 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-2 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
-            document.getElementById('btn-subtab-bus-b').className = busCode === 'B' ? "flex-1 py-2 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-2 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-bus-a').className = busCode === 'A' ? "flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-2 border-blue-800" : "flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300";
+            document.getElementById('btn-subtab-bus-b').className = busCode === 'B' ? "flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-2 border-purple-800" : "flex-1 py-2 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300";
             
             document.getElementById('view-bus-a-section').classList.toggle('hidden', busCode !== 'A');
             document.getElementById('view-bus-b-section').classList.toggle('hidden', busCode !== 'B');
@@ -828,8 +828,8 @@
 
         function switchPesertaBusSubtab(busCode) {
             currentPesertaBusSubtab = busCode;
-            document.getElementById('btn-subtab-peserta-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
-            document.getElementById('btn-subtab-peserta-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-peserta-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-2 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300";
+            document.getElementById('btn-subtab-peserta-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-2 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300";
             
             document.getElementById('txt-header-peserta').innerText = `Daftar Peserta Ziarah - BUS ${busCode}`;
             renderTables();
@@ -837,8 +837,8 @@
 
         function switchAbsensiBusSubtab(busCode) {
             currentAbsensiBusSubtab = busCode;
-            document.getElementById('btn-subtab-absensi-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-4 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
-            document.getElementById('btn-subtab-absensi-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-4 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 border-b-4 border-slate-300";
+            document.getElementById('btn-subtab-absensi-bus-a').className = busCode === 'A' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md border-b-2 border-blue-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300";
+            document.getElementById('btn-subtab-absensi-bus-b').className = busCode === 'B' ? "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-purple-600 text-white shadow-md border-b-2 border-purple-800" : "flex-1 py-1.5 rounded-lg font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 bg-slate-100 text-slate-600 hover:bg-slate-200 border-b-2 border-slate-300";
             
             document.getElementById('txt-header-absensi').innerHTML = `<i class="fa-solid fa-clipboard-check"></i> Rekap Absensi Peserta - BUS ${busCode}`;
             renderTableAbsensi();
@@ -939,6 +939,7 @@
                 const isVisited = !!roadmapVisited[dest.id];
                 if (isVisited) visitedCount++;
 
+                // 1. RENDER TOMBOL CHECKLIST DI BAWAH PETA
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.onclick = () => requestAccess('toggle_roadmap', dest.id);
@@ -954,6 +955,22 @@
                     <span class="text-[9px] font-bold uppercase">${isVisited ? 'Dikunjungi' : 'Belum'}</span>
                 `;
                 container.appendChild(btn);
+
+                // 2. RENDER PIN/TITIK ICON DI ATAS GAMBAR PETA
+                if (mapOverlay) {
+                    const pin = document.createElement('div');
+                    pin.className = "absolute transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center animate-pin-bounce cursor-pointer";
+                    pin.style.left = `${dest.x}%`;
+                    pin.style.top = `${dest.y}%`;
+                    
+                    pin.innerHTML = `
+                        <div class="${isVisited ? 'bg-[#00FF66] text-slate-900 border-[#00FF66]' : 'bg-rose-500 text-white border-white'} rounded-full w-5 h-5 flex items-center justify-center text-[10px] font-black border-2 shadow-lg z-10">
+                            ${dest.id}
+                        </div>
+                        <div class="${isVisited ? 'bg-[#00FF66]' : 'bg-rose-500'} w-1.5 h-1.5 rotate-45 -mt-1 z-0 shadow-sm"></div>
+                    `;
+                    mapOverlay.appendChild(pin);
+                }
             });
 
             document.getElementById('roadmap-status-badge').innerText = `${visitedCount} / 7 Dikunjungi`;
@@ -1121,7 +1138,7 @@
 
                 const baseBgRow = index % 2 === 0 ? 'bg-white' : 'bg-slate-50/60';
                 const rowDiv = document.createElement("div");
-                rowDiv.className = `grid grid-cols-12 items-center py-2 px-1 sm:px-2 border-b border-slate-100 text-[10px] sm:text-xs font-semibold ${baseBgRow}`;
+                rowDiv.className = `grid grid-cols-12 items-center py-2 px-1 sm:px-2 border-b border-slate-100 text-[7.5px] sm:text-xs font-semibold ${baseBgRow} gap-0.5`;
 
                 const displayTgl = formatToDDMMYYYY(item.tgl);
 
@@ -1129,21 +1146,21 @@
                 if (item.nota && item.nota.trim() !== "") {
                     notaHtml = `
                         <div class="block text-left mt-0.5">
-                            <a href="${item.nota}" target="_blank" class="text-[9px] sm:text-[10px] text-blue-600 font-bold uppercase hover:underline flex items-center gap-1">
-                                <i class="fa-solid fa-file-image"></i> Lihat Foto Nota
+                            <a href="${item.nota}" target="_blank" class="text-[7px] sm:text-[10px] text-blue-600 font-bold uppercase hover:underline flex items-center gap-0.5">
+                                <i class="fa-solid fa-file-image"></i> Nota
                             </a>
                         </div>`;
                 }
 
                 rowDiv.innerHTML = `
-                    <div class="col-span-2 text-left font-bold text-slate-500 whitespace-nowrap">${displayTgl}</div>
-                    <div class="col-span-4 text-left font-black text-slate-800 uppercase truncate pr-1 cursor-pointer select-none" id="mutasi-item-${index}">
-                        <span class="block leading-tight">${item.ket}</span>
+                    <div class="col-span-2 text-left font-bold text-slate-500 whitespace-nowrap tracking-tighter truncate">${displayTgl}</div>
+                    <div class="col-span-3 text-left font-black text-slate-800 uppercase truncate pr-0.5 cursor-pointer select-none" id="mutasi-item-${index}">
+                        <span class="block leading-tight truncate">${item.ket}</span>
                         ${notaHtml}
                     </div>
-                    <div class="col-span-2 text-right font-black text-emerald-600 whitespace-nowrap">${masuk > 0 ? formatRupiah(masuk) : '-'}</div>
-                    <div class="col-span-2 text-right font-black text-rose-500 whitespace-nowrap">${keluar > 0 ? formatRupiah(keluar) : '-'}</div>
-                    <div class="col-span-2 text-right font-black text-blue-600 whitespace-nowrap">${formatRupiah(runningSaldo)}</div>
+                    <div class="col-span-2 text-right font-black text-emerald-600 whitespace-nowrap tracking-tighter truncate">${masuk > 0 ? formatRupiah(masuk) : '-'}</div>
+                    <div class="col-span-2 text-right font-black text-rose-500 whitespace-nowrap tracking-tighter truncate">${keluar > 0 ? formatRupiah(keluar) : '-'}</div>
+                    <div class="col-span-3 text-right font-black text-blue-600 whitespace-nowrap tracking-tighter truncate">${formatRupiah(runningSaldo)}</div>
                 `;
 
                 container.appendChild(rowDiv);
@@ -1671,23 +1688,49 @@
             const btn = document.getElementById('btnDownloadPdfProcess');
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF...';
             btn.disabled = true;
+            
             closeModal('modalPdf');
 
             setTimeout(() => {
-                const element = currentTab === 'lpj' ? document.getElementById('lpj-report-container') : document.getElementById('main-web-content');
+                const element = currentTab === 'lpj' 
+                    ? document.getElementById('lpj-report-container') 
+                    : document.getElementById('main-web-content');
+
                 const opt = {
-                    margin: [5, 5, 5, 5],
+                    margin: [10, 10, 10, 10], 
                     filename: `Laporan_Ziarah_${currentTab}_${getTodayYYYYMMDD()}.pdf`,
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2.5, useCORS: true, logging: false },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    image: { 
+                        type: 'jpeg', 
+                        quality: 1.0 
+                    },
+                    html2canvas: { 
+                        scale: 4, 
+                        useCORS: true, 
+                        logging: false,
+                        windowWidth: 1280, 
+                        scrollY: 0 
+                    },
+                    jsPDF: { 
+                        unit: 'mm', 
+                        format: 'a4', 
+                        orientation: 'portrait',
+                        compress: true 
+                    },
+                    pagebreak: { 
+                        mode: ['avoid-all', 'css', 'legacy'] 
+                    }
                 };
 
                 html2pdf().set(opt).from(element).save().then(() => {
                     btn.innerHTML = '<i class="fa-solid fa-download"></i> Download PDF Web 300 DPI';
                     btn.disabled = false;
+                }).catch(err => {
+                    console.error("Terjadi kesalahan saat memproses PDF: ", err);
+                    btn.innerHTML = '<i class="fa-solid fa-download"></i> Download PDF Web 300 DPI';
+                    btn.disabled = false;
+                    alert("Gagal membuat PDF. Pastikan koneksi stabil dan coba lagi.");
                 });
-            }, 300);
+            }, 500); 
         }
 
         function initLongPressEvents() {
