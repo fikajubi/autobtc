@@ -91,25 +91,25 @@
             </div>
         </div>
 
-        <!-- NAVIGASI TAB UTAMA (GRID 6 KOLOM AGAR 1 BARIS PENUH TANPA SCROLL) -->
-        <div class="w-full grid grid-cols-6 gap-0.5 sm:gap-1 p-1 bg-white rounded-lg shadow-sm border border-slate-200">
-            <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm">
-                <i class="fa-solid fa-chair text-[9px] sm:text-xs"></i> <span>Denah</span>
+        <!-- NAVIGASI TAB UTAMA -->
+        <div class="w-full flex gap-1 p-1 bg-white rounded-lg shadow-sm border border-slate-200 overflow-x-auto">
+            <button id="btn-tab-kursi" onclick="switchTab('kursi')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm">
+                <i class="fa-solid fa-chair"></i> Denah
             </button>
-            <button id="btn-tab-peserta" onclick="switchTab('peserta')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-users text-[9px] sm:text-xs"></i> <span>Peserta</span>
+            <button id="btn-tab-peserta" onclick="switchTab('peserta')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-users"></i> Peserta
             </button>
-            <button id="btn-tab-absensi" onclick="switchTab('absensi')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-clipboard-check text-[9px] sm:text-xs"></i> <span>Absensi</span>
+            <button id="btn-tab-absensi" onclick="switchTab('absensi')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-clipboard-check"></i> Absensi
             </button>
-            <button id="btn-tab-roadmaps" onclick="switchTab('roadmaps')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-route text-[9px] sm:text-xs"></i> <span>Roadmap</span>
+            <button id="btn-tab-roadmaps" onclick="switchTab('roadmaps')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-route"></i> Roadmap
             </button>
-            <button id="btn-tab-keuangan" onclick="switchTab('keuangan')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-wallet text-[9px] sm:text-xs"></i> <span>Keuangan</span>
+            <button id="btn-tab-keuangan" onclick="switchTab('keuangan')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-wallet"></i> Keuangan
             </button>
-            <button id="btn-tab-lpj" onclick="switchTab('lpj')" class="py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
-                <i class="fa-solid fa-file-invoice-dollar text-[9px] sm:text-xs"></i> <span>LPJ</span>
+            <button id="btn-tab-lpj" onclick="switchTab('lpj')" class="flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                <i class="fa-solid fa-file-invoice-dollar"></i> LPJ
             </button>
         </div>
 
@@ -167,6 +167,7 @@
                 </div>
 
                 <div id="view-bus-a-section" class="space-y-3">
+                    <!-- HEADER SECTION DISESUAIKAN AGAR 1 BARIS & TIDAK MENUMPUK -->
                     <div class="border-b-2 border-blue-600 pb-1 flex justify-between items-center gap-1">
                         <h2 class="font-black text-[10px] sm:text-sm text-blue-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
                             <i class="fa-solid fa-bus text-blue-600 text-xs"></i> Visual Denah Tempat Duduk - BUS A
@@ -190,6 +191,7 @@
                 </div>
 
                 <div id="view-bus-b-section" class="hidden space-y-3">
+                    <!-- HEADER SECTION DISESUAIKAN AGAR 1 BARIS & TIDAK MENUMPUK -->
                     <div class="border-b-2 border-purple-600 pb-1 flex justify-between items-center gap-1">
                         <h2 class="font-black text-[10px] sm:text-sm text-purple-800 uppercase tracking-tighter sm:tracking-wider flex items-center gap-1 shrink-0">
                             <i class="fa-solid fa-bus text-purple-600 text-xs"></i> Visual Denah Tempat Duduk - BUS B
@@ -454,30 +456,6 @@
         </div>
     </div>
 
-    <!-- AREA KHUSUS CETAK PDF PRESISI A4 (TERSEMBUNYI DI LAYAR, AKTIF SAAT DOWNLOAD PDF) -->
-    <div id="pdf-print-container" style="display: none; width: 750px; background: #ffffff; color: #1e293b; padding: 20px; font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box;">
-        <div style="background-color: #115e3b; color: white; text-align: center; padding: 18px 14px; border-radius: 12px; margin-bottom: 16px; page-break-inside: avoid;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 16pt; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">MUSHOLA WAKAF AN-NUR</h1>
-            <p style="color: #00FF66; margin: 4px 0 0 0; font-size: 9pt; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;">SISTEM MANAJEMEN ZIARAH WALI KENCENG</p>
-            <div style="color: #ffffff; font-size: 8pt; font-weight: 500; margin-top: 4px; opacity: 0.9;">Desa Bakalan Lor, RT 08 / RW 04 | Laporan Resmi Kegiatan</div>
-        </div>
-
-        <div id="pdf-print-content-body"></div>
-
-        <div style="margin-top: 30px; padding-top: 15px; border-top: 2px solid #cbd5e1; display: flex; justify-content: space-between; page-break-inside: avoid;">
-            <div style="text-align: center; font-size: 9pt; font-weight: bold;">
-                <p style="margin: 0; text-transform: uppercase;">Ketua RT 08 / Ketua Takmir</p>
-                <div style="height: 50px;"></div>
-                <p style="margin: 0; text-decoration: underline; text-transform: uppercase;">BP. PURNOMO</p>
-            </div>
-            <div style="text-align: center; font-size: 9pt; font-weight: bold;">
-                <p style="margin: 0; text-transform: uppercase;">Bendahara</p>
-                <div style="height: 50px;"></div>
-                <p style="margin: 0; text-decoration: underline; text-transform: uppercase;">BP. BUDI S</p>
-            </div>
-        </div>
-    </div>
-
     <!-- POPOVER MENU AKSI MELAYANG PENGELUARAN / MUTASI -->
     <div id="mobile-action-menu" class="hidden fixed z-50 bg-slate-900 text-white rounded-xl shadow-xl border border-slate-700 px-3 py-2 flex items-center gap-3">
         <button id="mobile-btn-edit" class="hidden items-center gap-1.5 text-amber-400 text-xs uppercase font-black tracking-wider hover:opacity-80">
@@ -694,11 +672,11 @@
                     <p class="font-bold uppercase flex items-center gap-1 mb-0.5">
                         <i class="fa-solid fa-circle-check text-emerald-600"></i> Mode Cetak Presisi Tinggi:
                     </p>
-                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh laporan dalam format A4 presisi tanpa terpotong.</p>
+                    <p id="pdf-modal-desc" class="text-slate-600 font-semibold">Meng-capture seluruh tampilan web dengan mode Dekstop resolusi UHD 300 DPI.</p>
                 </div>
                 <div class="pt-1 flex flex-col gap-2">
                     <button id="btnDownloadPdfProcess" onclick="generatePdfUHD()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-lg shadow-md transition uppercase tracking-wider flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-download"></i> Download PDF A4 Presisi
+                        <i class="fa-solid fa-download"></i> Download PDF Web 300 DPI
                     </button>
                     <button onclick="closeModal('modalPdf')" class="w-full py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-[10px] rounded-lg uppercase">
                         Batal
@@ -796,7 +774,7 @@
             tabs.forEach(t => {
                 const btn = document.getElementById(`btn-tab-${t}`);
                 const view = document.getElementById(`view-tab-${t}`);
-                if (btn) btn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
+                if (btn) btn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-slate-100 text-slate-600 hover:bg-slate-200";
                 if (view) view.classList.add('hidden');
             });
 
@@ -811,30 +789,30 @@
             if (activeView) activeView.classList.remove('hidden');
 
             if (tabName === 'kursi') {
-                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
                 subTitle.innerText = "DENAH TEMPAT DUDUK / KURSI BUS";
                 switchBusSubtab(currentBusSubtab);
             } else if (tabName === 'peserta') {
-                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-emerald-700 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-700 text-white shadow-sm";
                 document.getElementById('controls-peserta').classList.remove('hidden');
                 document.getElementById('card-total-saldo').classList.remove('hidden');
                 subTitle.innerText = "DATA PESERTA ZIARAH WALI KENCENG";
                 switchPesertaBusSubtab(currentPesertaBusSubtab);
             } else if (tabName === 'absensi') {
-                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-blue-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-blue-600 text-white shadow-sm";
                 document.getElementById('controls-absensi').classList.remove('hidden');
                 subTitle.innerText = "ABSENSI KUNJUNGAN DESTINASI 1 - 7";
                 switchAbsensiBusSubtab(currentAbsensiBusSubtab);
             } else if (tabName === 'roadmaps') {
-                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-emerald-800 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-emerald-800 text-white shadow-sm";
                 subTitle.innerText = "ROADMAP & PETA RUTE PERJALANAN ZIARAH";
                 renderRoadmapChecklist();
             } else if (tabName === 'keuangan') {
-                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-teal-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-teal-600 text-white shadow-sm";
                 subTitle.innerText = "REKAPITULASI KEUANGAN & OPERASIONAL";
                 renderKeuanganView();
             } else if (tabName === 'lpj') {
-                if (activeBtn) activeBtn.className = "py-2 px-0.5 rounded-md font-black text-[7.5px] sm:text-xs uppercase tracking-tighter sm:tracking-wider transition flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 bg-indigo-600 text-white shadow-sm";
+                if (activeBtn) activeBtn.className = "flex-1 min-w-[70px] py-2 rounded-md font-black text-[9px] sm:text-xs uppercase tracking-wider transition flex items-center justify-center gap-1 bg-indigo-600 text-white shadow-sm";
                 subTitle.innerText = "LAPORAN PERTANGGUNGJAWABAN (LPJ)";
                 renderLPJView();
             }
@@ -1085,7 +1063,7 @@
         }
 
         /* ----------------------------------------------------
-           RENDER TAB KEUANGAN
+           RENDER TAB KEUANGAN: UKURAN FONT MOBILE RESPONSIF
         ---------------------------------------------------- */
         function renderKeuanganView() {
             const totalMasuk = getTotalPemasukan();
@@ -1102,6 +1080,7 @@
 
             let mutasiList = [];
 
+            // Pemasukan Iuran Peserta
             dataPeserta.forEach(p => {
                 const cicilanArr = Array.isArray(p.cicilan) ? p.cicilan : [];
                 cicilanArr.forEach(c => {
@@ -1117,6 +1096,7 @@
                 });
             });
 
+            // Pengeluaran Operasional
             dataPengeluaran.forEach(e => {
                 mutasiList.push({
                     id: e.idPengeluaran,
@@ -1192,6 +1172,9 @@
             });
         }
 
+        /* ----------------------------------------------------
+           EVENT LONG-PRESS MUTASI (TEKAN & TAHAN 2 DETIK)
+        ---------------------------------------------------- */
         function setupMutasiLongPress(element, itemData) {
             element.addEventListener('touchstart', (e) => {
                 longPressTimer = setTimeout(() => {
@@ -1299,22 +1282,20 @@
             if (!tableAll) return;
             tableAll.innerHTML = '';
 
-            const dataSorted = [...dataPeserta].sort((a,b) => (parseInt(a.noKursi)||999) - (parseInt(b.noKursi)||999));
-
-            let totalGrand = 0;
+            const filteredPeserta = dataPeserta.filter(item => (item.bus || 'A').toUpperCase() === currentPesertaBusSubtab);
+            const dataSorted = [...filteredPeserta].sort((a,b) => (parseInt(a.noKursi)||999) - (parseInt(b.noKursi)||999));
 
             if (dataSorted.length === 0) {
-                tableAll.innerHTML = `<tr><td colspan="7" class="p-2 text-center text-slate-400 italic">Belum ada data peserta</td></tr>`;
+                tableAll.innerHTML = `<tr><td colspan="7" class="p-2 text-center text-slate-400 italic">Belum ada data peserta untuk BUS ${currentPesertaBusSubtab}</td></tr>`;
             } else {
                 dataSorted.forEach((item, index) => {
                     const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
                     const totalBayar = cicilanArr.reduce((sum, c) => sum + (Number(c.nominal) || 0), 0);
-                    totalGrand += totalBayar;
                     tableAll.appendChild(createRowElement(item, totalBayar, index + 1));
                 });
             }
 
-            document.getElementById('total-pembayaran-header').innerText = formatRupiah(totalGrand);
+            document.getElementById('total-pembayaran-header').innerText = formatRupiah(getTotalPemasukan());
             initLongPressEvents();
         }
 
@@ -1327,23 +1308,13 @@
                 ? '<span class="bg-blue-100 text-blue-800 font-black text-[9px] px-1.5 py-0.5 rounded-full">L</span>'
                 : '<span class="bg-pink-100 text-pink-800 font-black text-[9px] px-1.5 py-0.5 rounded-full">P</span>';
 
-            const kursiNum = (item.noKursi && item.noKursi !== '-') ? item.noKursi : '-';
-            const busLetter = item.bus ? item.bus : 'A';
-            const kursiBusCombined = `<span class="font-black text-purple-700">${kursiNum}/${busLetter}</span>`;
-
-            const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
-            const rawTgl = item.tglDaftar || (cicilanArr.length > 0 ? cicilanArr[0].tgl : '-');
-            const tglDisplay = formatToDDMMYYYY(rawTgl);
-
-            const hpDisplay = (item.hp && item.hp !== '') ? item.hp : '-';
-
             tr.innerHTML = `
                 <td class="py-1.5 px-0.5 text-center font-bold text-slate-500 whitespace-nowrap text-[9px] sm:text-xs">${noRow}</td>
-                <td class="py-1.5 px-0.5 text-center font-black whitespace-nowrap text-[9px] sm:text-xs">${kursiBusCombined}</td>
-                <td class="py-1.5 px-0.5 text-center font-bold text-slate-600 truncate text-[8px] sm:text-xs tracking-tighter w-[14%] shrink-0" title="${tglDisplay}">${tglDisplay}</td>
+                <td class="py-1.5 px-0.5 text-center font-black whitespace-nowrap text-[9px] sm:text-xs"><span class="font-black ${item.bus === 'B' ? 'text-purple-700' : 'text-blue-600'}">${item.noKursi || '-'}/${item.bus || 'A'}</span></td>
+                <td class="py-1.5 px-0.5 text-center font-bold text-slate-600 truncate text-[8px] sm:text-xs tracking-tighter w-[14%] shrink-0">${formatToDDMMYYYY(item.tglDaftar)}</td>
                 <td class="py-1.5 px-1 font-bold text-slate-800 uppercase truncate text-[9px] sm:text-xs" style="max-width: 0;">${item.nama}</td>
                 <td class="py-1.5 px-0.5 text-center whitespace-nowrap">${badgeJk}</td>
-                <td class="py-1.5 px-0.5 text-center font-bold text-slate-600 whitespace-nowrap text-[8.5px] sm:text-xs">${hpDisplay}</td>
+                <td class="py-1.5 px-0.5 text-center font-bold text-slate-600 whitespace-nowrap text-[8.5px] sm:text-xs">${item.hp || '-'}</td>
                 <td class="py-1.5 px-0.5 text-right whitespace-nowrap text-[9px] sm:text-xs">
                     <span class="font-black text-emerald-600 underline decoration-dashed underline-offset-2">${formatRupiah(totalBayar)}</span>
                 </td>
@@ -1367,77 +1338,37 @@
         }
 
         function handleAbsensiCheckboxChange(checkboxElem, pesertaId, locIndex) {
-            const item = dataPeserta.find(x => String(x.id) === String(pesertaId));
-            if (!item) return;
-
-            const isChecking = checkboxElem.checked;
-            checkboxElem.checked = !isChecking;
-
-            pendingAbsensiChange = {
-                pesertaId: pesertaId,
-                locIndex: locIndex,
-                targetState: isChecking
-            };
-
-            const subtitle = document.getElementById("pin-modal-subtitle");
-            subtitle.innerText = "🔒 Masukkan PIN Otorisasi Admin";
-            
+            pendingAbsensiChange = { pesertaId, locIndex, targetState: checkboxElem.checked };
             requestAccess('absensi_verify');
         }
 
         function executeAbsensiWithPin(isPinValid) {
             if (!pendingAbsensiChange) return;
-
             const { pesertaId, locIndex, targetState } = pendingAbsensiChange;
             const item = dataPeserta.find(x => String(x.id) === String(pesertaId));
 
-            if (!item) {
-                pendingAbsensiChange = null;
-                return;
-            }
-
-            if (!item.absensi) {
-                item.absensi = {1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false};
-            }
-
-            if (isPinValid) {
+            if (item && isPinValid) {
+                if (!item.absensi) item.absensi = {};
                 item.absensi[locIndex] = targetState;
-                saveAbsensiStateToServer(pesertaId, locIndex, targetState);
+                localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+                renderTableAbsensi();
+                sendRequest({ action: "saveAbsensi", data: JSON.stringify({ idPeserta: pesertaId, absensi: item.absensi }) });
             } else {
-                alert("⚠️ PIN Absensi Salah!");
                 renderTableAbsensi();
             }
-
             pendingAbsensiChange = null;
-        }
-
-        function saveAbsensiStateToServer(pesertaId, locIndex, isChecked) {
-            const item = dataPeserta.find(x => String(x.id) === String(pesertaId));
-            if (!item) return;
-
-            if (!item.absensi) {
-                item.absensi = {1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false};
-            }
-            item.absensi[locIndex] = isChecked;
-
-            const payload = {
-                idPeserta: pesertaId,
-                absensi: item.absensi
-            };
-
-            sendRequest({ action: "saveAbsensi", data: JSON.stringify(payload) });
         }
 
         function renderTableAbsensi() {
             const tbodyAll = document.getElementById('table-absensi-all');
             if (!tbodyAll) return;
-
             tbodyAll.innerHTML = '';
 
-            const dataSorted = [...dataPeserta].sort((a,b) => (parseInt(a.noKursi)||999) - (parseInt(b.noKursi)||999));
+            const filteredPeserta = dataPeserta.filter(item => (item.bus || 'A').toUpperCase() === currentAbsensiBusSubtab);
+            const dataSorted = [...filteredPeserta].sort((a,b) => (parseInt(a.noKursi)||999) - (parseInt(b.noKursi)||999));
 
             if (dataSorted.length === 0) {
-                tbodyAll.innerHTML = `<tr><td colspan="10" class="p-2 text-center text-slate-400 italic">Belum ada data peserta.</td></tr>`;
+                tbodyAll.innerHTML = `<tr><td colspan="10" class="p-2 text-center text-slate-400 italic">Belum ada data absensi.</td></tr>`;
             } else {
                 dataSorted.forEach((item, index) => {
                     tbodyAll.appendChild(createAbsensiRow(item, index + 1));
@@ -1447,48 +1378,43 @@
 
         function createAbsensiRow(item, noRow) {
             const tr = document.createElement('tr');
-            tr.className = `transition border-b absensi-row hover:bg-blue-50/50 border-blue-50`;
+            tr.className = `transition border-b absensi-row hover:bg-slate-50 border-slate-100`;
 
             let checkboxesHtml = '';
             for (let i = 1; i <= 7; i++) {
                 const isChecked = (item.absensi && item.absensi[i]) ? 'checked' : '';
                 checkboxesHtml += `
-                    <td class="py-1.5 px-0.5 text-center border-l border-blue-100 whitespace-nowrap">
-                        <input type="checkbox" ${isChecked} onchange="handleAbsensiCheckboxChange(this, '${item.id}', ${i})" class="w-3.5 h-3.5 rounded cursor-pointer text-blue-600 focus:ring-blue-500 accent-blue-600">
+                    <td class="py-1.5 px-0.5 text-center border-l border-slate-100 whitespace-nowrap">
+                        <input type="checkbox" ${isChecked} onchange="handleAbsensiCheckboxChange(this, '${item.id}', ${i})" class="w-3.5 h-3.5 rounded cursor-pointer accent-blue-600">
                     </td>
                 `;
             }
 
-            const kursiNum = (item.noKursi && item.noKursi !== '-') ? item.noKursi : '-';
-            const busLetter = item.bus ? item.bus : 'A';
-            const kursiBusCombined = `<span class="font-black text-purple-700">${kursiNum}/${busLetter}</span>`;
-
             tr.innerHTML = `
-                <td class="py-1.5 px-0.5 text-center font-bold text-slate-500 whitespace-nowrap text-[9px] sm:text-xs">${noRow}</td>
-                <td class="py-1.5 px-0.5 text-center font-black whitespace-nowrap text-[9px] sm:text-xs">${kursiBusCombined}</td>
-                <td class="py-1.5 px-1 font-bold text-slate-800 uppercase truncate text-[9px] sm:text-xs" style="max-width: 0;" title="${item.nama}">${item.nama}</td>
+                <td class="py-1.5 px-0.5 text-center font-bold text-slate-500 text-[9px] sm:text-xs">${noRow}</td>
+                <td class="py-1.5 px-0.5 text-center font-black text-[9px] sm:text-xs">${item.noKursi || '-'}/${item.bus || 'A'}</td>
+                <td class="py-1.5 px-1 font-bold text-slate-800 uppercase truncate text-[9px] sm:text-xs" style="max-width: 0;">${item.nama}</td>
                 ${checkboxesHtml}
             `;
             return tr;
         }
 
         function requestAccess(mode, extraId = null) {
+            hideMutasiActionMenu();
             currentAccessSession.mode = mode;
             if (mode === 'edit_cicilan' || mode === 'delete_cicilan') activeCicilanIndex = extraId;
+            if (mode === 'delete_pengeluaran') activePesertaId = extraId;
             if (mode === 'toggle_roadmap') activeRoadmapDestId = extraId;
             if (mode === 'seat_click_add') {
                 activeSeatTargetNumber = extraId.seatId;
+                activeSeatTargetBus = extraId.busCode || 'A';
             }
 
             closeModal('modalAksi');
             
             const pinInput = document.getElementById("input-security-pin");
             pinInput.value = "";
-            pinInput.maxLength = 6;
-            pinInput.placeholder = "••••••";
-            document.getElementById("pin-modal-subtitle").innerText = mode === 'view_peserta_tab' 
-                ? "Masukkan PIN untuk melihat Data Peserta" 
-                : "Masukkan PIN Keamanan Admin";
+            document.getElementById("pin-modal-subtitle").innerText = "Masukkan PIN Otorisasi Admin (Default: 9)";
 
             document.getElementById("pin-modal").classList.remove("hidden");
             pinInput.focus();
@@ -1497,7 +1423,6 @@
         function submitPinVerification(e) {
             e.preventDefault();
             const typedPin = document.getElementById("input-security-pin").value.trim();
-
             if (typedPin === backendPin) {
                 processPinResult(true);
             } else {
@@ -1514,15 +1439,13 @@
 
             if (isValid) {
                 closeModal('pin-modal');
-                if (currentAccessSession.mode === 'view_peserta_tab') {
-                    executeSwitchTab('peserta');
-                } else {
-                    executeProtectedMode(currentAccessSession.mode);
-                }
+                if (currentAccessSession.mode === 'view_peserta_tab') executeSwitchTab('peserta');
+                else if (currentAccessSession.mode === 'view_keuangan_tab') executeSwitchTab('keuangan');
+                else if (currentAccessSession.mode === 'view_lpj_tab') executeSwitchTab('lpj');
+                else executeProtectedMode(currentAccessSession.mode);
             } else {
                 alert("⚠️ PIN Salah! Akses ditolak.");
                 document.getElementById("input-security-pin").value = "";
-                document.getElementById("input-security-pin").focus();
             }
         }
 
@@ -1533,58 +1456,43 @@
             else if (mode === 'delete_peserta') executeDeletePeserta();
             else if (mode === 'edit_cicilan') openEditCicilanModal(activeCicilanIndex);
             else if (mode === 'delete_cicilan') executeDeleteCicilan(activeCicilanIndex);
+            else if (mode === 'delete_pengeluaran') executeDeletePengeluaran(activePesertaId);
             else if (mode === 'download_pdf') openPdfModal();
             else if (mode === 'toggle_roadmap') toggleRoadmapVisited(activeRoadmapDestId);
-            else if (mode === 'seat_click_add') openAddPesertaModalWithSeat(activeSeatTargetNumber);
+            else if (mode === 'seat_click_add') openAddPesertaModalWithSeat(activeSeatTargetNumber, activeSeatTargetBus);
         }
 
-        function openAddPesertaModalWithSeat(seatNum) {
+        function openAddPesertaModalWithSeat(seatNum, busCode = 'A') {
             openAddPesertaModal();
+            document.getElementById('form-peserta-bus').value = busCode;
             document.getElementById('form-peserta-no-kursi').value = seatNum;
         }
 
         function openAddPesertaModal() {
             document.getElementById('pesertaFormTitle').innerText = "Tambah Peserta Baru";
-            document.getElementById('lbl-peserta-tgl').innerText = "Tanggal Pendaftaran (DD/MM/YYYY)";
-            document.getElementById('lbl-peserta-dp').innerText = "Pembayaran Awal / DP (Rp)";
             document.getElementById('form-peserta-id').value = "";
-            document.getElementById('form-peserta-bus').value = "A";
+            document.getElementById('form-peserta-bus').value = currentBusSubtab || "A";
             document.getElementById('form-peserta-no-kursi').value = "-";
             document.getElementById('form-peserta-nama').value = "";
             document.getElementById('form-peserta-jk').value = "L";
             document.getElementById('form-peserta-hp').value = "-";
             document.getElementById('form-peserta-tgl').value = getTodayYYYYMMDD();
             document.getElementById('form-peserta-dp').value = "0";
-            document.getElementById('initialPaymentGroup').classList.remove('hidden');
             document.getElementById('modalPesertaForm').classList.remove('hidden');
         }
 
         function openEditPesertaModal() {
             const item = dataPeserta.find(x => String(x.id) === String(activePesertaId));
-            if (!item) {
-                alert("Data peserta tidak ditemukan!");
-                return;
-            }
+            if (!item) return;
             
             document.getElementById('pesertaFormTitle').innerText = "Edit Data Peserta";
             document.getElementById('form-peserta-id').value = item.id;
             document.getElementById('form-peserta-bus').value = item.bus || "A";
-            document.getElementById('form-peserta-no-kursi').value = (item.noKursi && item.noKursi !== '') ? item.noKursi : "-";
+            document.getElementById('form-peserta-no-kursi').value = item.noKursi || "-";
             document.getElementById('form-peserta-nama').value = item.nama || "";
             document.getElementById('form-peserta-jk').value = item.jk || "L";
-            document.getElementById('form-peserta-hp').value = (item.hp && item.hp !== '') ? item.hp : "-";
-            
-            const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
-            const firstCicilan = cicilanArr.length > 0 ? cicilanArr[0] : null;
-            const tglDaftar = item.tglDaftar || (firstCicilan ? firstCicilan.tgl : '');
-            const dpNominal = firstCicilan ? firstCicilan.nominal : 0;
-            
-            document.getElementById('lbl-peserta-tgl').innerText = "Tanggal Pendaftaran (DD/MM/YYYY)";
-            document.getElementById('lbl-peserta-dp').innerText = "Pembayaran Awal / DP (Rp)";
-            document.getElementById('form-peserta-tgl').value = formatToYYYYMMDD(tglDaftar);
-            document.getElementById('form-peserta-dp').value = dpNominal;
-            
-            document.getElementById('initialPaymentGroup').classList.remove('hidden');
+            document.getElementById('form-peserta-hp').value = item.hp || "-";
+            document.getElementById('form-peserta-tgl').value = formatToYYYYMMDD(item.tglDaftar);
             document.getElementById('modalPesertaForm').classList.remove('hidden');
         }
 
@@ -1592,50 +1500,79 @@
             e.preventDefault();
             const id = document.getElementById('form-peserta-id').value;
             const bus = document.getElementById('form-peserta-bus').value;
-            
-            let noKursiVal = document.getElementById('form-peserta-no-kursi').value.trim();
-            const noKursi = (noKursiVal !== "" && noKursiVal !== "-") ? noKursiVal : "-";
-            
+            const noKursi = document.getElementById('form-peserta-no-kursi').value.trim() || "-";
             const nama = document.getElementById('form-peserta-nama').value.trim().toUpperCase();
             const jk = document.getElementById('form-peserta-jk').value;
-            
-            let hpVal = document.getElementById('form-peserta-hp').value.trim();
-            const hp = (hpVal !== "" && hpVal !== "-") ? hpVal : "-";
-            
+            const hp = document.getElementById('form-peserta-hp').value.trim() || "-";
             const rawTgl = document.getElementById('form-peserta-tgl').value;
             const tglFormatted = formatToDDMMYYYY(rawTgl);
             const dp = parseInt(document.getElementById('form-peserta-dp').value) || 0;
 
-            const payload = { id, bus, noKursi, nama, jk, hp, tglDaftar: tglFormatted, dp };
+            const targetId = id || ('temp_' + Date.now());
+            let existingIdx = dataPeserta.findIndex(x => String(x.id) === String(targetId));
 
+            if (existingIdx >= 0) {
+                dataPeserta[existingIdx] = { ...dataPeserta[existingIdx], bus, noKursi, nama, jk, hp };
+            } else {
+                dataPeserta.push({
+                    id: targetId, bus, noKursi, nama, jk, hp, tglDaftar: tglFormatted,
+                    cicilan: dp > 0 ? [{ idCicilan: 'c_temp_' + Date.now(), tgl: tglFormatted, ket: 'PEMBAYARAN DP', nominal: dp }] : [],
+                    absensi: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false}
+                });
+            }
+
+            localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+            updateAllViews();
             closeModal('modalPesertaForm');
-            sendRequest({ action: "savePeserta", data: JSON.stringify(payload) });
+
+            sendRequest({ action: "savePeserta", data: JSON.stringify({ id, bus, noKursi, nama, jk, hp, tglDaftar: tglFormatted, dp }) });
+        }
+
+        function openFormPengeluaranModal() {
+            document.getElementById('form-pengeluaran-id').value = "";
+            document.getElementById('form-pengeluaran-tgl').value = getTodayYYYYMMDD();
+            document.getElementById('form-pengeluaran-ket').value = "";
+            document.getElementById('form-pengeluaran-nominal').value = "";
+            document.getElementById('form-pengeluaran-nota').value = "";
+            document.getElementById('modalPengeluaranForm').classList.remove('hidden');
+        }
+
+        function handlePengeluaranSubmit(e) {
+            e.preventDefault();
+            const idPengeluaran = document.getElementById('form-pengeluaran-id').value;
+            const rawTgl = document.getElementById('form-pengeluaran-tgl').value;
+            const tglFormatted = formatToDDMMYYYY(rawTgl);
+            const ket = document.getElementById('form-pengeluaran-ket').value.trim().toUpperCase();
+            const nominal = parseInt(document.getElementById('form-pengeluaran-nominal').value) || 0;
+            const nota = document.getElementById('form-pengeluaran-nota').value.trim();
+
+            const targetId = idPengeluaran || ('e_temp_' + Date.now());
+            dataPengeluaran.push({ idPengeluaran: targetId, tgl: tglFormatted, ket, nominal, nota });
+
+            localStorage.setItem('cached_data_pengeluaran', JSON.stringify(dataPengeluaran));
+            updateAllViews();
+            closeModal('modalPengeluaranForm');
+
+            sendRequest({ action: "savePengeluaran", data: JSON.stringify({ idPengeluaran, tgl: tglFormatted, ket, nominal, nota }) });
+        }
+
+        function executeDeletePengeluaran(idE) {
+            if (confirm("Hapus data pengeluaran operasional ini?")) {
+                dataPengeluaran = dataPengeluaran.filter(x => String(x.idPengeluaran) !== String(idE));
+                localStorage.setItem('cached_data_pengeluaran', JSON.stringify(dataPengeluaran));
+                updateAllViews();
+                sendRequest({ action: "deletePengeluaran", idPengeluaran: idE });
+            }
         }
 
         function openBayarModal() {
             const item = dataPeserta.find(x => String(x.id) === String(activePesertaId));
             if (!item) return;
-            document.getElementById('bayarFormTitle').innerText = "Input Bayar Angsuran";
             document.getElementById('bayarTargetNama').innerText = "Peserta: " + item.nama;
             document.getElementById('form-cicilan-id').value = "";
             document.getElementById('form-bayar-tgl').value = getTodayYYYYMMDD();
             document.getElementById('form-bayar-ket').value = "ANGSURAN";
             document.getElementById('form-bayar-nominal').value = "";
-            document.getElementById('modalBayarForm').classList.remove('hidden');
-        }
-
-        function openEditCicilanModal(cIndex) {
-            const item = dataPeserta.find(x => String(x.id) === String(activePesertaId));
-            const cicilanArr = (item && Array.isArray(item.cicilan)) ? item.cicilan : [];
-            if (!item || !cicilanArr[cIndex]) return;
-
-            const cData = cicilanArr[cIndex];
-            document.getElementById('bayarFormTitle').innerText = "Edit Transaksi Angsuran";
-            document.getElementById('bayarTargetNama').innerText = "Peserta: " + item.nama;
-            document.getElementById('form-cicilan-id').value = cData.idCicilan;
-            document.getElementById('form-bayar-tgl').value = formatToYYYYMMDD(cData.tgl);
-            document.getElementById('form-bayar-ket').value = cData.ket;
-            document.getElementById('form-bayar-nominal').value = cData.nominal;
             document.getElementById('modalBayarForm').classList.remove('hidden');
         }
 
@@ -1647,16 +1584,17 @@
             const ket = document.getElementById('form-bayar-ket').value.trim().toUpperCase();
             const nominal = parseInt(document.getElementById('form-bayar-nominal').value) || 0;
 
-            const payload = {
-                idCicilan: idCicilan,
-                idPeserta: activePesertaId,
-                tgl: tglFormatted,
-                ket: ket,
-                nominal: nominal
-            };
+            const pItem = dataPeserta.find(x => String(x.id) === String(activePesertaId));
+            if (pItem) {
+                if (!Array.isArray(pItem.cicilan)) pItem.cicilan = [];
+                pItem.cicilan.push({ idCicilan: 'c_temp_' + Date.now(), tgl: tglFormatted, ket, nominal });
+                localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+                updateAllViews();
+                openDetailModal(activePesertaId);
+            }
 
             closeModal('modalBayarForm');
-            sendRequest({ action: "saveCicilan", data: JSON.stringify(payload) }, () => openDetailModal(activePesertaId));
+            sendRequest({ action: "saveCicilan", data: JSON.stringify({ idCicilan, idPeserta: activePesertaId, tgl: tglFormatted, ket, nominal }) });
         }
 
         function executeDeleteCicilan(cIndex) {
@@ -1664,8 +1602,12 @@
             const cicilanArr = (item && Array.isArray(item.cicilan)) ? item.cicilan : [];
             if (item && cicilanArr[cIndex]) {
                 const cData = item.cicilan[cIndex];
-                if (confirm(`Hapus transaksi "${cData.ket}" (${formatRupiah(cData.nominal)})?`)) {
-                    sendRequest({ action: "deleteCicilan", idCicilan: cData.idCicilan }, () => openDetailModal(activePesertaId));
+                if (confirm(`Hapus transaksi "${cData.ket}"?`)) {
+                    item.cicilan.splice(cIndex, 1);
+                    localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+                    updateAllViews();
+                    openDetailModal(activePesertaId);
+                    sendRequest({ action: "deleteCicilan", idCicilan: cData.idCicilan });
                 }
             }
         }
@@ -1673,6 +1615,10 @@
         function executeDeletePeserta() {
             const item = dataPeserta.find(x => String(x.id) === String(activePesertaId));
             if (item && confirm(`Yakin ingin menghapus peserta "${item.nama}"?`)) {
+                dataPeserta = dataPeserta.filter(x => String(x.id) !== String(activePesertaId));
+                localStorage.setItem('cached_data_peserta', JSON.stringify(dataPeserta));
+                updateAllViews();
+                closeModal('modalAksi');
                 sendRequest({ action: "deletePeserta", idPeserta: activePesertaId });
             }
         }
@@ -1683,34 +1629,23 @@
             if (!item) return;
 
             document.getElementById('modalNama').innerText = item.nama;
-            const badge = document.getElementById('modalJKBadge');
-            badge.innerText = item.jk === 'L' ? 'Laki-Laki' : 'Perempuan';
-            badge.className = item.jk === 'L' ? 'bg-blue-100 text-blue-800 font-black text-xs px-2.5 py-0.5 rounded-full' : 'bg-pink-100 text-pink-800 font-black text-xs px-2.5 py-0.5 rounded-full';
+            document.getElementById('modalJKBadge').innerText = item.jk === 'L' ? 'Laki-Laki' : 'Perempuan';
 
             const tbody = document.getElementById('modalListCicilan');
             tbody.innerHTML = '';
-
             const cicilanArr = Array.isArray(item.cicilan) ? item.cicilan : [];
 
             if (cicilanArr.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="4" class="p-2 text-center text-slate-400 italic">Belum ada riwayat pembayaran.</td></tr>`;
             } else {
                 cicilanArr.forEach((c, idx) => {
-                    const cTgl = formatToDDMMYYYY(c.tgl);
                     tbody.innerHTML += `
                         <tr class="hover:bg-slate-50">
-                            <td class="p-1 text-slate-500 whitespace-nowrap">${cTgl}</td>
+                            <td class="p-1 text-slate-500 font-bold">${formatToDDMMYYYY(c.tgl)}</td>
                             <td class="p-1 font-bold text-slate-700 uppercase">${c.ket}</td>
-                            <td class="p-1 text-right font-black text-slate-800 whitespace-nowrap">${formatRupiah(c.nominal)}</td>
+                            <td class="p-1 text-right font-black text-slate-800">${formatRupiah(c.nominal)}</td>
                             <td class="p-1 text-center">
-                                <div class="flex items-center justify-center gap-1">
-                                    <button onclick="requestAccess('edit_cicilan', ${idx})" title="Edit Transaksi" class="text-amber-500 hover:text-amber-600 p-0.5">
-                                        <i class="fa-solid fa-pen text-xs"></i>
-                                    </button>
-                                    <button onclick="requestAccess('delete_cicilan', ${idx})" title="Hapus Transaksi" class="text-rose-500 hover:text-rose-600 p-0.5">
-                                        <i class="fa-solid fa-trash text-xs"></i>
-                                    </button>
-                                </div>
+                                <button onclick="requestAccess('delete_cicilan', ${idx})" class="text-rose-500 font-bold text-xs p-0.5"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
                     `;
@@ -1733,92 +1668,74 @@
         }
 
         function openPdfModal() {
-            const title = document.getElementById('pdf-modal-title');
-            const desc = document.getElementById('pdf-modal-desc');
-
-            if (currentTab === 'peserta') {
-                title.innerText = "Download PDF Data Peserta (UHD)";
-                desc.innerText = "Meng-capture tabel Data Peserta Ziarah (Semua Peserta) dengan resolusi UHD 300 DPI.";
-            } else if (currentTab === 'absensi') {
-                title.innerText = "Download PDF Absensi Destinasi (UHD)";
-                desc.innerText = "Meng-capture tabel Rekap Absensi Destinasi 1 - 7 dengan resolusi UHD 300 DPI.";
-            } else if (currentTab === 'roadmaps') {
-                title.innerText = "Download PDF Roadmap & Rute (UHD)";
-                desc.innerText = "Meng-capture peta roadmap & status kunjungan destinasi ziarah dengan resolusi UHD 300 DPI.";
-            } else {
-                title.innerText = "Download PDF Denah Kursi Bus (UHD)";
-                desc.innerText = "Meng-capture data pemetaan nomor kursi beserta keterangan nama dengan resolusi UHD 300 DPI.";
-            }
-
+            document.getElementById('pdf-modal-title').innerText = "Download Cetak Laporan (UHD)";
             document.getElementById('modalPdf').classList.remove('hidden');
         }
 
-        /* ------------------------------------------------------------------
-           PERBAIKAN UTAMA: CETAK MENGGUNAKAN KANVAS KHUSUS A4 TERSEMBUNYI
-        ------------------------------------------------------------------ */
         function generatePdfUHD() {
             const btn = document.getElementById('btnDownloadPdfProcess');
             const originalBtnHtml = btn ? btn.innerHTML : '';
             if (btn) {
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Merapikan Dokumen A4...';
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses PDF Desktop Mode...';
                 btn.disabled = true;
             }
 
             closeModal('modalPdf');
 
             setTimeout(() => {
-                const printContainer = document.getElementById('pdf-print-container');
-                const printBody = document.getElementById('pdf-print-content-body');
-                printBody.innerHTML = '';
-
-                let fileNamePrefix = `Laporan_Ziarah_${currentTab.toUpperCase()}`;
-
-                if (currentTab === 'keuangan') {
-                    fileNamePrefix = `Laporan_Mutasi_Keuangan`;
-                    let cardHtml = document.querySelector('#view-tab-keuangan .grid').outerHTML;
-                    let tableHtml = document.querySelector('#view-tab-keuangan .bg-white.border.border-slate-200').outerHTML;
-                    printBody.innerHTML = `<div style="display: flex; flex-direction: column; gap: 15px;">${cardHtml}${tableHtml}</div>`;
-                } else if (currentTab === 'peserta') {
-                    fileNamePrefix = `Data_Peserta_Ziarah`;
-                    printBody.innerHTML = document.getElementById('section-tabel-peserta-all').outerHTML;
-                } else if (currentTab === 'absensi') {
-                    fileNamePrefix = `Absensi_Destinasi_1-7`;
-                    printBody.innerHTML = document.getElementById('section-absensi-all').outerHTML;
-                } else if (currentTab === 'lpj') {
-                    fileNamePrefix = `Laporan_LPJ_Ziarah`;
-                    printBody.innerHTML = document.getElementById('lpj-report-container').outerHTML;
-                } else {
-                    printBody.innerHTML = document.getElementById('view-tab-' + currentTab).outerHTML;
+                let element = document.getElementById('main-web-content');
+                if (currentTab === 'lpj') {
+                    element = document.getElementById('lpj-report-container');
                 }
 
-                printContainer.style.display = 'block';
+                let fileNamePrefix = `Laporan_Ziarah_${currentTab.toUpperCase()}`;
+                if (currentTab === 'kursi') fileNamePrefix = `Denah_Kursi_Bus_${currentBusSubtab}`;
+                if (currentTab === 'peserta') fileNamePrefix = `Data_Peserta_Bus_${currentPesertaBusSubtab}`;
+                if (currentTab === 'absensi') fileNamePrefix = `Absensi_Bus_${currentAbsensiBusSubtab}`;
+
+                const origWidth = element.style.width;
+                const origMaxWidth = element.style.maxWidth;
+                const origOverflow = element.style.overflow;
+
+                element.style.width = '1050px';
+                element.style.maxWidth = '1050px';
+                element.style.overflow = 'visible';
+
                 window.scrollTo(0, 0);
 
                 const opt = {
-                    margin:       [10, 10, 10, 10],
+                    margin:       [8, 8, 8, 8],
                     filename:     `${fileNamePrefix}_${getTodayYYYYMMDD()}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  { 
                         scale: 2,
                         useCORS: true, 
                         logging: false,
-                        windowWidth: 794 // Lebar persis standar pixel kertas A4 (794px pada 96 DPI)
+                        windowWidth: 1280,
+                        scrollY: 0,
+                        scrollX: 0
                     },
                     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
                     pagebreak:    { 
                         mode: ['avoid-all', 'css', 'legacy'],
-                        avoid: ['tr', 'div', 'table', 'td', 'th', '.pdf-keep-together'] 
+                        avoid: ['tr', '.long-press-row', '.absensi-row', '.pdf-keep-together', '.bus-body-wrapper'] 
                     }
                 };
 
-                html2pdf().set(opt).from(printContainer).save().then(() => {
-                    printContainer.style.display = 'none';
+                html2pdf().set(opt).from(element).save().then(() => {
+                    element.style.width = origWidth;
+                    element.style.maxWidth = origMaxWidth;
+                    element.style.overflow = origOverflow;
+
                     if (btn) {
                         btn.innerHTML = originalBtnHtml;
                         btn.disabled = false;
                     }
                 }).catch(err => {
-                    printContainer.style.display = 'none';
+                    element.style.width = origWidth;
+                    element.style.maxWidth = origMaxWidth;
+                    element.style.overflow = origOverflow;
+
                     alert("Gagal membuat PDF: " + err);
                     if (btn) {
                         btn.innerHTML = originalBtnHtml;
@@ -1832,14 +1749,12 @@
         function initLongPressEvents() {
             let timer = null;
             let isLongPress = false;
-            let activeRow = null;
 
             document.querySelectorAll('.long-press-row').forEach(row => {
                 const id = row.getAttribute('data-id');
 
                 const startPress = () => {
                     isLongPress = false;
-                    activeRow = row;
                     row.classList.add('holding');
                     timer = setTimeout(() => {
                         isLongPress = true;
@@ -1850,7 +1765,7 @@
 
                 const cancelPress = () => {
                     clearTimeout(timer);
-                    if (activeRow) activeRow.classList.remove('holding');
+                    row.classList.remove('holding');
                 };
 
                 row.addEventListener('pointerdown', startPress);
